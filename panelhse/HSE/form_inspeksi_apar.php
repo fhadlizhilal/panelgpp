@@ -206,7 +206,6 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-
                   <table class="table table-bordered table-hover" style="font-size: 12px; margin-bottom: 10px;">
                     <thead>
                       <tr>
@@ -335,8 +334,10 @@
                         $kd_weekly_cek = "week/".$i."/".$kd_project;
                         $get_inspeksilist = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM hse_inspeksilist WHERE kd_weekly = '$kd_weekly_cek'"));
 
-                        $t_apar_hilangrusak_minggu_lalu = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM hse_inspeksilist_detailapar WHERE inspeksi_id = '$get_inspeksilist[id]' AND (hasil_akhir = 'Rusak' OR hasil_akhir = 'Hilang')")) + $t_apar_hilangrusak_minggu_lalu;                      }
+                        $t_apar_hilangrusak_minggu_lalu = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM hse_inspeksilist_detailapar WHERE inspeksi_id = '$get_inspeksilist[id]' AND (hasil_akhir = 'Rusak' OR hasil_akhir = 'Hilang')")) + $t_apar_hilangrusak_minggu_lalu;
+                      }
 
+                      $cek_data_apar = "Lengkap";
                     ?>
                     <tr>
                       <td align="center"><?php echo $get_num_apar_baik; ?></td>
@@ -345,6 +346,12 @@
                       <td align="center"><?php echo $get_jml_apar_onsite['jml_apar_onsite']; ?></td>
                       <td align="center"><?php echo $get_jml_apar_onsite['jml_apar_onsite'] - $t_apar_hilangrusak_minggu_lalu; ?></td>
                     </tr>
+
+                    <?php if(($get_num_apar_baik + $get_num_apar_rusak + $get_num_apar_hilang) < ($get_jml_apar_onsite['jml_apar_onsite'] - $t_apar_hilangrusak_minggu_lalu)){ ?>
+                      <tr>
+                        <td colspan="5" align="center" style="color: white; background-color: red;"><small>Data APAR masih kurang dari jumlah Asset minggu ini!</small></td>
+                      </tr>
+                    <?php $cek_data_apar = "Kurang"; } ?>
                   </table>
 
                   <table class="table table-sm table-bordered" style="font-size: 12px; margin-bottom: 15px;">
@@ -431,7 +438,7 @@
                       <input type="hidden" name="inspeksi_id" value="<?php echo $_GET['kd']; ?>">
                       <a href="index.php?pages=detailproject&kd=<?php echo $kd_project; ?>" class="btn btn-info btn-sm"><span class="fa fa-reply"></span> Kembali</a>
                       
-                      <button onclick="return confirm('Yakin inspeksi APAR ini sudah lengkap dan sesuai ?')" class="btn btn-success btn-sm" name="submit_inspeksi_apar" value="submit" <?php if($get_inspeksilist['ttd_hse'] == "" OR $get_inspeksilist['ttd_sm'] == "" OR $jml_foto_apar < 4){ echo "disabled"; } ?>>Submit</button>
+                      <button onclick="return confirm('Yakin inspeksi APAR ini sudah lengkap dan sesuai ?')" class="btn btn-success btn-sm" name="submit_inspeksi_apar" value="submit" <?php if($get_inspeksilist['ttd_hse'] == "" OR $get_inspeksilist['ttd_sm'] == "" OR $jml_foto_apar < 4 OR $cek_data_apar == "Kurang"){ echo "disabled"; } ?>>Submit</button>
 
                     </form>
                   </div>
