@@ -230,13 +230,20 @@
 
             <div class="card">
               <div class="card-body" style="font-size: 12px">
-                <form id="signatureForm" method="POST" action="">
+                <form id="signatureForm" method="POST" action="" enctype="multipart/form-data">
                   <table style="background-color: yellow;">
                     <tr>
                       <td width="40px" style="text-align: center; vertical-align: middle;">
                         <input type="checkbox" name="setuju" required>
                       </td>
                       <td style="text-align: justify; padding-right: 10px; padding-bottom: 5px; padding-top: 5px">Dengan ini saya menyatakan telah mengikuti induksi K3 dan LK3, saya bersedia mengikuti semua peraturan dan ketentuan yang telah disepakati secara lisan serta tulisan selama bekerja di lingkungan kerja PT Global Pratama Powerindo. Saya akan bertanggung jawab atas segala konsekuensi yang telah disepakati.</td>
+                    </tr>
+                  </table><br>
+                  <table>
+                    <tr>
+                      <td>Foto Diri Terbaru</td>
+                      <td>:</td>
+                      <td><input type="file" class="form-control form-control-sm" accept="image/*" name="foto_terbaru" required></td>
                     </tr>
                   </table>
                   <center><br> 
@@ -250,7 +257,7 @@
                     <input type="hidden" name="spkid" value="<?php echo $_GET['spkid'] ?>">
                     <input type="hidden" name="file_name" value="<?php echo "SPK_".$get_project['nama_project']."_".$getManpower['nama']; ?>">
                     <button type="button" class="btn btn-secondary" id="clearButton">Hapus TTD</button>
-                    <button type="submit" class="btn btn-primary" id="submitButton" name="submit_spk" disabled>Submit</button>
+                    <button type="submit" class="btn btn-primary" id="submitButton" name="submit_spk_v2" disabled>Submit</button>
                   </center>
                 </form>
 

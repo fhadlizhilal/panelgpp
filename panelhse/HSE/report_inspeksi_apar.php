@@ -1,4 +1,12 @@
   <?php
+    $get_inspeksilist = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM hse_inspeksilist WHERE id = '$_GET[kd]'"));
+    $get_hse_manpower = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM hse_manpower WHERE id = '$get_inspeksilist[hse_officer]'"));
+    $data_array = explode("/", $get_inspeksilist['kd_weekly']);
+    $week = $data_array[1];
+    $kd_project = $data_array[2];
+
+    $get_project = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM hse_project WHERE id = '$kd_project'"));
+
     $get_num_inspeksi_apar = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM hse_inspeksilist_detailapar WHERE inspeksi_id = '$_GET[kd]'"));
 
     // GET DATA APAR FROM DB
@@ -19,6 +27,16 @@
       $point_11[$i] = $get_inspeksilist_detailapar["point_11"];
 
       $i++;
+    }
+
+    // GET DOKUMENTASI APAR
+    $x=0;
+    $q_get_dokumentasi_inspeksi_apar = mysqli_query($conn, "SELECT * FROM hse_inspeksilist_fotoapar WHERE inspeksi_id = '$_GET[kd]'");
+    while($get_dokumentasi_inspeksi_apar = mysqli_fetch_array($q_get_dokumentasi_inspeksi_apar)){
+      $foto_apar[$x] = $get_dokumentasi_inspeksi_apar["foto"];
+      $keterangan_apar[$x] = $get_dokumentasi_inspeksi_apar["keterangan"];
+
+      $x++;
     }
   ?>
 
@@ -66,15 +84,15 @@
                     <table style="margin-top: 10px; font-size: 12px;" class="table table-bordered table-sm" width="100%">
                       <tr>
                         <td width="15%">&nbsp; Nama Inspektor</td>
-                        <td width="40%"></td>
+                        <td width="40%"><?php echo $get_hse_manpower['nama']; ?></td>
                         <td width="15%">&nbsp; Tanggal Inspeksi</td>
-                        <td width="30%"></td>
+                        <td width="30%"><?php echo $get_inspeksilist['tanggal_inspeksi']; ?></td>
                       </tr>
                       <tr>
                         <td width="15%">&nbsp; Jabatan</td>
-                        <td width="40%"></td>
+                        <td width="40%">HSE Officer</td>
                         <td width="15%">&nbsp; Lokasi Kerja</td>
-                        <td width="30%"></td>
+                        <td width="30%"><?php echo $get_project['nama_project']." - ".$get_project['kota']; ?></td>
                       </tr>
                     </table>
                   </div>
@@ -326,7 +344,7 @@
                         <td colspan="4" style="text-align: center;">Dokumentasi</td>
                       </tr>
                       <tr>
-                        <td width="25%">....</td>
+                        <td width="25%"><img src="../../role/HSE/foto_inspeksi_apar/<?php echo $foto_apar[0]; ?>"></td>
                         <td width="25%">....</td>
                         <td width="25%">....</td>
                         <td width="25%">....</td>
@@ -396,16 +414,20 @@
                           <td align="center">Disetujui Oleh</td>
                         </tr>
                         <tr>
-                          <td style="text-align: center; height: 100px;">TTD</td>
-                          <td style="text-align: center; height: 100px;">TTD</td>
+                          <td style="text-align: center; height: 100px;">
+                            <img src="../../role/hse/signatures/<?php echo $get_inspeksilist['ttd_hse']; ?>">
+                          </td>
+                          <td style="text-align: center; height: 100px;">
+                            <img src="../../role/hse/signatures/<?php echo $get_inspeksilist['ttd_sm']; ?>">
+                          </td>
                         </tr>
                         <tr>
-                          <td align="center">Nama</td>
-                          <td align="center">Nama</td>
+                          <td align="center"><?php echo $get_hse_manpower['nama']; ?></td>
+                          <td align="center"><?php echo $get_inspeksilist['site_manager']; ?></td>
                         </tr>
                         <tr>
-                          <td align="center">Jabatan</td>
-                          <td align="center">Jabatan</td>
+                          <td align="center">HSE Officer</td>
+                          <td align="center">Site Manager</td>
                         </tr>
                       </table>
                     </center>
@@ -454,15 +476,15 @@
                     <table style="margin-top: 10px; font-size: 12px;" class="table table-bordered table-sm" width="100%">
                       <tr>
                         <td width="15%">&nbsp; Nama Inspektor</td>
-                        <td width="40%"></td>
+                        <td width="40%"><?php echo $get_hse_manpower['nama']; ?></td>
                         <td width="15%">&nbsp; Tanggal Inspeksi</td>
-                        <td width="30%"></td>
+                        <td width="30%"><?php echo $get_inspeksilist['tanggal_inspeksi']; ?></td>
                       </tr>
                       <tr>
                         <td width="15%">&nbsp; Jabatan</td>
-                        <td width="40%"></td>
+                        <td width="40%">HSE Officer</td>
                         <td width="15%">&nbsp; Lokasi Kerja</td>
-                        <td width="30%"></td>
+                        <td width="30%"><?php echo $get_project['nama_project']." - ".$get_project['kota']; ?></td>
                       </tr>
                     </table>
                   </div>
@@ -1482,16 +1504,100 @@
                         <td colspan="4" style="text-align: center;">Dokumentasi</td>
                       </tr>
                       <tr>
-                        <td width="25%">....</td>
-                        <td width="25%">....</td>
-                        <td width="25%">....</td>
-                        <td width="25%">....</td>
+                        <td width="25%" align="center">
+                          <img src="../../role/HSE/foto_inspeksi_apar/<?php echo $foto_apar[0]; ?>" style="height: 150px;">
+                          <div style="text-align: center;"><?php echo $keterangan_apar[0]; ?></div>
+                        </td>
+                        <td width="25%" align="center">
+                          <img src="../../role/HSE/foto_inspeksi_apar/<?php echo $foto_apar[1]; ?>" style="height: 150px;">
+                          <div style="text-align: center;"><?php echo $keterangan_apar[1]; ?></div>
+                        </td>
+                        <td width="25%" align="center">
+                          <img src="../../role/HSE/foto_inspeksi_apar/<?php echo $foto_apar[2]; ?>" style="height: 150px;">
+                          <div style="text-align: center;"><?php echo $keterangan_apar[2]; ?></div>
+                        </td>
+                        <td width="25%" align="center">
+                          <img src="../../role/HSE/foto_inspeksi_apar/<?php echo $foto_apar[3]; ?>" style="height: 150px;">
+                          <div style="text-align: center;"><?php echo $keterangan_apar[3]; ?></div>
+                        </td>
                       </tr>
                       <tr>
-                        <td>....</td>
-                        <td>....</td>
-                        <td>....</td>
-                        <td>....</td>
+                        <td width="25%" align="center">
+                          <?php if($foto_apar[4] <> ""){ ?>
+                            <img src="../../role/HSE/foto_inspeksi_apar/<?php echo $foto_apar[4]; ?>" style="height: 150px;">
+                            <div style="text-align: center;"><?php echo $keterangan_apar[4]; ?></div>
+                          <?php } ?>
+                        </td>
+                        <td width="25%" align="center">
+                          <?php if($foto_apar[5] <> ""){ ?>
+                            <img src="../../role/HSE/foto_inspeksi_apar/<?php echo $foto_apar[5]; ?>" style="height: 150px;">
+                            <div style="text-align: center;"><?php echo $keterangan_apar[5]; ?></div>
+                          <?php } ?>
+                        </td>
+                        <td width="25%" align="center">
+                          <?php if($foto_apar[6] <> ""){ ?>
+                            <img src="../../role/HSE/foto_inspeksi_apar/<?php echo $foto_apar[6]; ?>" style="height: 150px;">
+                            <div style="text-align: center;"><?php echo $keterangan_apar[6]; ?></div>
+                          <?php } ?>
+                        </td>
+                        <td width="25%" align="center">
+                          <?php if($foto_apar[7] <> ""){ ?>
+                            <img src="../../role/HSE/foto_inspeksi_apar/<?php echo $foto_apar[7]; ?>" style="height: 150px;">
+                            <div style="text-align: center;"><?php echo $keterangan_apar[7]; ?></div>
+                          <?php } ?>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td width="25%" align="center">
+                          <?php if($foto_apar[4] <> ""){ ?>
+                            <img src="../../role/HSE/foto_inspeksi_apar/<?php echo $foto_apar[8]; ?>" style="height: 150px;">
+                            <div style="text-align: center;"><?php echo $keterangan_apar[8]; ?></div>
+                          <?php } ?>
+                        </td>
+                        <td width="25%" align="center">
+                          <?php if($foto_apar[5] <> ""){ ?>
+                            <img src="../../role/HSE/foto_inspeksi_apar/<?php echo $foto_apar[9]; ?>" style="height: 150px;">
+                            <div style="text-align: center;"><?php echo $keterangan_apar[9]; ?></div>
+                          <?php } ?>
+                        </td>
+                        <td width="25%" align="center">
+                          <?php if($foto_apar[6] <> ""){ ?>
+                            <img src="../../role/HSE/foto_inspeksi_apar/<?php echo $foto_apar[10]; ?>" style="height: 150px;">
+                            <div style="text-align: center;"><?php echo $keterangan_apar[10]; ?></div>
+                          <?php } ?>
+                        </td>
+                        <td width="25%" align="center">
+                          <?php if($foto_apar[7] <> ""){ ?>
+                            <img src="../../role/HSE/foto_inspeksi_apar/<?php echo $foto_apar[11]; ?>" style="height: 150px;">
+                            <div style="text-align: center;"><?php echo $keterangan_apar[11]; ?></div>
+                          <?php } ?>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td width="25%" align="center">
+                          <?php if($foto_apar[4] <> ""){ ?>
+                            <img src="../../role/HSE/foto_inspeksi_apar/<?php echo $foto_apar[12]; ?>" style="height: 150px;">
+                            <div style="text-align: center;"><?php echo $keterangan_apar[12]; ?></div>
+                          <?php } ?>
+                        </td>
+                        <td width="25%" align="center">
+                          <?php if($foto_apar[5] <> ""){ ?>
+                            <img src="../../role/HSE/foto_inspeksi_apar/<?php echo $foto_apar[13]; ?>" style="height: 150px;">
+                            <div style="text-align: center;"><?php echo $keterangan_apar[13]; ?></div>
+                          <?php } ?>
+                        </td>
+                        <td width="25%" align="center">
+                          <?php if($foto_apar[6] <> ""){ ?>
+                            <img src="../../role/HSE/foto_inspeksi_apar/<?php echo $foto_apar[14]; ?>" style="height: 150px;">
+                            <div style="text-align: center;"><?php echo $keterangan_apar[14]; ?></div>
+                          <?php } ?>
+                        </td>
+                        <td width="25%" align="center">
+                          <?php if($foto_apar[7] <> ""){ ?>
+                            <img src="../../role/HSE/foto_inspeksi_apar/<?php echo $foto_apar[15]; ?>" style="height: 150px;">
+                            <div style="text-align: center;"><?php echo $keterangan_apar[15]; ?></div>
+                          <?php } ?>
+                        </td>
                       </tr>
                     </table>
 
@@ -1508,12 +1614,27 @@
                         <td align="center">Rusak</td>
                         <td align="center">Hilang</td>
                       </tr>
+                      <?php
+                        $get_num_apar_baik = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM hse_inspeksilist_detailapar WHERE inspeksi_id = '$_GET[kd]' AND hasil_akhir = 'Baik'"));
+                        $get_num_apar_rusak = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM hse_inspeksilist_detailapar WHERE inspeksi_id = '$_GET[kd]' AND hasil_akhir = 'Rusak'"));
+                        $get_num_apar_hilang = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM hse_inspeksilist_detailapar WHERE inspeksi_id = '$_GET[kd]' AND hasil_akhir = 'Hilang'"));
+
+                        $get_jml_apar_onsite = mysqli_fetch_array(mysqli_query($conn, "SELECT SUM(jumlah) AS jml_apar_onsite FROM hse_toolsapdonsite_detailtoolsk3 JOIN hse_toolsk3 ON hse_toolsapdonsite_detailtoolsk3.toolsk3_id = hse_toolsk3.id JOIN hse_toolsapdonsite ON hse_toolsapdonsite_detailtoolsk3.id_onsite = hse_toolsapdonsite.id WHERE hse_toolsk3.nama_tools = 'APAR' AND hse_toolsapdonsite.project_id = '$kd_project'"));
+
+                        $t_apar_hilangrusak_minggu_lalu = 0;
+                        for($i=1;$i<$week;$i++){
+                          $kd_weekly_cek = "week/".$i."/".$kd_project;
+                          $get_inspeksilist = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM hse_inspeksilist WHERE kd_weekly = '$kd_weekly_cek'"));
+
+                          $t_apar_hilangrusak_minggu_lalu = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM hse_inspeksilist_detailapar WHERE inspeksi_id = '$get_inspeksilist[id]' AND (hasil_akhir = 'Rusak' OR hasil_akhir = 'Hilang')")) + $t_apar_hilangrusak_minggu_lalu;
+                        }
+                      ?>
                       <tr>
-                        <td align="center">1</td>
-                        <td align="center">2</td>
-                        <td align="center">3</td>
-                        <td align="center">4</td>
-                        <td align="center">5</td>
+                        <td align="center"><?php echo $get_num_apar_baik; ?></td>
+                        <td align="center"><?php echo $get_num_apar_rusak; ?></td>
+                        <td align="center"><?php echo $get_num_apar_hilang; ?></td>
+                        <td align="center"><?php echo $get_jml_apar_onsite['jml_apar_onsite']; ?></td>
+                        <td align="center"><?php echo $get_jml_apar_onsite['jml_apar_onsite'] - $t_apar_hilangrusak_minggu_lalu; ?></td>
                       </tr>
                     </table>
 
@@ -1521,6 +1642,7 @@
                     <table class="table table-bordered table-sm" style="font-size: 11px">
                       <tr>
                         <td width="60%">
+
                           <p>
                             *Pemeriksaan : Apakah bagian / peralatan APAR yang akan dipakai tersedia, cukup, dalam keadaan baik dan berfungsi dengan benar.<br><span class="fa fa-check"></span> = Baik / Ada  |  <span class="fa fa-close"></span> = Rusak | <span class="fa fa-close"></span> = Hilang |  <span class="fa fa-minus"></span> = Tidak Tersedia
                           </p>
@@ -1552,16 +1674,20 @@
                           <td align="center">Disetujui Oleh</td>
                         </tr>
                         <tr>
-                          <td style="text-align: center; height: 100px;">TTD</td>
-                          <td style="text-align: center; height: 100px;">TTD</td>
+                          <td style="text-align: center; height: 100px;">
+                            <img src="../../role/hse/signatures/<?php echo $get_inspeksilist['ttd_hse']; ?>" width="100%">
+                          </td>
+                          <td style="text-align: center; height: 100px;">
+                            <img src="../../role/hse/signatures/<?php echo $get_inspeksilist['ttd_sm']; ?>" width="100%">
+                          </td>
                         </tr>
                         <tr>
-                          <td align="center">Nama</td>
-                          <td align="center">Nama</td>
+                          <td align="center"><?php echo $get_hse_manpower['nama']; ?></td>
+                          <td align="center"><?php echo $get_inspeksilist['site_manager']; ?></td>
                         </tr>
                         <tr>
-                          <td align="center">Jabatan</td>
-                          <td align="center">Jabatan</td>
+                          <td align="center">HSE Officer</td>
+                          <td align="center">Site Manager</td>
                         </tr>
                       </table>
                     </center>

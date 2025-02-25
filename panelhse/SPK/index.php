@@ -314,6 +314,67 @@
     }
   }
 
+  if(isset($_POST['submit_spk_v2'])){
+    $spkid = $_POST['spkid'];
+    $nik = $_POST['nik'];
+    $signatureImage = $_POST['signatureImage'];
+
+    $getManpower = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM hse_manpower WHERE nik = '$nik'"));
+
+    // Decode the base64 encoded image
+    list($type, $data) = explode(';', $signatureImage);
+    list(, $data) = explode(',', $data);
+    $data = base64_decode($data);
+
+    // Set the file path to save the image (Format Name Image : nama manpower_spkid_uniqid.png)
+    $fileName = $getManpower['nama'].'_'.$spkid.'_'.uniqid().'.png';
+    $filePath = 'signatures/'.$fileName;
+    // Save the image
+    file_put_contents($filePath, $data);
+
+    $nodate = date('YmdHis');
+    $uploadPath = "foto_diri/";
+
+    // jika form upload file sudah di submit :
+    if(!empty($_FILES["foto_terbaru"]["name"])){ 
+      // File info
+      $fileName2 = $nodate."_".basename($_FILES["foto_terbaru"]["name"]); 
+      $imageUploadPath = $uploadPath . $fileName2; 
+      $fileType = pathinfo($imageUploadPath, PATHINFO_EXTENSION);
+        
+      // Tipe format yang diperbolehkan 
+      $allowTypes = array('jpg','png','jpeg','gif'); 
+      if(in_array($fileType, $allowTypes)){
+        // Image temp source 
+        $imageTemp = $_FILES["foto_terbaru"]["tmp_name"];
+          
+        // Ukuran Kompresi 10 (bisa diganti dengan yang lain)
+        $compressedImage = compressImage($imageTemp, $imageUploadPath, 10);
+          
+        if($compressedImage){
+          $push_data_spk = mysqli_query($conn, "INSERT INTO hse_inductionreport_spk VALUES('','$spkid','$nik','$getManpower[nama]','$getManpower[tempat_lahir]','$getManpower[tgl_lahir]','$getManpower[golongan_darah]','$getManpower[riwayat_penyakit]','$getManpower[no_telpon]','$getManpower[alamat]','$getManpower[posisi_kerja]','$getManpower[nama_kerabat]','$getManpower[hubungan_kerabat]','$getManpower[no_telpon_kerabat]','$fileName2', '$fileName')");
+          $last_id = $conn->insert_id;
+
+          if($push_data_spk){
+            $_SESSION['alert_success'] = "Berhasil! SPK Berhasil Ditanda Tangan";
+            echo "<meta http-equiv='refresh' content='0; url=index.php?pages=reportspk&induction_spk_id=$last_id'>";
+          }else{
+            $_SESSION['alert_error'] = "Gagal! Data SPK Gagal Disubmit ".mysqli_error($conn);
+            echo "<meta http-equiv='refresh' content='0'>";
+          }
+        }else{
+          unlink("foto_diri/".$fileName2);
+          $_SESSION['alert_error'] = "Gagal! Foto Diri Terbaru gagal disimpan, File foto tidak dapat dikompresi";
+        } 
+      }else{
+        unlink("foto_diri/".$fileName2);
+        $_SESSION['alert_error'] = "Gagal! Maaf, hanya JPG, JPEG, PNG, & GIF yang diperbolehkan.";
+      } 
+    }else{
+      $_SESSION['alert_error'] = "Gagal! Maaf foto diri terbaru harus diisi";
+    }
+  }
+
 ?>
 
 <style>

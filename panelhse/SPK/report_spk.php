@@ -83,7 +83,7 @@
         <div class="row" style="margin-bottom: 10px; margin-left: 100px; margin-right: 100px;">
           <div class="col-lg-2 col-0"></div>
           <div class="col-lg-8 col-12">
-              <table class="table table-sm table-bordered" style="font-size: 14px">
+              <table class="table table-sm table-bordered" style="font-size: 14px; margin-bottom: 35px;">
                 <tr>
                   <td colspan="3" align="center"><h6>KETERANGAN PEKERJAAN</h6></td>
                 </tr>
@@ -99,15 +99,21 @@
                   <td>HSE Officer</td>
                   <td><?php echo $get_hseOfficer['nama']; ?></td>
                 </tr>
+              </table>
+              <table class="table table-sm table-bordered" style="font-size: 14px; margin-bottom: 35px;">
                 <tr>
-                  <td colspan="3" align="center" style="vertical-align: middle;">
+                  <td colspan="2" align="center" style="vertical-align: middle;">
                     <h6>
                       DATA PRIBADI 
                     </h6>
                   </td>
                 </tr>
                 <tr>
-                  <td>NIK</td>
+                  <!-- <td style="vertical-align: middle;">Foto</td> -->
+                  <td colspan="2" align="center"><img src="foto_diri/<?php echo $getInductionSPK['foto']; ?>" width="100px"></td>
+                </tr>
+                <tr>
+                  <td width="30%">NIK</td>
                   <td><?php echo $getInductionSPK['nik']; ?></td>
                 </tr>
                 <tr>
@@ -142,11 +148,13 @@
                   <td>Posisi Kerja</td>
                   <td><?php echo $getInductionSPK['posisi_kerja']; ?></td>
                 </tr>
+              </table>
+              <table class="table table-sm table-bordered" style="font-size: 14px">
                 <tr>
                   <td colspan="3" align="center" style="vertical-align: middle;"><h6>INFORMASI KERABAT TERDEKAT</h6></td>
                 </tr>
                 <tr>
-                  <td>Nama Kerabat</td>
+                  <td width="30%">Nama Kerabat</td>
                   <td><?php echo $getInductionSPK['nama_kerabat']; ?></td>
                 </tr>
                 <tr>
