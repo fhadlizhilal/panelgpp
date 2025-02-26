@@ -760,7 +760,9 @@
                           <tr>
                             <td width="20%" style="font-weight: bold;">Keterangan / Keperluan</td>
                             <td width="2%">:</td>
-                            <td><input type="text" name="keterangan[]" placeholder="Keterangan / Keperluan" class="form-control form-control-sm" required></td>
+                            <td>
+                              <textarea class="form-control form-control-sm" name="keterangan[]" required></textarea>
+                            </td>
                           </tr>
                           <tr>
                             <td width="20%" style="font-weight: bold;">Nominal</td>

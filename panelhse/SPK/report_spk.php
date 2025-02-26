@@ -3,10 +3,6 @@
   $getInduction = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM hse_inductionreport WHERE id = '$getInductionSPK[induction_id]'"));
   $getProject = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM hse_project WHERE id = '$getInduction[project_id]'"));
   $get_hseOfficer = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM hse_manpower WHERE id = '$getInduction[hse_officer]'"));
-
-  if($getInduction['status'] == "closed"){
-    header("location:page_closed.php");
-  }
 ?>
 
 <style>
@@ -107,14 +103,16 @@
                       DATA PRIBADI 
                     </h6>
                   </td>
-                </tr>
-                <tr>
-                  <!-- <td style="vertical-align: middle;">Foto</td> -->
-                  <td colspan="2" align="center"><img src="foto_diri/<?php echo $getInductionSPK['foto']; ?>" width="100px"></td>
+                  <td align="center" width="15%" style="vertical-align: middle;">
+                    <h6>
+                      FOTO 
+                    </h6>
+                  </td>
                 </tr>
                 <tr>
                   <td width="30%">NIK</td>
                   <td><?php echo $getInductionSPK['nik']; ?></td>
+                  <td rowspan="9" align="center" style="vertical-align: middle;"><img src="foto_diri/<?php echo $getInductionSPK['foto']; ?>" width="120px"></td>
                 </tr>
                 <tr>
                   <td>Nama Lengkap</td>

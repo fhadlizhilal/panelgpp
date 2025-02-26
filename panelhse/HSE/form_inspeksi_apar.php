@@ -692,7 +692,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <form method="POST" action="" enctype="multipart/form-data">
+          <form id="myForm4" method="POST" action="" enctype="multipart/form-data">
             <div class="form-group row" style="margin-bottom: 8px;">
               <label class="col-3 col-form-label" style="font-size: 12px;">Foto</label>
               <div class="col-9">

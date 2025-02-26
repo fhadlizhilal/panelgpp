@@ -243,7 +243,7 @@
                     <tr>
                       <td>Foto Diri Terbaru</td>
                       <td>:</td>
-                      <td><input type="file" class="form-control form-control-sm" accept="image/*" name="foto_terbaru" required></td>
+                      <td><input type="file" class="form-control form-control-sm" accept="image/*" capture="user" name="foto_terbaru" required></td>
                     </tr>
                   </table>
                   <center><br> 

@@ -5181,7 +5181,31 @@
 </script>
 
 <script>
+    document.getElementById('myForm3').addEventListener('submit', function() {
+        document.getElementById('loadingOverlay').style.display = 'flex';
+    });
+</script>
+
+<script>
+    document.getElementById('myForm4').addEventListener('submit', function() {
+        document.getElementById('loadingOverlay').style.display = 'flex';
+    });
+</script>
+
+<script>
+    document.getElementById('myForm5').addEventListener('submit', function() {
+        document.getElementById('loadingOverlay').style.display = 'flex';
+    });
+</script>
+
+<script>
     document.getElementById('signatureForm').addEventListener('submit', function() {
+        document.getElementById('loadingOverlay').style.display = 'flex';
+    });
+</script>
+
+<script>
+    document.getElementById('signatureForm_2').addEventListener('submit', function() {
         document.getElementById('loadingOverlay').style.display = 'flex';
     });
 </script>

@@ -39,6 +39,7 @@
       $x++;
     }
   ?>
+  
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -57,7 +58,7 @@
                   <div class="col-6"><div style="text-align: right;"><img src="../../dist/img/logo/logo-k3.png" width="90px"></div></div>
                 </div>
 
-                <div class="row" style="margin-bottom: 10px">
+                <div class="row" style="margin-bottom: 0px">
                   <div class="col-12">
                     <table class="table table-bordered table-sm">
                       <tr>
@@ -110,9 +111,9 @@
                           <th style="vertical-align: middle;" colspan="4">Merek</th>
                         </tr>
                         <tr>
-                          <th colspan="4">....</th>
-                          <th colspan="4">....</th>
-                          <th colspan="4">....</th>
+                          <th colspan="4"><?php echo $merek_tipe[0]; ?></th>
+                          <th colspan="4"><?php echo $merek_tipe[1]; ?></th>
+                          <th colspan="4"><?php echo $merek_tipe[2]; ?></th>
                         </tr>
                         <tr>
                           <th colspan="4">Kondisi</th>
@@ -140,200 +141,464 @@
                         <tr>
                           <td>1</td>
                           <td>Nomor tabung sesuai</td>
-                          <td align="center"><span class="fa fa-check"></span></td>
-                          <td align="center"><span class="fa fa-close"></span></td>
-                          <td align="center"><span class="fa fa-close"></td>
-                          <td align="center"><span class="fa fa-minus"></td>
+                          <td align="center">
+                            <?php if($point_1[0] == "Baik"){ ?><span class="fa fa-check"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_1[0] == "Rusak"){ ?><span class="fa fa-close"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_1[0] == "Hilang"){ ?><span class="fa fa-close"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_1[0] == "NA"){ ?><span class="fa fa-minus"></span><?php } ?>
+                          </td>
 
-                          <td align="center"></td>
-                          <td align="center"></td>
-                          <td align="center"></td>
-                          <td align="center"></td>
+                          <td align="center">
+                            <?php if($point_1[1] == "Baik"){ ?><span class="fa fa-check"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_1[1] == "Rusak"){ ?><span class="fa fa-close"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_1[1] == "Hilang"){ ?><span class="fa fa-close"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_1[1] == "NA"){ ?><span class="fa fa-minus"></span><?php } ?>
+                          </td>
 
-                          <td align="center"></td>
-                          <td align="center"></td>
-                          <td align="center"></td>
-                          <td align="center"></td>
+                          <td align="center">
+                            <?php if($point_1[2] == "Baik"){ ?><span class="fa fa-check"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_1[2] == "Rusak"){ ?><span class="fa fa-close"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_1[2] == "Hilang"){ ?><span class="fa fa-close"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_1[2] == "NA"){ ?><span class="fa fa-minus"></span><?php } ?>
+                          </td>
                         </tr>
                         <tr>
                           <td>2</td>
                           <td>Penempatan APAR benar</td>
-                          <td align="center"><span class="fa fa-check"></span></td>
-                          <td align="center"><span class="fa fa-close"></span></td>
-                          <td align="center"><span class="fa fa-close"></td>
-                          <td align="center"><span class="fa fa-minus"></td>
+                          <td align="center">
+                            <?php if($point_2[0] == "Baik"){ ?><span class="fa fa-check"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_2[0] == "Rusak"){ ?><span class="fa fa-close"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_2[0] == "Hilang"){ ?><span class="fa fa-close"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_2[0] == "NA"){ ?><span class="fa fa-minus"></span><?php } ?>
+                          </td>
 
-                          <td align="center"></td>
-                          <td align="center"></td>
-                          <td align="center"></td>
-                          <td align="center"></td>
-                          
-                          <td align="center"></td>
-                          <td align="center"></td>
-                          <td align="center"></td>
-                          <td align="center"></td>
+                          <td align="center">
+                            <?php if($point_2[1] == "Baik"){ ?><span class="fa fa-check"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_2[1] == "Rusak"){ ?><span class="fa fa-close"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_2[1] == "Hilang"){ ?><span class="fa fa-close"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_2[1] == "NA"){ ?><span class="fa fa-minus"></span><?php } ?>
+                          </td>
+
+                          <td align="center">
+                            <?php if($point_2[2] == "Baik"){ ?><span class="fa fa-check"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_2[2] == "Rusak"){ ?><span class="fa fa-close"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_2[2] == "Hilang"){ ?><span class="fa fa-close"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_2[2] == "NA"){ ?><span class="fa fa-minus"></span><?php } ?>
+                          </td>
                         </tr>
                         <tr>
                           <td>3</td>
                           <td>Penempatan APAR pada area kerja dan mudah dicapai</td>
-                          <td align="center"><span class="fa fa-check"></span></td>
-                          <td align="center"><span class="fa fa-close"></span></td>
-                          <td align="center"><span class="fa fa-close"></td>
-                          <td align="center"><span class="fa fa-minus"></td>
+                          <td align="center">
+                            <?php if($point_3[0] == "Baik"){ ?><span class="fa fa-check"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_3[0] == "Rusak"){ ?><span class="fa fa-close"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_3[0] == "Hilang"){ ?><span class="fa fa-close"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_3[0] == "NA"){ ?><span class="fa fa-minus"></span><?php } ?>
+                          </td>
 
-                          <td align="center"></td>
-                          <td align="center"></td>
-                          <td align="center"></td>
-                          <td align="center"></td>
-                          
-                          <td align="center"></td>
-                          <td align="center"></td>
-                          <td align="center"></td>
-                          <td align="center"></td>
+                          <td align="center">
+                            <?php if($point_3[1] == "Baik"){ ?><span class="fa fa-check"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_3[1] == "Rusak"){ ?><span class="fa fa-close"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_3[1] == "Hilang"){ ?><span class="fa fa-close"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_3[1] == "NA"){ ?><span class="fa fa-minus"></span><?php } ?>
+                          </td>
+
+                          <td align="center">
+                            <?php if($point_3[2] == "Baik"){ ?><span class="fa fa-check"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_3[2] == "Rusak"){ ?><span class="fa fa-close"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_3[2] == "Hilang"){ ?><span class="fa fa-close"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_3[2] == "NA"){ ?><span class="fa fa-minus"></span><?php } ?>
+                          </td>
                         </tr>
                         <tr>
                           <td>4</td>
                           <td>APAR dalam kondisi bersih</td>
-                          <td align="center"><span class="fa fa-check"></span></td>
-                          <td align="center"><span class="fa fa-close"></span></td>
-                          <td align="center"><span class="fa fa-close"></td>
-                          <td align="center"><span class="fa fa-minus"></td>
+                          <td align="center">
+                            <?php if($point_4[0] == "Baik"){ ?><span class="fa fa-check"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_4[0] == "Rusak"){ ?><span class="fa fa-close"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_4[0] == "Hilang"){ ?><span class="fa fa-close"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_4[0] == "NA"){ ?><span class="fa fa-minus"></span><?php } ?>
+                          </td>
 
-                          <td align="center"></td>
-                          <td align="center"></td>
-                          <td align="center"></td>
-                          <td align="center"></td>
-                          
-                          <td align="center"></td>
-                          <td align="center"></td>
-                          <td align="center"></td>
-                          <td align="center"></td>
+                          <td align="center">
+                            <?php if($point_4[1] == "Baik"){ ?><span class="fa fa-check"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_4[1] == "Rusak"){ ?><span class="fa fa-close"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_4[1] == "Hilang"){ ?><span class="fa fa-close"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_4[1] == "NA"){ ?><span class="fa fa-minus"></span><?php } ?>
+                          </td>
+
+                          <td align="center">
+                            <?php if($point_4[2] == "Baik"){ ?><span class="fa fa-check"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_4[2] == "Rusak"){ ?><span class="fa fa-close"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_4[2] == "Hilang"){ ?><span class="fa fa-close"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_4[2] == "NA"){ ?><span class="fa fa-minus"></span><?php } ?>
+                          </td>
                         </tr>
                         <tr>
                           <td>5</td>
                           <td>Terdapat data kelas kebakaran pada APAR</td>
-                          <td align="center"><span class="fa fa-check"></span></td>
-                          <td align="center"><span class="fa fa-close"></span></td>
-                          <td align="center"><span class="fa fa-close"></td>
-                          <td align="center"><span class="fa fa-minus"></td>
+                          <td align="center">
+                            <?php if($point_5[0] == "Baik"){ ?><span class="fa fa-check"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_5[0] == "Rusak"){ ?><span class="fa fa-close"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_5[0] == "Hilang"){ ?><span class="fa fa-close"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_5[0] == "NA"){ ?><span class="fa fa-minus"></span><?php } ?>
+                          </td>
 
-                          <td align="center"></td>
-                          <td align="center"></td>
-                          <td align="center"></td>
-                          <td align="center"></td>
-                          
-                          <td align="center"></td>
-                          <td align="center"></td>
-                          <td align="center"></td>
-                          <td align="center"></td>
+                          <td align="center">
+                            <?php if($point_5[1] == "Baik"){ ?><span class="fa fa-check"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_5[1] == "Rusak"){ ?><span class="fa fa-close"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_5[1] == "Hilang"){ ?><span class="fa fa-close"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_5[1] == "NA"){ ?><span class="fa fa-minus"></span><?php } ?>
+                          </td>
+
+                          <td align="center">
+                            <?php if($point_5[2] == "Baik"){ ?><span class="fa fa-check"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_5[2] == "Rusak"){ ?><span class="fa fa-close"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_5[2] == "Hilang"){ ?><span class="fa fa-close"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_5[2] == "NA"){ ?><span class="fa fa-minus"></span><?php } ?>
+                          </td>
                         </tr>
                         <tr>
                           <td>6</td>
                           <td>Terdapat data media pemadam</td>
-                          <td align="center"><span class="fa fa-check"></span></td>
-                          <td align="center"><span class="fa fa-close"></span></td>
-                          <td align="center"><span class="fa fa-close"></td>
-                          <td align="center"><span class="fa fa-minus"></td>
+                          <td align="center">
+                            <?php if($point_6[0] == "Baik"){ ?><span class="fa fa-check"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_6[0] == "Rusak"){ ?><span class="fa fa-close"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_6[0] == "Hilang"){ ?><span class="fa fa-close"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_6[0] == "NA"){ ?><span class="fa fa-minus"></span><?php } ?>
+                          </td>
 
-                          <td align="center"></td>
-                          <td align="center"></td>
-                          <td align="center"></td>
-                          <td align="center"></td>
-                          
-                          <td align="center"></td>
-                          <td align="center"></td>
-                          <td align="center"></td>
-                          <td align="center"></td>
+                          <td align="center">
+                            <?php if($point_6[1] == "Baik"){ ?><span class="fa fa-check"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_6[1] == "Rusak"){ ?><span class="fa fa-close"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_6[1] == "Hilang"){ ?><span class="fa fa-close"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_6[1] == "NA"){ ?><span class="fa fa-minus"></span><?php } ?>
+                          </td>
+
+                          <td align="center">
+                            <?php if($point_6[2] == "Baik"){ ?><span class="fa fa-check"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_6[2] == "Rusak"){ ?><span class="fa fa-close"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_6[2] == "Hilang"){ ?><span class="fa fa-close"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_6[2] == "NA"){ ?><span class="fa fa-minus"></span><?php } ?>
+                          </td>
                         </tr>
                         <tr>
                           <td>7</td>
                           <td>Terdapat instruk atau petunjuk penggunaan</td>
-                          <td align="center"><span class="fa fa-check"></span></td>
-                          <td align="center"><span class="fa fa-close"></span></td>
-                          <td align="center"><span class="fa fa-close"></td>
-                          <td align="center"><span class="fa fa-minus"></td>
+                          <td align="center">
+                            <?php if($point_7[0] == "Baik"){ ?><span class="fa fa-check"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_7[0] == "Rusak"){ ?><span class="fa fa-close"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_7[0] == "Hilang"){ ?><span class="fa fa-close"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_7[0] == "NA"){ ?><span class="fa fa-minus"></span><?php } ?>
+                          </td>
 
-                          <td align="center"></td>
-                          <td align="center"></td>
-                          <td align="center"></td>
-                          <td align="center"></td>
-                          
-                          <td align="center"></td>
-                          <td align="center"></td>
-                          <td align="center"></td>
-                          <td align="center"></td>
+                          <td align="center">
+                            <?php if($point_7[1] == "Baik"){ ?><span class="fa fa-check"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_7[1] == "Rusak"){ ?><span class="fa fa-close"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_7[1] == "Hilang"){ ?><span class="fa fa-close"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_7[1] == "NA"){ ?><span class="fa fa-minus"></span><?php } ?>
+                          </td>
+
+                          <td align="center">
+                            <?php if($point_7[2] == "Baik"){ ?><span class="fa fa-check"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_7[2] == "Rusak"){ ?><span class="fa fa-close"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_7[2] == "Hilang"){ ?><span class="fa fa-close"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_7[2] == "NA"){ ?><span class="fa fa-minus"></span><?php } ?>
+                          </td>
                         </tr>
                         <tr>
                           <td>8</td>
                           <td>Terpasang tagging / label pemeriksaan</td>
-                          <td align="center"><span class="fa fa-check"></span></td>
-                          <td align="center"><span class="fa fa-close"></span></td>
-                          <td align="center"><span class="fa fa-close"></td>
-                          <td align="center"><span class="fa fa-minus"></td>
+                          <td align="center">
+                            <?php if($point_8[0] == "Baik"){ ?><span class="fa fa-check"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_8[0] == "Rusak"){ ?><span class="fa fa-close"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_8[0] == "Hilang"){ ?><span class="fa fa-close"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_8[0] == "NA"){ ?><span class="fa fa-minus"></span><?php } ?>
+                          </td>
 
-                          <td align="center"></td>
-                          <td align="center"></td>
-                          <td align="center"></td>
-                          <td align="center"></td>
-                          
-                          <td align="center"></td>
-                          <td align="center"></td>
-                          <td align="center"></td>
-                          <td align="center"></td>
+                          <td align="center">
+                            <?php if($point_8[1] == "Baik"){ ?><span class="fa fa-check"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_8[1] == "Rusak"){ ?><span class="fa fa-close"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_8[1] == "Hilang"){ ?><span class="fa fa-close"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_8[1] == "NA"){ ?><span class="fa fa-minus"></span><?php } ?>
+                          </td>
+
+                          <td align="center">
+                            <?php if($point_8[2] == "Baik"){ ?><span class="fa fa-check"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_8[2] == "Rusak"){ ?><span class="fa fa-close"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_8[2] == "Hilang"){ ?><span class="fa fa-close"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_8[2] == "NA"){ ?><span class="fa fa-minus"></span><?php } ?>
+                          </td>
                         </tr>
                         <tr>
                           <td>9</td>
                           <td>Isi APAR cukup (tidak < 10% dari berat normal)</td>
-                          <td align="center"><span class="fa fa-check"></span></td>
-                          <td align="center"><span class="fa fa-close"></span></td>
-                          <td align="center"><span class="fa fa-close"></td>
-                          <td align="center"><span class="fa fa-minus"></td>
+                          <td align="center">
+                            <?php if($point_9[0] == "Baik"){ ?><span class="fa fa-check"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_9[0] == "Rusak"){ ?><span class="fa fa-close"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_9[0] == "Hilang"){ ?><span class="fa fa-close"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_9[0] == "NA"){ ?><span class="fa fa-minus"></span><?php } ?>
+                          </td>
 
-                          <td align="center"></td>
-                          <td align="center"></td>
-                          <td align="center"></td>
-                          <td align="center"></td>
-                          
-                          <td align="center"></td>
-                          <td align="center"></td>
-                          <td align="center"></td>
-                          <td align="center"></td>
+                          <td align="center">
+                            <?php if($point_9[1] == "Baik"){ ?><span class="fa fa-check"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_9[1] == "Rusak"){ ?><span class="fa fa-close"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_9[1] == "Hilang"){ ?><span class="fa fa-close"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_9[1] == "NA"){ ?><span class="fa fa-minus"></span><?php } ?>
+                          </td>
+
+                          <td align="center">
+                            <?php if($point_9[2] == "Baik"){ ?><span class="fa fa-check"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_9[2] == "Rusak"){ ?><span class="fa fa-close"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_9[2] == "Hilang"){ ?><span class="fa fa-close"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_9[2] == "NA"){ ?><span class="fa fa-minus"></span><?php } ?>
+                          </td>
                         </tr>
                         <tr>
                           <td>10</td>
                           <td>Seal dan pin pengaman terpasang dengan baik</td>
-                          <td align="center"><span class="fa fa-check"></span></td>
-                          <td align="center"><span class="fa fa-close"></span></td>
-                          <td align="center"><span class="fa fa-close"></td>
-                          <td align="center"><span class="fa fa-minus"></td>
+                          <td align="center">
+                            <?php if($point_10[0] == "Baik"){ ?><span class="fa fa-check"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_10[0] == "Rusak"){ ?><span class="fa fa-close"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_10[0] == "Hilang"){ ?><span class="fa fa-close"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_10[0] == "NA"){ ?><span class="fa fa-minus"></span><?php } ?>
+                          </td>
 
-                          <td align="center"></td>
-                          <td align="center"></td>
-                          <td align="center"></td>
-                          <td align="center"></td>
-                          
-                          <td align="center"></td>
-                          <td align="center"></td>
-                          <td align="center"></td>
-                          <td align="center"></td>
+                          <td align="center">
+                            <?php if($point_10[1] == "Baik"){ ?><span class="fa fa-check"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_10[1] == "Rusak"){ ?><span class="fa fa-close"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_10[1] == "Hilang"){ ?><span class="fa fa-close"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_10[1] == "NA"){ ?><span class="fa fa-minus"></span><?php } ?>
+                          </td>
+
+                          <td align="center">
+                            <?php if($point_10[2] == "Baik"){ ?><span class="fa fa-check"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_10[2] == "Rusak"){ ?><span class="fa fa-close"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_10[2] == "Hilang"){ ?><span class="fa fa-close"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_10[2] == "NA"){ ?><span class="fa fa-minus"></span><?php } ?>
+                          </td>
                         </tr>
                         <tr>
                           <td>11</td>
                           <td>Jarum indikator tekanan menunjukan kondisi normal</td>
-                          <td align="center"><span class="fa fa-check"></span></td>
-                          <td align="center"><span class="fa fa-close"></span></td>
-                          <td align="center"><span class="fa fa-close"></td>
-                          <td align="center"><span class="fa fa-minus"></td>
+                          <td align="center">
+                            <?php if($point_11[0] == "Baik"){ ?><span class="fa fa-check"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_11[0] == "Rusak"){ ?><span class="fa fa-close"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_11[0] == "Hilang"){ ?><span class="fa fa-close"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_11[0] == "NA"){ ?><span class="fa fa-minus"></span><?php } ?>
+                          </td>
 
-                          <td align="center"></td>
-                          <td align="center"></td>
-                          <td align="center"></td>
-                          <td align="center"></td>
-                          
-                          <td align="center"></td>
-                          <td align="center"></td>
-                          <td align="center"></td>
-                          <td align="center"></td>
+                          <td align="center">
+                            <?php if($point_11[1] == "Baik"){ ?><span class="fa fa-check"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_11[1] == "Rusak"){ ?><span class="fa fa-close"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_11[1] == "Hilang"){ ?><span class="fa fa-close"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_11[1] == "NA"){ ?><span class="fa fa-minus"></span><?php } ?>
+                          </td>
+
+                          <td align="center">
+                            <?php if($point_11[2] == "Baik"){ ?><span class="fa fa-check"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_11[2] == "Rusak"){ ?><span class="fa fa-close"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_11[2] == "Hilang"){ ?><span class="fa fa-close"></span><?php } ?>
+                          </td>
+                          <td align="center">
+                            <?php if($point_11[2] == "NA"){ ?><span class="fa fa-minus"></span><?php } ?>
+                          </td>
                         </tr>
                       </tbody>
                     </table>
@@ -344,17 +609,113 @@
                         <td colspan="4" style="text-align: center;">Dokumentasi</td>
                       </tr>
                       <tr>
-                        <td width="25%"><img src="../../role/HSE/foto_inspeksi_apar/<?php echo $foto_apar[0]; ?>"></td>
-                        <td width="25%">....</td>
-                        <td width="25%">....</td>
-                        <td width="25%">....</td>
+                        <td width="25%" align="center">
+                          <img src="../../role/HSE/foto_inspeksi_apar/<?php echo $foto_apar[0]; ?>" style="height: 150px;">
+                          <div style="text-align: center;"><?php echo $keterangan_apar[0]; ?></div>
+                        </td>
+                        <td width="25%" align="center">
+                          <img src="../../role/HSE/foto_inspeksi_apar/<?php echo $foto_apar[1]; ?>" style="height: 150px;">
+                          <div style="text-align: center;"><?php echo $keterangan_apar[1]; ?></div>
+                        </td>
+                        <td width="25%" align="center">
+                          <img src="../../role/HSE/foto_inspeksi_apar/<?php echo $foto_apar[2]; ?>" style="height: 150px;">
+                          <div style="text-align: center;"><?php echo $keterangan_apar[2]; ?></div>
+                        </td>
+                        <td width="25%" align="center">
+                          <img src="../../role/HSE/foto_inspeksi_apar/<?php echo $foto_apar[3]; ?>" style="height: 150px;">
+                          <div style="text-align: center;"><?php echo $keterangan_apar[3]; ?></div>
+                        </td>
                       </tr>
-                      <tr>
-                        <td>....</td>
-                        <td>....</td>
-                        <td>....</td>
-                        <td>....</td>
-                      </tr>
+                      <?php
+                        if($foto_apar[4] <> "" || $foto_apar[5] <> "" || $foto_apar[6] <> "" || $foto_apar[7] <> ""){ 
+                      ?>
+                        <tr>
+                          <td width="25%" align="center">
+                            <?php if($foto_apar[4] <> ""){ ?>
+                              <img src="../../role/HSE/foto_inspeksi_apar/<?php echo $foto_apar[4]; ?>" style="height: 150px;">
+                              <div style="text-align: center;"><?php echo $keterangan_apar[4]; ?></div>
+                            <?php } ?>
+                          </td>
+                          <td width="25%" align="center">
+                            <?php if($foto_apar[5] <> ""){ ?>
+                              <img src="../../role/HSE/foto_inspeksi_apar/<?php echo $foto_apar[5]; ?>" style="height: 150px;">
+                              <div style="text-align: center;"><?php echo $keterangan_apar[5]; ?></div>
+                            <?php } ?>
+                          </td>
+                          <td width="25%" align="center">
+                            <?php if($foto_apar[6] <> ""){ ?>
+                              <img src="../../role/HSE/foto_inspeksi_apar/<?php echo $foto_apar[6]; ?>" style="height: 150px;">
+                              <div style="text-align: center;"><?php echo $keterangan_apar[6]; ?></div>
+                            <?php } ?>
+                          </td>
+                          <td width="25%" align="center">
+                            <?php if($foto_apar[7] <> ""){ ?>
+                              <img src="../../role/HSE/foto_inspeksi_apar/<?php echo $foto_apar[7]; ?>" style="height: 150px;">
+                              <div style="text-align: center;"><?php echo $keterangan_apar[7]; ?></div>
+                            <?php } ?>
+                          </td>
+                        </tr>
+                      <?php } ?>
+                      <?php
+                        if($foto_apar[8] <> "" || $foto_apar[9] <> "" || $foto_apar[10] <> "" || $foto_apar[11] <> ""){
+                      ?>
+                        <tr>
+                          <td width="25%" align="center">
+                            <?php if($foto_apar[8] <> ""){ ?>
+                              <img src="../../role/HSE/foto_inspeksi_apar/<?php echo $foto_apar[8]; ?>" style="height: 150px;">
+                              <div style="text-align: center;"><?php echo $keterangan_apar[8]; ?></div>
+                            <?php } ?>
+                          </td>
+                          <td width="25%" align="center">
+                            <?php if($foto_apar[9] <> ""){ ?>
+                              <img src="../../role/HSE/foto_inspeksi_apar/<?php echo $foto_apar[9]; ?>" style="height: 150px;">
+                              <div style="text-align: center;"><?php echo $keterangan_apar[9]; ?></div>
+                            <?php } ?>
+                          </td>
+                          <td width="25%" align="center">
+                            <?php if($foto_apar[10] <> ""){ ?>
+                              <img src="../../role/HSE/foto_inspeksi_apar/<?php echo $foto_apar[10]; ?>" style="height: 150px;">
+                              <div style="text-align: center;"><?php echo $keterangan_apar[10]; ?></div>
+                            <?php } ?>
+                          </td>
+                          <td width="25%" align="center">
+                            <?php if($foto_apar[11] <> ""){ ?>
+                              <img src="../../role/HSE/foto_inspeksi_apar/<?php echo $foto_apar[11]; ?>" style="height: 150px;">
+                              <div style="text-align: center;"><?php echo $keterangan_apar[11]; ?></div>
+                            <?php } ?>
+                          </td>
+                        </tr>
+                      <?php } ?>
+                      <?php
+                        if($foto_apar[12] <> "" || $foto_apar[13] <> "" || $foto_apar[14] <> "" || $foto_apar[15] <> ""){
+                      ?>
+                        <tr>
+                          <td width="25%" align="center">
+                            <?php if($foto_apar[12] <> ""){ ?>
+                              <img src="../../role/HSE/foto_inspeksi_apar/<?php echo $foto_apar[12]; ?>" style="height: 150px;">
+                              <div style="text-align: center;"><?php echo $keterangan_apar[12]; ?></div>
+                            <?php } ?>
+                          </td>
+                          <td width="25%" align="center">
+                            <?php if($foto_apar[13] <> ""){ ?>
+                              <img src="../../role/HSE/foto_inspeksi_apar/<?php echo $foto_apar[13]; ?>" style="height: 150px;">
+                              <div style="text-align: center;"><?php echo $keterangan_apar[13]; ?></div>
+                            <?php } ?>
+                          </td>
+                          <td width="25%" align="center">
+                            <?php if($foto_apar[14] <> ""){ ?>
+                              <img src="../../role/HSE/foto_inspeksi_apar/<?php echo $foto_apar[14]; ?>" style="height: 150px;">
+                              <div style="text-align: center;"><?php echo $keterangan_apar[14]; ?></div>
+                            <?php } ?>
+                          </td>
+                          <td width="25%" align="center">
+                            <?php if($foto_apar[15] <> ""){ ?>
+                              <img src="../../role/HSE/foto_inspeksi_apar/<?php echo $foto_apar[15]; ?>" style="height: 150px;">
+                              <div style="text-align: center;"><?php echo $keterangan_apar[15]; ?></div>
+                            <?php } ?>
+                          </td>
+                        </tr>
+                      <?php } ?>
                     </table>
 
                     <!-- TABEL HASIL PEMERIKSAAN -->
@@ -370,12 +731,27 @@
                         <td align="center">Rusak</td>
                         <td align="center">Hilang</td>
                       </tr>
+                      <?php
+                        $get_num_apar_baik = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM hse_inspeksilist_detailapar WHERE inspeksi_id = '$_GET[kd]' AND hasil_akhir = 'Baik'"));
+                        $get_num_apar_rusak = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM hse_inspeksilist_detailapar WHERE inspeksi_id = '$_GET[kd]' AND hasil_akhir = 'Rusak'"));
+                        $get_num_apar_hilang = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM hse_inspeksilist_detailapar WHERE inspeksi_id = '$_GET[kd]' AND hasil_akhir = 'Hilang'"));
+
+                        $get_jml_apar_onsite = mysqli_fetch_array(mysqli_query($conn, "SELECT SUM(jumlah) AS jml_apar_onsite FROM hse_toolsapdonsite_detailtoolsk3 JOIN hse_toolsk3 ON hse_toolsapdonsite_detailtoolsk3.toolsk3_id = hse_toolsk3.id JOIN hse_toolsapdonsite ON hse_toolsapdonsite_detailtoolsk3.id_onsite = hse_toolsapdonsite.id WHERE hse_toolsk3.nama_tools = 'APAR' AND hse_toolsapdonsite.project_id = '$kd_project'"));
+
+                        $t_apar_hilangrusak_minggu_lalu = 0;
+                        for($i=1;$i<$week;$i++){
+                          $kd_weekly_cek = "week/".$i."/".$kd_project;
+                          $get_inspeksilist2 = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM hse_inspeksilist WHERE kd_weekly = '$kd_weekly_cek'"));
+
+                          $t_apar_hilangrusak_minggu_lalu = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM hse_inspeksilist_detailapar WHERE inspeksi_id = '$get_inspeksilist2[id]' AND (hasil_akhir = 'Rusak' OR hasil_akhir = 'Hilang')")) + $t_apar_hilangrusak_minggu_lalu;
+                        }
+                      ?>
                       <tr>
-                        <td align="center">1</td>
-                        <td align="center">2</td>
-                        <td align="center">3</td>
-                        <td align="center">4</td>
-                        <td align="center">5</td>
+                        <td align="center"><?php echo $get_num_apar_baik; ?></td>
+                        <td align="center"><?php echo $get_num_apar_rusak; ?></td>
+                        <td align="center"><?php echo $get_num_apar_hilang; ?></td>
+                        <td align="center"><?php echo $get_jml_apar_onsite['jml_apar_onsite']; ?></td>
+                        <td align="center"><?php echo $get_jml_apar_onsite['jml_apar_onsite'] - $t_apar_hilangrusak_minggu_lalu; ?></td>
                       </tr>
                     </table>
 
@@ -414,11 +790,11 @@
                           <td align="center">Disetujui Oleh</td>
                         </tr>
                         <tr>
-                          <td style="text-align: center; height: 100px;">
-                            <img src="../../role/hse/signatures/<?php echo $get_inspeksilist['ttd_hse']; ?>">
+                          <td style="text-align: center;" width="50%">
+                            <img src="../../role/HSE/signatures/<?php echo $get_inspeksilist['ttd_hse']; ?>" width="25%">
                           </td>
-                          <td style="text-align: center; height: 100px;">
-                            <img src="../../role/hse/signatures/<?php echo $get_inspeksilist['ttd_sm']; ?>">
+                          <td style="text-align: center;" width="50%">
+                            <img src="../../role/HSE/signatures/<?php echo $get_inspeksilist['ttd_sm']; ?>" width="25%">
                           </td>
                         </tr>
                         <tr>
@@ -437,7 +813,6 @@
 
               </div>
               <!-- /.card-body -->
-              
 
               <?php }elseif($get_num_inspeksi_apar <= 6){ ?>
 
@@ -449,7 +824,7 @@
                   <div class="col-6"><div style="text-align: right;"><img src="../../dist/img/logo/logo-k3.png" width="90px"></div></div>
                 </div>
 
-                <div class="row" style="margin-bottom: 10px">
+                <div class="row" style="margin-bottom: 0px">
                   <div class="col-12">
                     <table class="table table-bordered table-sm">
                       <tr>
@@ -1521,84 +1896,96 @@
                           <div style="text-align: center;"><?php echo $keterangan_apar[3]; ?></div>
                         </td>
                       </tr>
-                      <tr>
-                        <td width="25%" align="center">
-                          <?php if($foto_apar[4] <> ""){ ?>
-                            <img src="../../role/HSE/foto_inspeksi_apar/<?php echo $foto_apar[4]; ?>" style="height: 150px;">
-                            <div style="text-align: center;"><?php echo $keterangan_apar[4]; ?></div>
-                          <?php } ?>
-                        </td>
-                        <td width="25%" align="center">
-                          <?php if($foto_apar[5] <> ""){ ?>
-                            <img src="../../role/HSE/foto_inspeksi_apar/<?php echo $foto_apar[5]; ?>" style="height: 150px;">
-                            <div style="text-align: center;"><?php echo $keterangan_apar[5]; ?></div>
-                          <?php } ?>
-                        </td>
-                        <td width="25%" align="center">
-                          <?php if($foto_apar[6] <> ""){ ?>
-                            <img src="../../role/HSE/foto_inspeksi_apar/<?php echo $foto_apar[6]; ?>" style="height: 150px;">
-                            <div style="text-align: center;"><?php echo $keterangan_apar[6]; ?></div>
-                          <?php } ?>
-                        </td>
-                        <td width="25%" align="center">
-                          <?php if($foto_apar[7] <> ""){ ?>
-                            <img src="../../role/HSE/foto_inspeksi_apar/<?php echo $foto_apar[7]; ?>" style="height: 150px;">
-                            <div style="text-align: center;"><?php echo $keterangan_apar[7]; ?></div>
-                          <?php } ?>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td width="25%" align="center">
-                          <?php if($foto_apar[4] <> ""){ ?>
-                            <img src="../../role/HSE/foto_inspeksi_apar/<?php echo $foto_apar[8]; ?>" style="height: 150px;">
-                            <div style="text-align: center;"><?php echo $keterangan_apar[8]; ?></div>
-                          <?php } ?>
-                        </td>
-                        <td width="25%" align="center">
-                          <?php if($foto_apar[5] <> ""){ ?>
-                            <img src="../../role/HSE/foto_inspeksi_apar/<?php echo $foto_apar[9]; ?>" style="height: 150px;">
-                            <div style="text-align: center;"><?php echo $keterangan_apar[9]; ?></div>
-                          <?php } ?>
-                        </td>
-                        <td width="25%" align="center">
-                          <?php if($foto_apar[6] <> ""){ ?>
-                            <img src="../../role/HSE/foto_inspeksi_apar/<?php echo $foto_apar[10]; ?>" style="height: 150px;">
-                            <div style="text-align: center;"><?php echo $keterangan_apar[10]; ?></div>
-                          <?php } ?>
-                        </td>
-                        <td width="25%" align="center">
-                          <?php if($foto_apar[7] <> ""){ ?>
-                            <img src="../../role/HSE/foto_inspeksi_apar/<?php echo $foto_apar[11]; ?>" style="height: 150px;">
-                            <div style="text-align: center;"><?php echo $keterangan_apar[11]; ?></div>
-                          <?php } ?>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td width="25%" align="center">
-                          <?php if($foto_apar[4] <> ""){ ?>
-                            <img src="../../role/HSE/foto_inspeksi_apar/<?php echo $foto_apar[12]; ?>" style="height: 150px;">
-                            <div style="text-align: center;"><?php echo $keterangan_apar[12]; ?></div>
-                          <?php } ?>
-                        </td>
-                        <td width="25%" align="center">
-                          <?php if($foto_apar[5] <> ""){ ?>
-                            <img src="../../role/HSE/foto_inspeksi_apar/<?php echo $foto_apar[13]; ?>" style="height: 150px;">
-                            <div style="text-align: center;"><?php echo $keterangan_apar[13]; ?></div>
-                          <?php } ?>
-                        </td>
-                        <td width="25%" align="center">
-                          <?php if($foto_apar[6] <> ""){ ?>
-                            <img src="../../role/HSE/foto_inspeksi_apar/<?php echo $foto_apar[14]; ?>" style="height: 150px;">
-                            <div style="text-align: center;"><?php echo $keterangan_apar[14]; ?></div>
-                          <?php } ?>
-                        </td>
-                        <td width="25%" align="center">
-                          <?php if($foto_apar[7] <> ""){ ?>
-                            <img src="../../role/HSE/foto_inspeksi_apar/<?php echo $foto_apar[15]; ?>" style="height: 150px;">
-                            <div style="text-align: center;"><?php echo $keterangan_apar[15]; ?></div>
-                          <?php } ?>
-                        </td>
-                      </tr>
+                      <?php
+                        if($foto_apar[4] <> "" || $foto_apar[5] <> "" || $foto_apar[6] <> "" || $foto_apar[7] <> ""){ 
+                      ?>
+                        <tr>
+                          <td width="25%" align="center">
+                            <?php if($foto_apar[4] <> ""){ ?>
+                              <img src="../../role/HSE/foto_inspeksi_apar/<?php echo $foto_apar[4]; ?>" style="height: 150px;">
+                              <div style="text-align: center;"><?php echo $keterangan_apar[4]; ?></div>
+                            <?php } ?>
+                          </td>
+                          <td width="25%" align="center">
+                            <?php if($foto_apar[5] <> ""){ ?>
+                              <img src="../../role/HSE/foto_inspeksi_apar/<?php echo $foto_apar[5]; ?>" style="height: 150px;">
+                              <div style="text-align: center;"><?php echo $keterangan_apar[5]; ?></div>
+                            <?php } ?>
+                          </td>
+                          <td width="25%" align="center">
+                            <?php if($foto_apar[6] <> ""){ ?>
+                              <img src="../../role/HSE/foto_inspeksi_apar/<?php echo $foto_apar[6]; ?>" style="height: 150px;">
+                              <div style="text-align: center;"><?php echo $keterangan_apar[6]; ?></div>
+                            <?php } ?>
+                          </td>
+                          <td width="25%" align="center">
+                            <?php if($foto_apar[7] <> ""){ ?>
+                              <img src="../../role/HSE/foto_inspeksi_apar/<?php echo $foto_apar[7]; ?>" style="height: 150px;">
+                              <div style="text-align: center;"><?php echo $keterangan_apar[7]; ?></div>
+                            <?php } ?>
+                          </td>
+                        </tr>
+                      <?php } ?>
+                      <?php
+                        if($foto_apar[8] <> "" || $foto_apar[9] <> "" || $foto_apar[10] <> "" || $foto_apar[11] <> ""){
+                      ?>
+                        <tr>
+                          <td width="25%" align="center">
+                            <?php if($foto_apar[8] <> ""){ ?>
+                              <img src="../../role/HSE/foto_inspeksi_apar/<?php echo $foto_apar[8]; ?>" style="height: 150px;">
+                              <div style="text-align: center;"><?php echo $keterangan_apar[8]; ?></div>
+                            <?php } ?>
+                          </td>
+                          <td width="25%" align="center">
+                            <?php if($foto_apar[9] <> ""){ ?>
+                              <img src="../../role/HSE/foto_inspeksi_apar/<?php echo $foto_apar[9]; ?>" style="height: 150px;">
+                              <div style="text-align: center;"><?php echo $keterangan_apar[9]; ?></div>
+                            <?php } ?>
+                          </td>
+                          <td width="25%" align="center">
+                            <?php if($foto_apar[10] <> ""){ ?>
+                              <img src="../../role/HSE/foto_inspeksi_apar/<?php echo $foto_apar[10]; ?>" style="height: 150px;">
+                              <div style="text-align: center;"><?php echo $keterangan_apar[10]; ?></div>
+                            <?php } ?>
+                          </td>
+                          <td width="25%" align="center">
+                            <?php if($foto_apar[11] <> ""){ ?>
+                              <img src="../../role/HSE/foto_inspeksi_apar/<?php echo $foto_apar[11]; ?>" style="height: 150px;">
+                              <div style="text-align: center;"><?php echo $keterangan_apar[11]; ?></div>
+                            <?php } ?>
+                          </td>
+                        </tr>
+                      <?php } ?>
+                      <?php
+                        if($foto_apar[12] <> "" || $foto_apar[13] <> "" || $foto_apar[14] <> "" || $foto_apar[15] <> ""){
+                      ?>
+                        <tr>
+                          <td width="25%" align="center">
+                            <?php if($foto_apar[12] <> ""){ ?>
+                              <img src="../../role/HSE/foto_inspeksi_apar/<?php echo $foto_apar[12]; ?>" style="height: 150px;">
+                              <div style="text-align: center;"><?php echo $keterangan_apar[12]; ?></div>
+                            <?php } ?>
+                          </td>
+                          <td width="25%" align="center">
+                            <?php if($foto_apar[13] <> ""){ ?>
+                              <img src="../../role/HSE/foto_inspeksi_apar/<?php echo $foto_apar[13]; ?>" style="height: 150px;">
+                              <div style="text-align: center;"><?php echo $keterangan_apar[13]; ?></div>
+                            <?php } ?>
+                          </td>
+                          <td width="25%" align="center">
+                            <?php if($foto_apar[14] <> ""){ ?>
+                              <img src="../../role/HSE/foto_inspeksi_apar/<?php echo $foto_apar[14]; ?>" style="height: 150px;">
+                              <div style="text-align: center;"><?php echo $keterangan_apar[14]; ?></div>
+                            <?php } ?>
+                          </td>
+                          <td width="25%" align="center">
+                            <?php if($foto_apar[15] <> ""){ ?>
+                              <img src="../../role/HSE/foto_inspeksi_apar/<?php echo $foto_apar[15]; ?>" style="height: 150px;">
+                              <div style="text-align: center;"><?php echo $keterangan_apar[15]; ?></div>
+                            <?php } ?>
+                          </td>
+                        </tr>
+                      <?php } ?>
                     </table>
 
                     <!-- TABEL HASIL PEMERIKSAAN -->
@@ -1624,9 +2011,9 @@
                         $t_apar_hilangrusak_minggu_lalu = 0;
                         for($i=1;$i<$week;$i++){
                           $kd_weekly_cek = "week/".$i."/".$kd_project;
-                          $get_inspeksilist = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM hse_inspeksilist WHERE kd_weekly = '$kd_weekly_cek'"));
+                          $get_inspeksilist2 = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM hse_inspeksilist WHERE kd_weekly = '$kd_weekly_cek'"));
 
-                          $t_apar_hilangrusak_minggu_lalu = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM hse_inspeksilist_detailapar WHERE inspeksi_id = '$get_inspeksilist[id]' AND (hasil_akhir = 'Rusak' OR hasil_akhir = 'Hilang')")) + $t_apar_hilangrusak_minggu_lalu;
+                          $t_apar_hilangrusak_minggu_lalu = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM hse_inspeksilist_detailapar WHERE inspeksi_id = '$get_inspeksilist2[id]' AND (hasil_akhir = 'Rusak' OR hasil_akhir = 'Hilang')")) + $t_apar_hilangrusak_minggu_lalu;
                         }
                       ?>
                       <tr>
@@ -1674,11 +2061,11 @@
                           <td align="center">Disetujui Oleh</td>
                         </tr>
                         <tr>
-                          <td style="text-align: center; height: 100px;">
-                            <img src="../../role/hse/signatures/<?php echo $get_inspeksilist['ttd_hse']; ?>" width="100%">
+                          <td style="text-align: center;" width="50%">
+                            <img src="../../role/HSE/signatures/<?php echo $get_inspeksilist['ttd_hse']; ?>" width="25%">
                           </td>
-                          <td style="text-align: center; height: 100px;">
-                            <img src="../../role/hse/signatures/<?php echo $get_inspeksilist['ttd_sm']; ?>" width="100%">
+                          <td style="text-align: center;" width="50%">
+                            <img src="../../role/HSE/signatures/<?php echo $get_inspeksilist['ttd_sm']; ?>" width="25%">
                           </td>
                         </tr>
                         <tr>
@@ -1710,11 +2097,10 @@
 
         <!-- -------------------------------------------- ROW ------------------------------------- -->
 
-        <center>
+        <center class="no-print">
             <button class="btn btn-secondary no-print" onclick="window.print()"><span class="fa fa-print"></span> Cetak / Simpan</button>
           </a>
         </center>
-        <br>
 
       </div>
       <!-- /.container-fluid -->
