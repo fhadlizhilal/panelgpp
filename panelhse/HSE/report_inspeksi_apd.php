@@ -367,7 +367,7 @@
                         <b>Rekomendasi :</b><br>
                         <?php echo $get_inspeksilist['rekomendasi']; ?>
                       </td>
-                      <td rowspan="2"><img src="../../dist/img/picture_apd.jpg" width="100%"></td>
+                      <td rowspan="2" align="center"><img src="../../dist/img/picture_apd.jpg" width="50%"></td>
                     </tr>
                     <tr>
                       <td colspan="2" style="vertical-align: bottom;">

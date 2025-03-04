@@ -529,7 +529,9 @@
                                     <td>
                                       <?php
                                         if($get_inspeksilist_toolsk3['jenis_inspeksi'] == 'inspeksi_apar'){
-                                          echo "Inspeksi APAR";
+                                      ?>
+                                          <a href="#modal" data-toggle='modal' data-target='#show_report_inspeksiapar' data-id='<?php echo $get_inspeksilist_toolsk3['id']; ?>' data-toggle="tooltip" data-placement="bottom" title="Report Inspeksi">Inspeksi APAR</a>
+                                      <?php
                                         }elseif($get_inspeksilist_toolsk3['jenis_inspeksi'] == 'inspeksi_p3k'){
                                           echo "Inspeksi P3K";
                                         }
@@ -878,6 +880,26 @@
       <div class="modal-content">
         <div class="modal-header">
           <h4 class="modal-title">Data Inspeksi APD</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="modal-data"></div>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
+
+  <!-- Modal start here -->
+  <div class="modal fade" id="show_report_inspeksiapar" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Data Inspeksi APAR</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>

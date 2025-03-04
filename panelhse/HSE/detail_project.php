@@ -446,7 +446,11 @@
                                           }
                                           
                                         }elseif($get_inspeksilist_toolsk3['jenis_inspeksi'] == 'inspeksi_p3k'){
-                                          echo "Inspeksi P3K";
+                                          if($get_inspeksilist_toolsk3['status'] == "progress"){
+                                            echo "<a href='index.php?pages=forminspeksip3k&kd=".$get_inspeksilist_toolsk3['id']."'>Inspeksi P3K</a>";
+                                          }elseif($get_inspeksilist_toolsk3['status'] == "completed"){
+                                            echo "<a href='index.php?pages=reportinspeksip3k&kd=".$get_inspeksilist_toolsk3['id']."'>Inspeksi P3K</a>";
+                                          }
                                         }
                                       ?>
                                     </td>
@@ -830,7 +834,7 @@
                     <option value="" selected disabled>---- Jenis Inspeksi ----</option>
                     <option value="inspeksi_apd">Inspeksi APD</option>
                     <option value="inspeksi_apar">Inspeksi APAR</option>
-                    <option value="inspeksi_p3k" disabled>Inspeksi P3K</option>
+                    <option value="inspeksi_p3k">Inspeksi P3K</option>
                     <option value="inspeksi_gerinda" disabled>Inspeksi Gerinda</option>
                     <option value="inspeksi_mesinlas" disabled>Inspeksi Mesin Las</option>
                     <option value="inspeksi_borlistrik" disabled>Inspeksi Bor Listrik</option>

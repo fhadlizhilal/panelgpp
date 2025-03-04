@@ -1516,6 +1516,8 @@
       require_once "report_inspeksi_apd.php";
     }elseif($_GET["pages"]=="reportinspeksiapar"){
       require_once "report_inspeksi_apar.php";
+    }elseif($_GET["pages"]=="forminspeksip3k"){
+      require_once "form_inspeksi_p3k.php";
     }
 
   ?>

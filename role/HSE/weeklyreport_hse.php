@@ -151,6 +151,16 @@
                       <tbody>
                         <?php
                           $datake=0;
+                          $total_permission = 0;
+                          $total_sakit = 0;
+                          $total_alpha = 0;
+                          $total_manhours = 0;
+                          $total_NM = 0;
+                          $total_FA = 0;
+                          $total_MT = 0;
+                          $total_LTI = 0;
+                          $total_FAT = 0;
+
                           $q_get_distincManpower = mysqli_query($conn, "SELECT DISTINCT manpower_id FROM hse_dailyreport_manpower INNER JOIN hse_dailyreport WHERE hse_dailyreport_manpower.kd_report = hse_dailyreport.kd_report AND hse_dailyreport.project_id = '$get_weeklyreport[project_id]' AND hse_dailyreport.tgl_report BETWEEN '$get_weeklyreport[tgl_awal]' AND '$get_weeklyreport[tgl_akhir]' AND hse_dailyreport.status_report = 'completed'");
                           while($get_distincManpower = mysqli_fetch_array($q_get_distincManpower)){
                             $get_jabatan_project = mysqli_fetch_array(mysqli_query($conn, "SELECT manpower_id, jabatan_id FROM hse_dailyreport_manpower INNER JOIN hse_dailyreport WHERE hse_dailyreport_manpower.kd_report = hse_dailyreport.kd_report AND hse_dailyreport.project_id = '$get_weeklyreport[project_id]' AND hse_dailyreport.tgl_report BETWEEN '$get_weeklyreport[tgl_awal]' AND '$get_weeklyreport[tgl_akhir]' AND manpower_id = '$get_distincManpower[manpower_id]'"));
@@ -269,7 +279,31 @@
                                 <td align="center"><?php echo $get_LTI; ?></td>
                                 <td align="center"><?php echo $get_Fatality; ?></td>
                               </tr>
-                            <?php } ?>
+
+                            <?php
+                                $total_permission = $total_permission + $get_permission;
+                                $total_sakit = $total_sakit + $get_sick;
+                                $total_alpha = $total_alpha + $get_alpa;
+                                $total_manhours = $total_manhours + $data_array[0];
+                                $total_NM = $total_NM + $get_nearMiss;
+                                $total_FA = $total_FA + $get_FirstAid;
+                                $total_MT = $total_MT + $get_MedicalTreatment;
+                                $total_LTI = $total_LTI + $get_LTI;
+                                $total_FAT = $total_FAT + $get_Fatality;
+                              } 
+                            ?>
+                            <tr style="font-weight: bold;">
+                              <td colspan="4" align="center">TOTAL</td>
+                              <td align="center"><?php echo $total_permission; ?></td>
+                              <td align="center"><?php echo $total_sakit; ?></td>
+                              <td align="center"><?php echo $total_alpha; ?></td>
+                              <td align="center"><?php echo $total_manhours; ?></td>
+                              <td align="center"><?php echo $total_NM; ?></td>
+                              <td align="center"><?php echo $total_FA; ?></td>
+                              <td align="center"><?php echo $total_MT; ?></td>
+                              <td align="center"><?php echo $total_LTI; ?></td>
+                              <td align="center"><?php echo $total_FAT; ?></td>
+                            </tr>
                       </tbody>
                     </table>
                   </div>
@@ -360,7 +394,9 @@
                   }
 
                   // Hitung Inspeksi
-                    $jml_inspeksi_apd = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM hse_inspeksilist WHERE kd_weekly = '$_GET[kdweekly]' AND tanggal_inspeksi >= '$get_weeklyreport[tgl_awal]' AND tanggal_inspeksi <= '$get_weeklyreport[tgl_akhir]' AND status = 'completed'"));
+                    $jml_inspeksi_apd = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM hse_inspeksilist WHERE kd_weekly = '$_GET[kdweekly]' AND tanggal_inspeksi >= '$get_weeklyreport[tgl_awal]' AND tanggal_inspeksi <= '$get_weeklyreport[tgl_akhir]' AND status = 'completed' AND jenis_inspeksi = 'inspeksi_apd'"));
+                    $jml_inspeksi_apar = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM hse_inspeksilist WHERE kd_weekly = '$_GET[kdweekly]' AND tanggal_inspeksi >= '$get_weeklyreport[tgl_awal]' AND tanggal_inspeksi <= '$get_weeklyreport[tgl_akhir]' AND status = 'completed' AND jenis_inspeksi = 'inspeksi_apar'"));
+
                 ?>
 
                 <div class="row">
@@ -467,10 +503,10 @@
                         </tr>
                         <tr>
                           <td align="center"></td>
-                          <td style="text-indent: 20px;">b. Hand Tools</td>
+                          <td style="text-indent: 20px;">b. Safety K3</td>
                           <td align="center">1</td>
-                          <td align="center"></td>
-                          <td align="center"></td>
+                          <td align="center"><?php echo $jml_inspeksi_apar; ?></td>
+                          <td align="center"><?php echo number_format(($jml_inspeksi_apar/1*100), 2)." %"; ?></td>
                         </tr>
                         <tr>
                           <td align="center"></td>
@@ -578,7 +614,12 @@
                             $tgl_submit = date("Y-m-d", strtotime($get_dailyreport['tgl_submit']));
                             $jam_submit = date("H:i:s", strtotime($get_dailyreport['tgl_submit']));
 
-                            if($total_report == 3 AND $tgl_submit <= $report_tgl AND $jam_submit <= "22:00:00"){
+                            if($get_dailyreport['status_report'] == 'libur/tidak ada pekerjaan'){
+                              $keterangan = "Libur/Tidak ada pekerjaan";
+                              $nilai_TBM = "-";
+                              $nilai_HC = "-";
+                              $nilai_HK = "-";
+                            }elseif($total_report == 3 AND $tgl_submit <= $report_tgl AND $jam_submit <= "22:00:00"){
                               $keterangan = "SANGAT BAIK";
                             }elseif($total_report == 3 AND $tgl_submit <= $report_tgl AND $jam_submit > "22:00:00"){
                               $keterangan = "BAIK";
@@ -603,9 +644,25 @@
                             <td align="center"><?php echo $nilai_TBM; ?></td>
                             <td align="center"><?php echo $nilai_HC; ?></td>
                             <td align="center"><?php echo $nilai_HK; ?></td>
-                            <td align="center"><?php echo date("d-m-Y", strtotime($get_dailyreport['tgl_submit'])); ?></td>
-                            <td align="center"><?php echo date("H:i:s", strtotime($get_dailyreport['tgl_submit'])); ?></td>
-                            <td align="center" style="color: white;" <?php if($keterangan == "SANGAT BAIK" OR $keterangan == "BAIK"){ echo "bgcolor='#4bba43'";}elseif($keterangan == "KURANG BAIK"){echo "bgcolor='#ffae00'";}elseif($keterangan == "TIDAK BAIK"){echo "bgcolor='#de0c00'";} ?>><?php echo $keterangan; ?></td>
+                            <td align="center">
+                              <?php
+                                if($get_dailyreport['status_report'] == 'libur/tidak ada pekerjaan'){
+                                  echo "-";
+                                }else{
+                                  echo date("d-m-Y", strtotime($get_dailyreport['tgl_submit']));
+                                }
+                              ?>
+                            </td>
+                            <td align="center">
+                              <?php
+                                if($get_dailyreport['status_report'] == 'libur/tidak ada pekerjaan'){
+                                  echo "-";
+                                }else{
+                                  echo date("H:i:s", strtotime($get_dailyreport['tgl_submit']));
+                                }
+                              ?>
+                            </td>
+                            <td align="center" style="color: white;" <?php if($keterangan == "SANGAT BAIK" OR $keterangan == "BAIK"){ echo "bgcolor='#4bba43'";}elseif($keterangan == "KURANG BAIK"){echo "bgcolor='#ffae00'";}elseif($keterangan == "TIDAK BAIK"){echo "bgcolor='#de0c00'";}elseif($keterangan == "Libur/Tidak ada pekerjaan"){echo "bgcolor='#bdbdbd'";} ?>><?php echo $keterangan; ?></td>
                           </tr>
                         <?php $no++; } ?>
                       </tbody>
