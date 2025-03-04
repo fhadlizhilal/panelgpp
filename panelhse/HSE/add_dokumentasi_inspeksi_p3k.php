@@ -28,6 +28,6 @@
 
     <br>
     <center>
-      <input type="hidden" name="inspeksi_id" value="<?php echo $_GET['kd'] ?>">
+      <input type="hidden" name="detail_id" value="<?php echo $id; ?>">
       <input type="submit" class="btn btn-info" name="add_dokumentasi_inspeksip3k" value="Simpan">
     </center>

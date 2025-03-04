@@ -74,7 +74,7 @@
               $compressedImage = compressImage($imageTemp, $imageUploadPath, 10);
                 
               if($compressedImage){
-                $push_dokumentasi_inspeksiapd = mysqli_query($conn, "INSERT INTO hse_inspeksilist_fotop3k VALUES('','$_POST[inspeksi_id]','$fileName','$_POST[keterangan]')");
+                $push_dokumentasi_inspeksiapd = mysqli_query($conn, "INSERT INTO hse_inspeksilist_fotop3k VALUES('','$_POST[detail_id]','$fileName','$_POST[keterangan]')");
 
                 if($push_dokumentasi_inspeksiapd){
                   $_SESSION['alert_success'] = "Berhasil! Dokumentasi Inspeksi P3k Berhasil Ditambahkan";
@@ -1056,14 +1056,16 @@
                                   <td width="1%" align="center"><b>No</b></td>
                                   <td align="center"><b>Dokumentasi</b></td>
                                 </tr>
-                                <tr>
-                                  <td>1</td>
-                                  <td>2</td>
-                                </tr>
-                                <tr>
-                                  <td>1</td>
-                                  <td>2</td>
-                                </tr>
+                                <?php
+                                  $no = 1;
+                                  $q_get_dokumentasi_p3k = mysqli_query($conn, "SELECT * FROM hse_inspeksilist_fotop3k WHERE detail_id = '$get_detailinspeksi_p3k[id]'");
+                                  while($get_dokumentasi_p3k = mysqli_fetch_array($q_get_dokumentasi_p3k)){
+                                ?>
+                                  <tr>
+                                    <td align="center"><?php echo $no; ?></td>
+                                    <td align="center"><img src="../../role/HSE/foto_inspeksi_p3k/<?php echo $get_dokumentasi_p3k['foto']; ?>" width="70%"></td>
+                                  </tr>
+                                <?php $no++; } ?>
                               </table>
                               <center style="margin-bottom: 5px;">
                                 <a href="#modal" data-toggle='modal' data-target='#show_add_dokumentasi_p3k' data-id='<?php echo $get_detailinspeksi_p3k['id']; ?>' data-toggle="tooltip" data-placement="bottom" title="Edit Data P3K">
