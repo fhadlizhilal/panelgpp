@@ -3996,6 +3996,27 @@
             });
          });
     });
+  </script>
+
+  <!-- ----- DELETE DOKUMENTASI INSPEKSI P3K ------------------------ -->
+  <script type="text/javascript">
+    $(document).ready(function(){
+        $('#show_delete_dokumentasi_p3k').on('show.bs.modal', function (e) {
+            var getID = $(e.relatedTarget).data('id');
+            /* fungsi AJAX untuk melakukan fetch data */
+            $.ajax({
+                type : 'post',
+                url : '../HSE/delete_dokumentasi_inspeksi_p3k.php',
+                /* detail per identifier ditampung pada berkas detail.php yang berada di folder application/view */
+                data :  'getID='+ getID,
+                /* memanggil fungsi getDetail dan mengirimkannya */
+                success : function(data){
+                $('.modal-data').html(data);
+                /* menampilkan data dalam bentuk dokumen HTML */
+                }
+            });
+         });
+    });
   </script>  
 
     <!-- hitung data -->

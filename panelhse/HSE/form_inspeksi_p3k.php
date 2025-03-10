@@ -27,13 +27,33 @@
   // DELETE DATA P3K
   if(isset($_POST['delete_data_p3k'])){
     if($_POST['delete_data_p3k'] == "Delete Data P3K"){
-      $delete_data_p3k = mysqli_query($conn, "DELETE FROM hse_inspeksilist_detailp3k WHERE id = '$_POST[id_detail_p3k]'");
-
-      if($delete_data_p3k){
-        $_SESSION['alert_success'] = "Berhasil! data P3K berhasil dihapus";
-      }else{
-        $_SESSION['alert_error'] = "Gagal! data P3K gagal dihapus";
+      $x = 0;
+      $q_get_fotop3k = mysqli_query($conn, "SELECT * FROM hse_inspeksilist_fotop3k WHERE detail_id = '$_POST[id_detail_p3k]'");
+      while($get_fotop3k = mysqli_fetch_array($q_get_fotop3k)){
+        $foto_ke[$x] = $get_fotop3k['foto'];
+        $keterangan_ke[$x] = $get_fotop3k['keterangan'];
+        $x++;
       }
+
+      $delete_fotop3k = mysqli_query($conn, "DELETE FROM hse_inspeksilist_fotop3k WHERE detail_id = '$_POST[id_detail_p3k]'");
+      if($delete_fotop3k){
+         $delete_inspeksilist_detailp3k = mysqli_query($conn, "DELETE FROM hse_inspeksilist_detailp3k WHERE id = '$_POST[id_detail_p3k]'");
+        if($delete_inspeksilist_detailp3k){
+          for($cc=0;$cc<$x;$cc++){
+            unlink("../../role/HSE/foto_inspeksi_p3k/".$foto_ke[$cc]);
+            $_SESSION['alert_success'] = "Berhasil! Dokumentasi P3K Berhasil Dihapus";
+          }
+        }else{
+          for($cc=0;$cc<$x;$cc++){
+            mysqli_query($conn, "INSERT INTO hse_inspeksilist_fotop3k VALUES('','$_POST[id_detail_p3k]','$foto_ke[$cc]','$keterangan_ke[$cc]')");
+            $_SESSION['alert_error'] = "Gagal! Dokumentasi P3K gagal dihapus [4]";
+          }
+        }
+      }else{
+        $_SESSION['alert_error'] = "Gagal! Dokumentasi P3K gagal dihapus [3]";
+      }
+    }else{
+      $_SESSION['alert_error'] = "Gagal! Dokumentasi P3K gagal dihapus [2]";
     }
   }
 
@@ -1055,6 +1075,7 @@
                                 <tr>
                                   <td width="1%" align="center"><b>No</b></td>
                                   <td align="center"><b>Dokumentasi</b></td>
+                                  <td width="1%" align="center"><b><span class="fa fa-trash" style="font-size: 16px"></span></b></td>
                                 </tr>
                                 <?php
                                   $no = 1;
@@ -1062,8 +1083,13 @@
                                   while($get_dokumentasi_p3k = mysqli_fetch_array($q_get_dokumentasi_p3k)){
                                 ?>
                                   <tr>
-                                    <td align="center"><?php echo $no; ?></td>
+                                    <td align="center" style="vertical-align: middle;"><?php echo $no; ?></td>
                                     <td align="center"><img src="../../role/HSE/foto_inspeksi_p3k/<?php echo $get_dokumentasi_p3k['foto']; ?>" width="70%"></td>
+                                    <td style="vertical-align: middle;">
+                                      <a href="#modal" data-toggle='modal' data-target='#show_delete_dokumentasi_p3k' data-id='<?php echo $get_dokumentasi_p3k['id']; ?>' data-toggle="tooltip" data-placement="bottom" title="Delete Foto">
+                                        <span class="fa fa-trash" style="color: red; font-size: 14px;"></span>
+                                      </a>
+                                    </td>
                                   </tr>
                                 <?php $no++; } ?>
                               </table>
@@ -1314,6 +1340,28 @@
       <div class="modal-content">
         <div class="modal-header">
           <h4 class="modal-title">Tambah Dokumentasi P3K</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id="myForm4" method="POST" target="" enctype="multipart/form-data">
+            <div class="modal-data"></div>
+          </form>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
+
+  <!-- Modal start here -->
+  <div class="modal fade" id="show_delete_dokumentasi_p3k" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Delete Dokumentasi P3K</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>

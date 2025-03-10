@@ -215,6 +215,8 @@
                                   $deskripsi_pekerjaan = "Bertanggung jawab untuk mengoperasikan, mengangkat, memindahkan, dan menurunkan material, peralatan, atau struktur berat di area konstruksi, pelabuhan, atau pabrik.";
                                 }elseif($get_jabatan['jabatan'] == "Operator Scissor"){
                                   $deskripsi_pekerjaan = "Bertanggung jawab untuk mengoperasikan scissor lift, alat angkat vertikal yang digunakan untuk mengangkat pekerja, material, atau peralatan ke ketinggian tertentu di area yang sulit dijangkau.";
+                                }elseif($get_jabatan['jabatan'] == "Admin Project"){
+                                  $deskripsi_pekerjaan = "admin proyek bertanggung jawab untuk mendukung kelancaran operasional proyek dan memastikan semua administrasi berjalan efisien.";
                                 }else{
                                   $deskripsi_pekerjaan = "Input Description of Work";
                                 }
