@@ -17,6 +17,7 @@
 	<!-- /.card-body -->
 	<hr>
 	<input type="hidden" name="kd_report" value="<?php echo $id; ?>">
+	<input type="hidden" name="project_id" value="<?php echo $project_id; ?>">
 	<input type="submit" class="btn btn-warning btn-sm" name="project_hold" value="Project Hold">
 	<!-- /.card-footer -->
 </form>

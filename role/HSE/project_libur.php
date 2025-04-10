@@ -17,6 +17,7 @@
 	<!-- /.card-body -->
 	<hr>
 	<input type="hidden" name="kd_report" value="<?php echo $id; ?>">
+	<input type="hidden" name="project_id" value="<?php echo $project_id; ?>">
 	<input type="submit" class="btn btn-info btn-sm" name="project_libur" value="Libur / Tidak ada pekerjaan">
 	<!-- /.card-footer -->
 </form>

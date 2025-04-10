@@ -2128,3 +2128,7 @@
     <!-- /.modal-dialog -->
   </div>
   <!-- /.modal -->
+
+  <script>
+    document.title = "<?php echo "Report Inspeksi APAR W".$week." - ".$get_project['nama_project']; ?>";
+  </script>

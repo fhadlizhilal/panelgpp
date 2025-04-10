@@ -13,8 +13,6 @@
     }
 </style>
 
-
-
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -740,3 +738,7 @@
     <!-- /.modal-dialog -->
   </div>
   <!-- /.modal -->
+
+  <script>
+    document.title = "<?php echo "HSE Weekly Report W".$get_weeklyreport['week']." - ".$get_project['nama_project']; ?>";
+  </script>

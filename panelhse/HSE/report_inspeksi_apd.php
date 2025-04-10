@@ -436,3 +436,7 @@
         window.print();
     };
   </script>
+
+  <script>
+    document.title = "<?php echo "Report Inspeksi APD W".$week." - ".$get_project['nama_project']; ?>";
+  </script>

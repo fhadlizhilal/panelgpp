@@ -533,7 +533,7 @@
                                           <a href="#modal" data-toggle='modal' data-target='#show_report_inspeksiapar' data-id='<?php echo $get_inspeksilist_toolsk3['id']; ?>' data-toggle="tooltip" data-placement="bottom" title="Report Inspeksi">Inspeksi APAR</a>
                                       <?php
                                         }elseif($get_inspeksilist_toolsk3['jenis_inspeksi'] == 'inspeksi_p3k'){
-                                          echo "Inspeksi P3K";
+                                          echo "<a href='index.php?pages=reportinspeksip3k&kd=".$get_inspeksilist_toolsk3['id']."'>Inspeksi P3K</a>";
                                         }
                                       ?>
                                     </td>

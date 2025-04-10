@@ -146,6 +146,13 @@
           <input type="number" name="point_20" min="0" value="<?php echo $get_data_inspeksip3k['point_20'] ?>" style="width: 100%" required></td>
       </tr>
     </table>
+    <table class="table table-sm" style="font-size: 12px;">
+      <tr>
+        <td width="20%">Catatan</td>
+        <td width="1%">:</td>
+        <td width=""><textarea name="catatan" style="width: 100%;" required><?php echo $get_data_inspeksip3k['catatan']; ?></textarea></td>
+      </tr>
+    </table>
     <div style="text-align: center;">
       <input type="hidden" name="id_detail_p3k" value="<?php echo $id; ?>">
       <input type="submit" class="btn btn-success btn-sm" name="edit_data_p3k" value="Simpan Data P3K">

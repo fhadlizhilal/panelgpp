@@ -1602,7 +1602,8 @@
           }
           mysqli_query($conn, "DELETE FROM hse_dailyreport_dokumentasi WHERE kd_report = '$_POST[kd_report]'");
 
-          $_SESSION['alert_success'] = "Berhasil! Project Hold Berhasil Disubmit";
+          $_SESSION['alert_success'] = "Berhasil! Project Hold berhasil disubmit";
+          echo "<meta http-equiv='refresh' content='0;url=index.php?pages=detailproject&kd=$_POST[project_id]'>";
         }else{
           $_SESSION['alert_error'] = "Gagal! Project Hold gagal disubmit";
         }
@@ -1631,7 +1632,9 @@
           }
           mysqli_query($conn, "DELETE FROM hse_dailyreport_dokumentasi WHERE kd_report = '$_POST[kd_report]'");
 
-          $_SESSION['alert_success'] = "Berhasil! Project Libur Berhasil Disubmit";
+          $_SESSION['alert_success'] = "Berhasil! Project Libur berhasil disubmit";
+          echo "<meta http-equiv='refresh' content='0;url=index.php?pages=detailproject&kd=$_POST[project_id]'>";
+          exit;
         }else{
           $_SESSION['alert_error'] = "Gagal! Project Libur gagal disubmit";
         }
@@ -2106,7 +2109,9 @@
     }elseif($_GET["pages"]=="report_inspeksiapd"){
       require_once "../../panelhse/HSE/report_inspeksi_apd.php";
     }elseif($_GET["pages"]=="reportinspeksiapar"){
-      require_once "../../panelhse/HSE/report_inspeksi_apar.php"; 
+      require_once "../../panelhse/HSE/report_inspeksi_apar.php";
+    }elseif($_GET["pages"]=="reportinspeksip3k"){
+      require_once "../../panelhse/HSE/report_inspeksi_p3k.php"; 
     }elseif($_GET["pages"]=="weeklyreport"){
       require_once "weeklyreport_hse.php";
     }elseif($_GET["pages"]=="manpowerplan_list"){

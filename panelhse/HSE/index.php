@@ -917,7 +917,7 @@
           }
           mysqli_query($conn, "DELETE FROM hse_dailyreport_dokumentasi WHERE kd_report = '$_POST[kd_report]'");
 
-          header("Location: success.php?msg=Berhasil! Project Hold Berhasil Disubmit&topages=detailproject&kd=".$_POST['project_id']);
+          $_SESSION['alert_success'] = "Berhasil! Project Hold gagal disubmit";
           exit;
         }else{
           $_SESSION['alert_error'] = "Gagal! Project Hold gagal disubmit";
@@ -1518,6 +1518,8 @@
       require_once "report_inspeksi_apar.php";
     }elseif($_GET["pages"]=="forminspeksip3k"){
       require_once "form_inspeksi_p3k.php";
+    }elseif($_GET["pages"]=="reportinspeksip3k"){
+      require_once "report_inspeksi_p3k.php";
     }
 
   ?>

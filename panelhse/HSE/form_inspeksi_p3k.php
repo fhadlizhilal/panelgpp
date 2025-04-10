@@ -14,7 +14,7 @@
   // ADD DATA P3K
   if(isset($_POST['add_data_p3k'])){
     if($_POST['add_data_p3k'] == "Tambah Data P3K"){
-      $push_data_p3k = mysqli_query($conn, "INSERT INTO hse_inspeksilist_detailp3k VALUES('','$_POST[inspeksi_id]','$_POST[tipe_kotak]','$_POST[point_1]','$_POST[point_2]','$_POST[point_3]','$_POST[point_4]','$_POST[point_5]','$_POST[point_6]','$_POST[point_7]','$_POST[point_8]','$_POST[point_9]','$_POST[point_10]','$_POST[point_11]','$_POST[point_12]','$_POST[point_13]','$_POST[point_14]','$_POST[point_15]','$_POST[point_16]','$_POST[point_17]','$_POST[point_18]','$_POST[point_19]','$_POST[point_20]','$datetime_now')");
+      $push_data_p3k = mysqli_query($conn, "INSERT INTO hse_inspeksilist_detailp3k VALUES('','$_POST[inspeksi_id]','$_POST[tipe_kotak]','$_POST[point_1]','$_POST[point_2]','$_POST[point_3]','$_POST[point_4]','$_POST[point_5]','$_POST[point_6]','$_POST[point_7]','$_POST[point_8]','$_POST[point_9]','$_POST[point_10]','$_POST[point_11]','$_POST[point_12]','$_POST[point_13]','$_POST[point_14]','$_POST[point_15]','$_POST[point_16]','$_POST[point_17]','$_POST[point_18]','$_POST[point_19]','$_POST[point_20]','$_POST[catatan]','$datetime_now')");
 
       if($push_data_p3k){
         $_SESSION['alert_success'] = "Berhasil! data P3K berhasil disimpan";
@@ -60,7 +60,7 @@
   // EDIT DATA P3K
   if(isset($_POST['edit_data_p3k'])){
     if($_POST['edit_data_p3k'] == "Simpan Data P3K"){
-      $edit_data_p3k = mysqli_query($conn, "UPDATE hse_inspeksilist_detailp3k SET tipe_kotak = '$_POST[tipe_kotak]', point_1 = '$_POST[point_1]', point_2 = '$_POST[point_2]', point_3 = '$_POST[point_3]', point_4 = '$_POST[point_4]', point_5 = '$_POST[point_5]', point_6 = '$_POST[point_6]', point_7 = '$_POST[point_7]', point_8 = '$_POST[point_8]', point_9 = '$_POST[point_9]', point_10 = '$_POST[point_10]', point_11 = '$_POST[point_11]', point_12 = '$_POST[point_12]', point_13 = '$_POST[point_13]', point_14 = '$_POST[point_14]', point_15 = '$_POST[point_15]', point_16 = '$_POST[point_16]', point_17 = '$_POST[point_17]', point_18 = '$_POST[point_18]', point_19 = '$_POST[point_19]', point_20 = '$_POST[point_20]' WHERE id = '$_POST[id_detail_p3k]'");
+      $edit_data_p3k = mysqli_query($conn, "UPDATE hse_inspeksilist_detailp3k SET tipe_kotak = '$_POST[tipe_kotak]', point_1 = '$_POST[point_1]', point_2 = '$_POST[point_2]', point_3 = '$_POST[point_3]', point_4 = '$_POST[point_4]', point_5 = '$_POST[point_5]', point_6 = '$_POST[point_6]', point_7 = '$_POST[point_7]', point_8 = '$_POST[point_8]', point_9 = '$_POST[point_9]', point_10 = '$_POST[point_10]', point_11 = '$_POST[point_11]', point_12 = '$_POST[point_12]', point_13 = '$_POST[point_13]', point_14 = '$_POST[point_14]', point_15 = '$_POST[point_15]', point_16 = '$_POST[point_16]', point_17 = '$_POST[point_17]', point_18 = '$_POST[point_18]', point_19 = '$_POST[point_19]', point_20 = '$_POST[point_20]', catatan = '$_POST[catatan]' WHERE id = '$_POST[id_detail_p3k]'");
 
       if($edit_data_p3k){
         $_SESSION['alert_success'] = "Berhasil! data P3K berhasil diubah";
@@ -115,7 +115,105 @@
       } 
     }
   }
+
+  // DELETE Dokumentasi P3K
+  if(isset($_POST['delete_dokumentasi_inspeksip3k'])){
+    if($_POST['delete_dokumentasi_inspeksip3k'] == "Delete"){
+      $delete_fotop3k = mysqli_query($conn, "DELETE FROM hse_inspeksilist_fotop3k WHERE id = '$_POST[id]'");
+      if($delete_fotop3k){
+        unlink("../../role/HSE/foto_inspeksi_p3k/".$_POST["foto"]);
+        $_SESSION['alert_success'] = "Berhasil, Dokumentasi P3K Berhasil dihapus!";
+      }else{
+        $_SESSION['alert_error'] = "Gagal, Dokumentasi P3K Gagal dihapus!";
+      }
+    }
+  }
+
+  // TTD HSE Officer
+  if(isset($_POST['ttd_apd_hse'])){
+    $signatureImage = $_POST['signatureImage'];
+
+    // Decode the base64 encoded image
+    list($type, $data) = explode(';', $signatureImage);
+    list(, $data) = explode(',', $data);
+    $data = base64_decode($data);
+
+    $file_name = "HSEinsP3K_".$_POST['inspeksi_id'].'_'.uniqid().'.png';
+    // Set the file path to save the image
+    $filePath = '../../role/HSE/signatures/'.$file_name;
+
+    // Save the image
+    file_put_contents($filePath, $data);
+
+    $push_ttd_apd_hse = mysqli_query($conn, "UPDATE hse_inspeksilist SET ttd_hse = '$file_name' WHERE id = '$_POST[inspeksi_id]'");
+    if($push_ttd_apd_hse){
+      $_SESSION['alert_success'] = "Berhasil! Tanda tangan HSE Officer berhasil disimpan";
+    }else{
+      unlink("../../role/HSE/signatures/".$file_name);
+      $_SESSION['alert_error'] = "Gagal! Tanda tangan HSE Officer gagal disimpan. ".mysqli_error($conn);
+    } 
+  }
+
+  if(isset($_POST['ttd_apd_sm'])){
+    $signatureImage = $_POST['signatureImage_2'];
+
+    // Decode the base64 encoded image
+    list($type, $data) = explode(';', $signatureImage);
+    list(, $data) = explode(',', $data);
+    $data = base64_decode($data);
+
+    $file_name = "SMinsP3K_".$_POST['inspeksi_id'].'_'.uniqid().'.png';
+    // Set the file path to save the image
+    $filePath = '../../role/HSE/signatures/'.$file_name;
+
+    // Save the image
+    file_put_contents($filePath, $data);
+
+    $push_ttd_apd_hse = mysqli_query($conn, "UPDATE hse_inspeksilist SET ttd_sm = '$file_name', site_manager = '$_POST[site_manager]' WHERE id = '$_POST[inspeksi_id]'");
+    if($push_ttd_apd_hse){
+      $_SESSION['alert_success'] = "Berhasil! Tanda tangan HSE Officer berhasil disimpan";
+    }else{
+      unlink("../../role/HSE/signatures/".$file_name);
+      $_SESSION['alert_error'] = "Gagal! Tanda tangan HSE Officer gagal disimpan. ".mysqli_error($conn);
+    }
+  }
+
+  // Submit Inspeksi P3K
+  if(isset($_POST['submit_inspeksi_p3k'])){
+    if($_POST['submit_inspeksi_p3k'] == "submit"){
+      $submit_inspeksi = mysqli_query($conn, "UPDATE hse_inspeksilist SET status = 'completed' WHERE id = '$_POST[inspeksi_id]'");
+      if($submit_inspeksi){
+        echo "<meta http-equiv='refresh' content='0;index.php?pages=detailproject&kd=$_POST[kd_project]'>";
+        $_SESSION['alert_success'] = "Berhasil! Inspeksi Berhasil Disubmit!";
+      }else{
+        $_SESSION['alert_error'] = "Gagal! Inspeksi Gagal Disubmit";
+      }
+    }
+  }
+
 ?>
+
+<style>
+    #signaturePad {
+        border: 1px solid #000;
+        width: 100%;
+        height: 200px;
+    }
+    #error-message {
+        color: red;
+        display: none;
+    }
+
+    #signaturePad_2 {
+        border: 1px solid #000;
+        width: 100%;
+        height: 165px;
+    }
+    #error-message_2 {
+        color: red;
+        display: none;
+    }
+</style>
 
 <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -198,7 +296,10 @@
               <div class="card-body">
                 <div class="callout callout-info">
                   <b>Jumlah P3K :</b><br> <?php echo $jml_p3k_onsite['total_p3k_onsite']." SET"; ?><br>
-                  <small style="color: red;">*data P3K tidak boleh kurang dari jumlah P3K</small>
+                  <small style="color: red;">
+                    *data P3K tidak boleh kurang dari jumlah P3K<br>
+                    *Dokumentasi minimal 4 foto masing-masing data P3K
+                  </small>
                 </div>
                   <table class="table table-bordered table-hover" style="font-size: 12px; margin-bottom: 10px; margin-top: 10px;">
                     <thead>
@@ -210,12 +311,13 @@
                     </thead>
                     <tbody>
                       <?php
-                        $no = 1;
+                        $noList = 1;
+                        $cek_dokumentasi = "OKE";
                         $q_get_detailinspeksi_p3k = mysqli_query($conn, "SELECT * FROM hse_inspeksilist_detailp3k WHERE inspeksi_id = '$_GET[kd]'");
                         while($get_detailinspeksi_p3k = mysqli_fetch_array($q_get_detailinspeksi_p3k)){
                       ?>
-                        <tr data-widget="expandable-table" aria-expanded="true">
-                          <td><?php echo $no; ?></td>
+                        <tr data-widget="expandable-table" aria-expanded="false">
+                          <td><?php echo $noList; ?></td>
                           <td><?php echo "Tipe ".$get_detailinspeksi_p3k['tipe_kotak']; ?></td>
                           <td><?php echo date("d-m-Y H:i:s", strtotime($get_detailinspeksi_p3k['tgl_submit'])); ?></td>
                         </tr>
@@ -1071,6 +1173,12 @@
                                 </tr>
                               </table>
 
+                              <table class="table table-sm" style="background-color: #e8e8e8; margin-bottom: 10px;">
+                                <tr>
+                                  <td><b>Catatan :</b> <?php echo $get_detailinspeksi_p3k['catatan']; ?></td>
+                                </tr>
+                              </table>
+
                               <table class="table table-sm" style="margin-top: 10px; margin-bottom: 10px; background-color: #e8e8e8;">
                                 <tr>
                                   <td width="1%" align="center"><b>No</b></td>
@@ -1078,28 +1186,47 @@
                                   <td width="1%" align="center"><b><span class="fa fa-trash" style="font-size: 16px"></span></b></td>
                                 </tr>
                                 <?php
+                                  $jml_dokumentasi = 0;
                                   $no = 1;
                                   $q_get_dokumentasi_p3k = mysqli_query($conn, "SELECT * FROM hse_inspeksilist_fotop3k WHERE detail_id = '$get_detailinspeksi_p3k[id]'");
                                   while($get_dokumentasi_p3k = mysqli_fetch_array($q_get_dokumentasi_p3k)){
                                 ?>
                                   <tr>
                                     <td align="center" style="vertical-align: middle;"><?php echo $no; ?></td>
-                                    <td align="center"><img src="../../role/HSE/foto_inspeksi_p3k/<?php echo $get_dokumentasi_p3k['foto']; ?>" width="70%"></td>
+                                    <td align="center">
+                                      <img src="../../role/HSE/foto_inspeksi_p3k/<?php echo $get_dokumentasi_p3k['foto']; ?>" width="70%"><br>
+                                        <?php echo $get_dokumentasi_p3k['keterangan']; ?>
+                                    </td>
                                     <td style="vertical-align: middle;">
                                       <a href="#modal" data-toggle='modal' data-target='#show_delete_dokumentasi_p3k' data-id='<?php echo $get_dokumentasi_p3k['id']; ?>' data-toggle="tooltip" data-placement="bottom" title="Delete Foto">
                                         <span class="fa fa-trash" style="color: red; font-size: 14px;"></span>
                                       </a>
                                     </td>
                                   </tr>
-                                <?php $no++; } ?>
+                                <?php $jml_dokumentasi++; $no++; } ?>
                               </table>
-                              <center style="margin-bottom: 5px;">
-                                <a href="#modal" data-toggle='modal' data-target='#show_add_dokumentasi_p3k' data-id='<?php echo $get_detailinspeksi_p3k['id']; ?>' data-toggle="tooltip" data-placement="bottom" title="Edit Data P3K">
-                                <div class="btn btn-info btn-xs" style="font-size:11px;">
-                                  <span class="fa fa-plus"></span> Tambah Dokumentasi
-                                </div>
-                                </a>
-                              </center>
+
+                              <?php 
+                                if($cek_dokumentasi == "Kurang"){
+                                  $cek_dokumentasi = "Kurang";
+                                }elseif($jml_dokumentasi >= 4){
+                                  $cek_dokumentasi = "OKE";
+                                }elseif($jml_dokumentasi < 4){
+                                  $cek_dokumentasi = "Kurang";
+                                }else{
+                                  $cek_dokumentasi = "Error";
+                                }
+                              ?>
+
+                              <?php if($jml_dokumentasi < 4){ ?>
+                                <center style="margin-bottom: 5px;">
+                                  <a href="#modal" data-toggle='modal' data-target='#show_add_dokumentasi_p3k' data-id='<?php echo $get_detailinspeksi_p3k['id']; ?>' data-toggle="tooltip" data-placement="bottom" title="Edit Data P3K">
+                                  <div class="btn btn-info btn-xs" style="font-size:11px;">
+                                    <span class="fa fa-plus"></span> Tambah Dokumentasi
+                                  </div>
+                                  </a>
+                                </center>
+                              <?php } ?>
                               <center>
                                 <a href="#modal" data-toggle='modal' data-target='#show_edit_data_p3k' data-id='<?php echo $get_detailinspeksi_p3k['id']; ?>' data-toggle="tooltip" data-placement="bottom" title="Edit Data P3K">
                                   <div class="btn btn-secondary btn-xs" style="font-size:11px;">
@@ -1116,17 +1243,61 @@
                             </p>
                           </td>
                         </tr>
-                      <?php $no++; } ?>
+                      <?php $noList++; } ?>
                     </tbody>
                   </table>
+
+                  <div class="row">
+                      <div class="col-6">
+                        <?php if($get_inspeksilist['ttd_hse']==""){ ?>
+                          <form id="signatureForm" method="POST" action="">
+                            <center>
+                              <div class="form-group">
+                                <label for="signaturePad">Diperiksa Oleh<br><small>HSE Officer</small></label>
+                                <canvas id="signaturePad"></canvas>
+                                <input type="hidden" id="signatureImage" name="signatureImage">
+                                <div id="error-message"><small>Tanda tangan anda disini.</small></div>
+                              </div>
+                              <input type="hidden" name="inspeksi_id" value="<?php echo $_GET['kd'] ?>">
+                              <button type="button" class="btn btn-sm btn-secondary" id="clearButton">Clear</button>
+                              <button type="submit" class="btn btn-sm btn-primary" id="submitButton" name="ttd_apd_hse" disabled>Simpan</button>
+                            </center>
+                          </form>
+                        <?php }else{ ?>
+                          <div class="btn btn-sm btn-success" style="width: 100%"><span class="fa fa-check"></span><br>HSE OFFICER</div>
+                        <?php } ?>
+                      </div>
+                      <div class="col-6">
+                        <?php if($get_inspeksilist['ttd_sm']==""){ ?>
+                          <form id="signatureForm_2" method="POST" action="">
+                            <center>
+                              <div class="form-group">
+                                <label for="signaturePad_2">Disetujui Oleh<br><small>Site Manager</small></label>
+                                <input type="text" class="form-control form-control-sm" name="site_manager" style="margin-bottom: 5px;" placeholder="Nama Site Manager" required>
+                                <canvas id="signaturePad_2"></canvas>
+                                <input type="hidden" id="signatureImage_2" name="signatureImage_2">
+                                <div id="error-message_2"><small>Tanda tangan anda disini.</small></div>
+                              </div>
+                              <input type="hidden" name="inspeksi_id" value="<?php echo $_GET['kd'] ?>">
+                              <button type="button" class="btn btn-sm btn-secondary" id="clearButton_2">Clear</button>
+                              <button type="submit" class="btn btn-sm btn-primary" id="submitButton_2" name="ttd_apd_sm" disabled>Simpan</button>
+                            </center>
+                          </form>
+                        <?php }else{ ?>
+                          <div class="btn btn-sm btn-success" style="width: 100%"><span class="fa fa-check"></span><br>SITE MANAGER</div>
+                        <?php } ?>
+                      </div>
+                    </div>
               
                   <br>
                   <div style="margin-top: 20px; text-align: center;">
                     <form method="POST" action="">
                       <input type="hidden" name="inspeksi_id" value="<?php echo $_GET['kd']; ?>">
+                      <input type="hidden" name="kd_project" value="<?php echo $kd_project; ?>">
                       <a href="index.php?pages=detailproject&kd=<?php echo $kd_project; ?>" class="btn btn-info btn-sm"><span class="fa fa-reply"></span> Kembali</a>
                       
-                      <button onclick="return confirm('Yakin inspeksi APAR ini sudah lengkap dan sesuai ?')" class="btn btn-success btn-sm" name="submit_inspeksi_apar" value="submit" <?php if($get_inspeksilist['ttd_hse'] == "" OR $get_inspeksilist['ttd_sm'] == "" OR $jml_foto_apar < 4 OR $cek_data_apar == "Kurang"){ echo "disabled"; } ?>>Submit</button>
+                      <?php $noList = $noList-1; ?>
+                      <button onclick="return confirm('Yakin inspeksi P3K ini sudah lengkap dan sesuai ?')" class="btn btn-success btn-sm" name="submit_inspeksi_p3k" value="submit" <?php if($get_inspeksilist['ttd_hse'] == "" OR $get_inspeksilist['ttd_sm'] == "" OR $cek_dokumentasi == "Kurang" OR $jml_p3k_onsite['total_p3k_onsite'] > $noList){ echo "disabled"; } ?>>Submit</button>
 
                     </form>
                   </div>
@@ -1277,6 +1448,13 @@
                 <td width=""><input type="number" name="point_20" min="0" style="width: 100%" required></td>
               </tr>
             </table>
+            <table class="table table-sm" style="font-size: 12px;">
+              <tr>
+                <td width="20%">Catatan</td>
+                <td width="1%">:</td>
+                <td width=""><textarea name="catatan" style="width: 100%;" required></textarea></td>
+              </tr>
+            </table>
             <div style="text-align: center;">
               <input type="hidden" name="inspeksi_id" value="<?php echo $_GET['kd']; ?>">
               <input type="submit" class="btn btn-info btn-sm" name="add_data_p3k" value="Tambah Data P3K">
@@ -1367,7 +1545,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <form id="myForm4" method="POST" target="" enctype="multipart/form-data">
+          <form id="myForm5" method="POST" target="" enctype="multipart/form-data">
             <div class="modal-data"></div>
           </form>
         </div>

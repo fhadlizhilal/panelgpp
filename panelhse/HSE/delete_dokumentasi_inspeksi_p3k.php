@@ -17,5 +17,6 @@
     <br>
     <center>
       <input type="hidden" name="id" value="<?php echo $id; ?>">
+      <input type="hidden" name="foto" value="<?php echo $get_data_fotop3k['foto']; ?>">
       <input type="submit" class="btn btn-danger" name="delete_dokumentasi_inspeksip3k" value="Delete">
     </center>
