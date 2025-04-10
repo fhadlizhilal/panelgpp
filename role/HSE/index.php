@@ -2066,6 +2066,241 @@
               </li>
             </ul>
           </li>
+
+          <!-- KELOLA ASSET -->
+          <li class="nav-header"></li>
+          <li class="nav-header">Kelola Asset</li>
+          <li class="nav-item <?php if($_GET['pages']=='dbmerek' || $_GET['pages']=='dbgeneral' || $_GET['pages']=='dbdetail' || $_GET['pages']=='dbentitas' || $_GET['pages']=='dbpeminjaman' || $_GET['pages']=='dbpengajuan' || $_GET['pages']=='dbsuratjalan' || $_GET['pages']=='dbpengembalian'){ echo 'menu-open'; } ?>">
+            <a href="#" class="nav-link <?php if($_GET['pages']=='dbmerek' || $_GET['pages']=='dbgeneral' || $_GET['pages']=='dbdetail' || $_GET['pages']=='dbentitas' || $_GET['pages']=='dbpeminjaman' || $_GET['pages']=='dbpengajuan' || $_GET['pages']=='dbsuratjalan' || $_GET['pages']=='dbpengembalian'){ echo 'active'; } ?>">
+              <i class="nav-icon fa fa-file-text-o"></i>
+              <p>
+                Database
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="index.php?pages=dbentitas" class="nav-link <?php if($_GET['pages']=='dbentitas'){ echo 'active'; } ?>">
+                  <i class="fa fa-chevron-right nav-icon"></i>
+                  <p>DB Entitas</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="index.php?pages=dbmerek" class="nav-link <?php if($_GET['pages']=='dbmerek'){ echo 'active'; } ?>">
+                  <i class="fa fa-chevron-right nav-icon"></i>
+                  <p>DB Merek</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="index.php?pages=dbgeneral" class="nav-link <?php if($_GET['pages']=='dbgeneral'){ echo 'active'; } ?>">
+                  <i class="fa fa-chevron-right nav-icon"></i>
+                  <p>DB General</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="index.php?pages=dbdetail" class="nav-link <?php if($_GET['pages']=='dbdetail'){ echo 'active'; } ?>">
+                  <i class="fa fa-chevron-right nav-icon"></i>
+                  <p>DB Detail</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="index.php?pages=dbpengajuan" class="nav-link <?php if($_GET['pages']=='dbpengajuan'){ echo 'active'; } ?>">
+                  <i class="fa fa-chevron-right nav-icon"></i>
+                  <p>DB Pengajuan</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="index.php?pages=dbpeminjaman" class="nav-link <?php if($_GET['pages']=='dbpeminjaman'){ echo 'active'; } ?>">
+                  <i class="fa fa-chevron-right nav-icon"></i>
+                  <p>DB Peminjaman</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="index.php?pages=dbsuratjalan" class="nav-link <?php if($_GET['pages']=='dbsuratjalan'){ echo 'active'; } ?>">
+                  <i class="fa fa-chevron-right nav-icon"></i>
+                  <p>DB Surat Jalan</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="index.php?pages=dbpengembalian" class="nav-link <?php if($_GET['pages']=='dbpengembalian'){ echo 'active'; } ?>">
+                  <i class="fa fa-chevron-right nav-icon"></i>
+                  <p>DB Pengembalian</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="nav-item <?php if($_GET['pages']=='listpeminjamanbaru' || $_GET['pages']=='peminjamanonprogress' || $_GET['pages']=='peminjamancompleted' || $_GET['pages']=='peminjamanreject' || $_GET['pages']=='detailpeminjamanonprogress' || $_GET['pages']=='detailpeminjamancompleted'){ echo 'menu-open'; } ?>">
+            <a href="#" class="nav-link <?php if($_GET['pages']=='listpeminjamanbaru' || $_GET['pages']=='peminjamanonprogress' || $_GET['pages']=='peminjamancompleted' || $_GET['pages']=='peminjamanreject' || $_GET['pages']=='detailpeminjamanonprogress' || $_GET['pages']=='detailpeminjamancompleted'){ echo 'active'; } ?>">
+              <i class="nav-icon fa fa-file-text-o"></i>
+              <p>
+                Kelola Peminjaman
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="index.php?pages=listpeminjamanbaru" class="nav-link <?php if($_GET['pages']=='listpeminjamanbaru'){ echo 'active'; } ?>">
+                  <i class="fa fa-chevron-right nav-icon"></i>
+                  <?php $jml_pengajuan_baru = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM asset_peminjaman WHERE status = 'waiting for MA'")); ?>
+                  <p>Peminjaman Baru <span class="badge badge-info"><?php echo $jml_pengajuan_baru; ?></span></p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="index.php?pages=peminjamanonprogress" class="nav-link <?php if($_GET['pages']=='peminjamanonprogress' || $_GET['pages']=='detailpeminjamanonprogress'){ echo 'active'; } ?>">
+                  <i class="fa fa-chevron-right nav-icon"></i>
+                  <?php $jml_pengajuan_progress = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM asset_peminjaman WHERE status = 'on progress by MA'")); ?>
+                  <p>On Progress <span class="badge badge-warning"><?php echo $jml_pengajuan_progress; ?></span></p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="index.php?pages=peminjamancompleted" class="nav-link <?php if($_GET['pages']=='peminjamancompleted' || $_GET['pages']=='detailpeminjamancompleted'){ echo 'active'; } ?>">
+                  <i class="fa fa-chevron-right nav-icon"></i>
+                  <p>Completed</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="index.php?pages=peminjamanreject" class="nav-link <?php if($_GET['pages']=='peminjamanreject'){ echo 'active'; } ?>">
+                  <i class="fa fa-chevron-right nav-icon"></i>
+                  <p>Reject / Canceled</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+
+          <li class="nav-item <?php if($_GET['pages']=='listbelumkembali' || $_GET['pages']=='pengembaliandetail' || $_GET['pages']=='listpengembalianselesai' || $_GET['pages']=='pengembaliandetailselesai'){ echo 'menu-open'; } ?>">
+            <a href="#" class="nav-link <?php if($_GET['pages']=='listbelumkembali' || $_GET['pages']=='pengembaliandetail' || $_GET['pages']=='listpengembalianselesai' || $_GET['pages']=='pengembaliandetailselesai'){ echo 'active'; } ?>">
+              <i class="nav-icon fa fa-file-text-o"></i>
+              <p>
+                Kelola Pengembalian
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="index.php?pages=listbelumkembali" class="nav-link <?php if($_GET['pages']=='listbelumkembali' || $_GET['pages']=='pengembaliandetail'){ echo 'active'; } ?>">
+                  <i class="fa fa-chevron-right nav-icon"></i>
+                  <?php 
+                    $jml_belum_kembali_project = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM project WHERE kd_project IN (SELECT kd_project FROM asset_peminjaman) AND kd_project NOT IN (SELECT kd_project FROM asset_pengembalian_selesai WHERE kd_project IS NOT NULL)"));
+
+                    $jml_belum_kembali_nonproject = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM asset_peminjaman WHERE kd_project IS NULL AND id NOT IN (SELECT peminjaman_id FROM asset_pengembalian_selesai WHERE peminjaman_id IS NOT NULL) ORDER BY id DESC"));
+
+                  ?>
+                  <p>Belum Kembali <span class="badge badge-danger"><?php echo $jml_belum_kembali_project+$jml_belum_kembali_nonproject; ?></span></p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="index.php?pages=listpengembalianselesai" class="nav-link <?php if($_GET['pages']=='listpengembalianselesai' || $_GET['pages']=='pengembaliandetailselesai'){ echo 'active'; } ?>">
+                  <i class="fa fa-chevron-right nav-icon"></i>
+                  <p>Selesai</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+
+          <li class="nav-item <?php if($_GET['pages']=='pilihformpengajuan' || $_GET['pages']=='formpengajuantools' || $_GET['pages']=='formpengajuanapd' || $_GET['pages']=='formpengajuaninventaris' || $_GET['pages']=='formpengajuanalatukur' || $_GET['pages'] == 'pengajuanonprogress' || $_GET['pages'] == 'pengajuancompleted' || $_GET["pages"]=="formeditpengajuan" || $_GET['pages']=='formrealisasi' || $_GET['pages']=='formeditrealisasi'){ echo 'menu-open'; } ?>">
+            <a href="#" class="nav-link <?php if($_GET['pages']=='pilihformpengajuan' || $_GET['pages']=='formpengajuantools' || $_GET['pages']=='formpengajuanapd' || $_GET['pages']=='formpengajuaninventaris' || $_GET['pages']=='formpengajuanalatukur' || $_GET['pages'] == 'pengajuanonprogress' || $_GET['pages'] == 'pengajuancompleted' || $_GET["pages"]=="formeditpengajuan" || $_GET['pages']=='formrealisasi' || $_GET['pages']=='formeditrealisasi'){ echo 'active'; } ?>">
+              <i class="nav-icon fa fa-file-text-o"></i>
+              <p>
+                Pengajuan Asset
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="index.php?pages=pilihformpengajuan" class="nav-link <?php if($_GET['pages']=='pilihformpengajuan' || $_GET['pages']=='formpengajuantools' || $_GET['pages']=='formpengajuanapd' || $_GET['pages']=='formpengajuaninventaris' || $_GET['pages']=='formpengajuanalatukur' || $_GET['pages']=='formpengajuanperbaikan'){ echo 'active'; } ?>">
+                  <i class="fa fa-chevron-right nav-icon"></i>
+                  <p>Form Pengajuan</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="index.php?pages=pengajuanonprogress" class="nav-link <?php if($_GET['pages']=='pengajuanonprogress' || $_GET["pages"]=="formeditpengajuan" || $_GET['pages']=='formrealisasi'){ echo 'active'; } ?>">
+                  <i class="fa fa-chevron-right nav-icon"></i>
+                  <?php $belum_realisasi = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM asset_pengajuan WHERE status = 'belum realisasi'")); ?>
+                  <p>Belum Realisasi <span class="badge badge-danger"><?php echo $belum_realisasi; ?></span></p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="index.php?pages=pengajuancompleted" class="nav-link <?php if($_GET['pages']=='pengajuancompleted' || $_GET['pages']=='formeditrealisasi'){ echo 'active'; } ?>">
+                  <i class="fa fa-chevron-right nav-icon"></i>
+                  <p>Sudah Realisasi</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="index.php?pages=listperbaikan" class="nav-link <?php if($_GET['pages']=='listperbaikan' || $_GET['pages']=='formpengajuanperbaikan' || $_GET['pages']=='editpengajuanperbaikan' || $_GET['pages']=='formrealisasiperbaikan'){ echo 'active'; } ?>">
+              <i class="fa fa-file-text-o nav-icon"></i>
+              <p>Perbaikan Asset <div class="badge badge-warning"><?php echo mysqli_num_rows(mysqli_query($conn, "SELECT * FROM asset_perbaikan WHERE status = 'belum realisasi'")); ?></div></p>
+            </a>
+          </li>
+
+          <li class="nav-item <?php if($_GET['pages']=='pilihstock' || $_GET['pages']=='datastock' || $_GET['pages']=='pilihstockopname' || $_GET['pages']=='stockopname' || $_GET['pages']=='dataassetrusak' || $_GET['pages']=='reportpengembalianproject' || $_GET['pages']=='annualreport'){ echo 'menu-open'; } ?>">
+            <a href="#" class="nav-link <?php if($_GET['pages']=='pilihstock' || $_GET['pages']=='datastock' || $_GET['pages']=='pilihstockopname' || $_GET['pages']=='stockopname' || $_GET['pages']=='dataassetrusak' || $_GET['pages']=='reportpengembalianproject' || $_GET['pages']=='annualreport'){ echo 'active'; } ?>">
+              <i class="nav-icon fa fa-file-text-o"></i>
+              <p>
+                Data Report
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="index.php?pages=pilihstock" class="nav-link <?php if($_GET['pages']=='pilihstock' || $_GET['pages']=='datastock'){ echo 'active'; } ?>">
+                  <i class="fa fa-chevron-right nav-icon"></i>
+                  <p>Data Stock</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="index.php?pages=pilihstockopname" class="nav-link <?php if($_GET['pages']=='pilihstockopname' || $_GET['pages']=='stockopname'){ echo 'active'; } ?>">
+                  <i class="fa fa-chevron-right nav-icon"></i>
+                  <p>Stock Opname</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="index.php?pages=dataassetrusak" class="nav-link <?php if($_GET['pages']=='dataassetrusak'){ echo 'active'; } ?>">
+                  <i class="fa fa-chevron-right nav-icon"></i>
+                  <p>Asset Rusak</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="index.php?pages=reportpengembalianproject" class="nav-link <?php if($_GET['pages']=='reportpengembalianproject'){ echo 'active'; } ?>">
+                  <i class="fa fa-chevron-right nav-icon"></i>
+                  <p>Report - Project</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="index.php?pages=annualreport" class="nav-link <?php if($_GET['pages']=='annualreport'){ echo 'active'; } ?>">
+                  <i class="fa fa-chevron-right nav-icon"></i>
+                  <p>Report - Annual</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <br><br>
                                            
         </ul>
       </nav>
@@ -2137,8 +2372,82 @@
       require_once "../unrole/management_asset/form_edit_peminjaman.php";
     }elseif($_GET["pages"]=="formbastpengembalian"){
       require_once "../unrole/management_asset/form_bast_pengembalian.php";
-    }
     // ----------------------------PEMINJAMAN & PENGEMBALIAN ASSET AKHIR ------------------------
+
+    // --------------------------- KELOLA ASSET -----------------------------------------------
+    }elseif($_GET["pages"]=="dbentitas"){
+      require_once "../unrole/management_asset/db_entitas.php";
+    }elseif($_GET["pages"]=="dbmerek"){
+      require_once "../unrole/management_asset/db_merek.php";
+    }elseif($_GET["pages"]=="dbgeneral"){
+      require_once "../unrole/management_asset/db_general.php";
+    }elseif($_GET["pages"]=="dbdetail"){
+      require_once "../unrole/management_asset/db_detail.php";
+    }elseif($_GET["pages"]=="dbpeminjaman"){
+      require_once "../unrole/management_asset/db_peminjaman.php";
+    }elseif($_GET["pages"]=="dbpengajuan"){
+      require_once "../unrole/management_asset/db_pengajuan.php";
+    }elseif($_GET["pages"]=="dbsuratjalan"){
+      require_once "../unrole/management_asset/db_suratjalan.php";
+    }elseif($_GET["pages"]=="dbpengembalian"){
+      require_once "../unrole/management_asset/db_pengembalian.php";
+    }elseif($_GET["pages"]=="listpeminjamanbaru"){
+      require_once "../unrole/management_asset/peminjaman_baru_list.php";
+    }elseif($_GET["pages"]=="peminjamanonprogress"){
+      require_once "../unrole/management_asset/peminjaman_progress.php";
+    }elseif($_GET["pages"]=="peminjamancompleted"){
+      require_once "../unrole/management_asset/peminjaman_completed.php";
+    }elseif($_GET["pages"]=="peminjamanreject"){
+      require_once "../unrole/management_asset/peminjaman_reject.php";
+    }elseif($_GET["pages"]=="detailpeminjamanonprogress"){
+      require_once "../unrole/management_asset/detail_peminjaman_progress.php";
+    }elseif($_GET["pages"]=="detailpeminjamancompleted"){
+      require_once "../unrole/management_asset/detail_peminjaman_completed.php";
+    }elseif($_GET["pages"]=="pilihformpengajuan"){
+      require_once "../unrole/management_asset/form_pilih_pengajuan.php";
+    }elseif($_GET["pages"]=="formpengajuantools" || $_GET["pages"]=="formpengajuanapd" || $_GET["pages"]=="formpengajuaninventaris" || $_GET["pages"]=="formpengajuanalatukur"){
+      require_once "../unrole/management_asset/form_pengajuan.php";
+    }elseif($_GET["pages"]=="listperbaikan"){
+      require_once "../unrole/management_asset/perbaikan_asset_list.php";
+    }elseif($_GET["pages"]=="formpengajuanperbaikan"){
+      require_once "../unrole/management_asset/form_pengajuan_perbaikan.php";
+    }elseif($_GET["pages"]=="editpengajuanperbaikan"){
+      require_once "../unrole/management_asset/edit_pengajuan_perbaikan.php";
+    }elseif($_GET["pages"]=="formrealisasiperbaikan"){
+      require_once "../unrole/management_asset/form_realisasi_perbaikan.php";
+    }elseif($_GET["pages"]=="pengajuanonprogress"){
+      require_once "../unrole/management_asset/pengajuan_onprogress_list.php";
+    }elseif($_GET["pages"]=="pengajuancompleted"){
+      require_once "../unrole/management_asset/pengajuan_completed_list.php";
+    }elseif($_GET["pages"]=="formeditpengajuan"){
+      require_once "../unrole/management_asset/form_pengajuan_edit.php";
+    }elseif($_GET["pages"]=="formrealisasi"){
+      require_once "../unrole/management_asset/form_realisasi.php";
+    }elseif($_GET["pages"]=="formeditrealisasi"){
+      require_once "../unrole/management_asset/form_edit_realisasi.php";
+    }elseif($_GET["pages"]=="pilihstock"){
+      require_once "../unrole/management_asset/data_stock_pilih.php";
+    }elseif($_GET["pages"]=="pilihstockopname"){
+      require_once "../unrole/management_asset/data_stock_opname_pilih.php";
+    }elseif($_GET["pages"]=="stockopname"){
+      require_once "../unrole/management_asset/data_stock_opname.php";
+    }elseif($_GET["pages"]=="datastock"){
+      require_once "../unrole/management_asset/data_stock.php";
+    }elseif($_GET["pages"]=="listbelumkembali"){
+      require_once "../unrole/management_asset/belum_kembali_list.php";
+    }elseif($_GET["pages"]=="listpengembalianselesai"){
+      require_once "../unrole/management_asset/pengembalian_selesai_list.php";
+    }elseif($_GET["pages"]=="pengembaliandetailselesai"){
+      require_once "../unrole/management_asset/pengembalian_detail_selesai.php";
+    }elseif($_GET["pages"]=="pengembaliandetail"){
+      require_once "../unrole/management_asset/pengembalian_detail.php";
+    }elseif($_GET["pages"]=="dataassetrusak"){
+      require_once "../unrole/management_asset/data_asset_rusak.php";
+    }elseif($_GET["pages"]=="reportpengembalianproject"){
+      require_once "../unrole/management_asset/report_pengembalian_project.php";
+    }elseif($_GET["pages"]=="annualreport"){
+      require_once "../unrole/management_asset/report_annual.php";
+    }
 
   ?>
   <!-- ./Konten Wrapper -->
