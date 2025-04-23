@@ -192,6 +192,7 @@
                         while($get_db_tools_detail = mysqli_fetch_array($q_get_db_tools_detail)){
                           $get_db_tools_general = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM asset_db_general WHERE id = '$get_db_tools_detail[general_code_id]'"));
                           $get_merek = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM asset_db_merek WHERE id = '$get_db_tools_detail[merek_id]'"));
+                          $get_harga_terbaru = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM asset_realisasi WHERE detail_code = '$get_db_tools_detail[detail_code]' ORDER BY id DESC"));
                           
                       ?>
                             <tr>
@@ -202,7 +203,9 @@
                               <td><?php echo $get_merek['merek']; ?></td>
                               <td><input type="text" id="qty_<?php echo $no; ?>" style="width: 100%" name="qty_<?php echo $get_db_tools_detail['detail_code']; ?>" oninput="formatNumber(this); hitungTotalHarga(<?php echo $no; ?>)"></td>
                               <td><?php echo $get_db_tools_general['satuan']; ?></td>
-                              <td><input type="text" id="harga_satuan_<?php echo $no; ?>" style="width: 100%" name="harga_satuan_<?php echo $get_db_tools_detail['detail_code']; ?>" oninput="formatNumber(this); hitungTotalHarga(<?php echo $no; ?>)"></td>
+                              <td>
+                                <input type="text" id="harga_satuan_<?php echo $no; ?>" style="width: 100%" name="harga_satuan_<?php echo $get_db_tools_detail['detail_code']; ?>" value="<?php echo $get_harga_terbaru['harga_satuan']; ?>" oninput="formatNumber(this); hitungTotalHarga(<?php echo $no; ?>)">
+                              </td>
                               <td><input type="text" id="harga_total_<?php echo $no; ?>" style="width: 100%" disabled></td>
                             </tr>
                       <?php $no++; } ?>

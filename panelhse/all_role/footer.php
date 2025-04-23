@@ -4017,7 +4017,176 @@
             });
          });
     });
-  </script>  
+  </script>
+
+  <!-- ----- DELETE DATA INSPEKSI GERINDA ------------------------ -->
+  <script type="text/javascript">
+    $(document).ready(function(){
+        $('#show_delete_data_gerinda').on('show.bs.modal', function (e) {
+            var getID = $(e.relatedTarget).data('id');
+            /* fungsi AJAX untuk melakukan fetch data */
+            $.ajax({
+                type : 'post',
+                url : '../HSE/delete_data_inspeksi_gerinda.php',
+                /* detail per identifier ditampung pada berkas detail.php yang berada di folder application/view */
+                data :  'getID='+ getID,
+                /* memanggil fungsi getDetail dan mengirimkannya */
+                success : function(data){
+                $('.modal-data').html(data);
+                /* menampilkan data dalam bentuk dokumen HTML */
+                }
+            });
+         });
+    });
+  </script>
+
+
+  <!-- ----- EDIT DATA INSPEKSI GERINDA ------------------------ -->
+  <script type="text/javascript">
+    $(document).ready(function(){
+        $('#show_edit_data_gerinda').on('show.bs.modal', function (e) {
+            var getID = $(e.relatedTarget).data('id');
+            /* fungsi AJAX untuk melakukan fetch data */
+            $.ajax({
+                type : 'post',
+                url : '../HSE/edit_data_inspeksi_gerinda.php',
+                /* detail per identifier ditampung pada berkas detail.php yang berada di folder application/view */
+                data :  'getID='+ getID,
+                /* memanggil fungsi getDetail dan mengirimkannya */
+                success : function(data){
+                $('.modal-data').html(data);
+                /* menampilkan data dalam bentuk dokumen HTML */
+                }
+            });
+         });
+    });
+  </script>
+
+  <!-- ----- DELETE DOKUMENTASI INSPEKSI GERINDA ------------------------ -->
+  <script type="text/javascript">
+    $(document).ready(function(){
+        $('#show_delete_dokumentasi_gerinda').on('show.bs.modal', function (e) {
+            var getID = $(e.relatedTarget).data('id');
+            /* fungsi AJAX untuk melakukan fetch data */
+            $.ajax({
+                type : 'post',
+                url : '../HSE/delete_dokumentasi_inspeksi_gerinda.php',
+                /* detail per identifier ditampung pada berkas detail.php yang berada di folder application/view */
+                data :  'getID='+ getID,
+                /* memanggil fungsi getDetail dan mengirimkannya */
+                success : function(data){
+                $('.modal-data').html(data);
+                /* menampilkan data dalam bentuk dokumen HTML */
+                }
+            });
+         });
+    });
+  </script>
+
+  <!-- ----- DELETE DATA INSPEKSI MESIN LAS ------------------------ -->
+  <script type="text/javascript">
+    $(document).ready(function(){
+        $('#show_delete_data_mesinlas').on('show.bs.modal', function (e) {
+            var getID = $(e.relatedTarget).data('id');
+            /* fungsi AJAX untuk melakukan fetch data */
+            $.ajax({
+                type : 'post',
+                url : '../HSE/delete_data_inspeksi_mesinlas.php',
+                /* detail per identifier ditampung pada berkas detail.php yang berada di folder application/view */
+                data :  'getID='+ getID,
+                /* memanggil fungsi getDetail dan mengirimkannya */
+                success : function(data){
+                $('.modal-data').html(data);
+                /* menampilkan data dalam bentuk dokumen HTML */
+                }
+            });
+         });
+    });
+  </script>
+
+  <!-- ----- EDIT DATA INSPEKSI MESIN LAS ------------------------ -->
+  <script type="text/javascript">
+    $(document).ready(function(){
+        $('#show_edit_data_mesinlas').on('show.bs.modal', function (e) {
+            var getID = $(e.relatedTarget).data('id');
+            /* fungsi AJAX untuk melakukan fetch data */
+            $.ajax({
+                type : 'post',
+                url : '../HSE/edit_data_inspeksi_mesinlas.php',
+                /* detail per identifier ditampung pada berkas detail.php yang berada di folder application/view */
+                data :  'getID='+ getID,
+                /* memanggil fungsi getDetail dan mengirimkannya */
+                success : function(data){
+                $('.modal-data').html(data);
+                /* menampilkan data dalam bentuk dokumen HTML */
+                }
+            });
+         });
+    });
+  </script>
+
+  <!-- ----- DELETE DOKUMENTASI INSPEKSI MESIN LAS ------------------------ -->
+  <script type="text/javascript">
+    $(document).ready(function(){
+        $('#show_delete_dokumentasi_mesinlas').on('show.bs.modal', function (e) {
+            var getID = $(e.relatedTarget).data('id');
+            /* fungsi AJAX untuk melakukan fetch data */
+            $.ajax({
+                type : 'post',
+                url : '../HSE/delete_dokumentasi_inspeksi_mesinlas.php',
+                /* detail per identifier ditampung pada berkas detail.php yang berada di folder application/view */
+                data :  'getID='+ getID,
+                /* memanggil fungsi getDetail dan mengirimkannya */
+                success : function(data){
+                $('.modal-data').html(data);
+                /* menampilkan data dalam bentuk dokumen HTML */
+                }
+            });
+         });
+    });
+  </script>
+
+  <!-- ----- EDIT DATA INSPEKSI BOR AC ------------------------ -->
+  <script type="text/javascript">
+    $(document).ready(function(){
+        $('#show_edit_data_borac').on('show.bs.modal', function (e) {
+            var getID = $(e.relatedTarget).data('id');
+            /* fungsi AJAX untuk melakukan fetch data */
+            $.ajax({
+                type : 'post',
+                url : '../HSE/edit_data_inspeksi_borac.php',
+                /* detail per identifier ditampung pada berkas detail.php yang berada di folder application/view */
+                data :  'getID='+ getID,
+                /* memanggil fungsi getDetail dan mengirimkannya */
+                success : function(data){
+                $('.modal-data').html(data);
+                /* menampilkan data dalam bentuk dokumen HTML */
+                }
+            });
+         });
+    });
+  </script>
+
+  <!-- ----- DELETE DATA INSPEKSI BOR AC ------------------------ -->
+  <script type="text/javascript">
+    $(document).ready(function(){
+        $('#show_delete_data_borac').on('show.bs.modal', function (e) {
+            var getID = $(e.relatedTarget).data('id');
+            /* fungsi AJAX untuk melakukan fetch data */
+            $.ajax({
+                type : 'post',
+                url : '../HSE/delete_data_inspeksi_borac.php',
+                /* detail per identifier ditampung pada berkas detail.php yang berada di folder application/view */
+                data :  'getID='+ getID,
+                /* memanggil fungsi getDetail dan mengirimkannya */
+                success : function(data){
+                $('.modal-data').html(data);
+                /* menampilkan data dalam bentuk dokumen HTML */
+                }
+            });
+         });
+    });
+  </script>
 
     <!-- hitung data -->
     <?php 

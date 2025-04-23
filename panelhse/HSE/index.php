@@ -1520,6 +1520,22 @@
       require_once "form_inspeksi_p3k.php";
     }elseif($_GET["pages"]=="reportinspeksip3k"){
       require_once "report_inspeksi_p3k.php";
+    }elseif($_GET["pages"]=="forminspeksigerinda"){
+      require_once "form_inspeksi_gerinda.php";
+    }elseif($_GET["pages"]=="reportinspeksigerinda"){
+      require_once "report_inspeksi_gerinda.php";
+    }elseif($_GET["pages"]=="forminspeksigerindadc"){
+      require_once "form_inspeksi_gerindadc.php";
+    }elseif($_GET["pages"]=="reportinspeksigerindadc"){
+      require_once "report_inspeksi_gerindadc.php";
+    }elseif($_GET["pages"]=="forminspeksimesinlas"){
+      require_once "form_inspeksi_mesinlas.php";
+    }elseif($_GET["pages"]=="reportinspeksimesinlas"){
+      require_once "report_inspeksi_mesinlas.php";
+    }elseif($_GET["pages"]=="forminspeksiborac"){
+      require_once "form_inspeksi_borac.php";
+    }elseif($_GET["pages"]=="reportinspeksiborac"){
+      require_once "report_inspeksi_borac.php";
     }
 
   ?>

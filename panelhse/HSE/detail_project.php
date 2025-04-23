@@ -361,25 +361,26 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <?php 
-                    $q_get_weekly = mysqli_query($conn, "SELECT * FROM hse_weeklyreport WHERE project_id = '$_GET[kd]' ORDER BY week ASC");
-                    while($get_weekly = mysqli_fetch_array($q_get_weekly)){
-                      $cek_datainspeksi = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM hse_inspeksilist WHERE kd_weekly = '$get_weekly[kd_weekly]'"));
+                    <?php
+                      $no_week = 1;
+                      $q_get_weekly = mysqli_query($conn, "SELECT * FROM hse_weeklyreport WHERE project_id = '$_GET[kd]' ORDER BY week ASC");
+                      while($get_weekly = mysqli_fetch_array($q_get_weekly)){
+                        $cek_datainspeksi = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM hse_inspeksilist WHERE kd_weekly = '$get_weekly[kd_weekly]'"));
 
-                      $q_get_inspeksilist_apd = mysqli_query($conn, "SELECT * FROM hse_inspeksilist WHERE kd_weekly = '$get_weekly[kd_weekly]' AND jenis_inspeksi = 'inspeksi_apd'");
-                      $cek_inspeksiapd = mysqli_num_rows($q_get_inspeksilist_apd);
+                        $q_get_inspeksilist_apd = mysqli_query($conn, "SELECT * FROM hse_inspeksilist WHERE kd_weekly = '$get_weekly[kd_weekly]' AND jenis_inspeksi = 'inspeksi_apd'");
+                        $cek_inspeksiapd = mysqli_num_rows($q_get_inspeksilist_apd);
 
-                      $q_get_inspeksilist_toolsk3 = mysqli_query($conn, "SELECT * FROM hse_inspeksilist WHERE kd_weekly = '$get_weekly[kd_weekly]' AND (jenis_inspeksi = 'inspeksi_p3k' OR jenis_inspeksi = 'inspeksi_apar')");
-                      $cek_inspeksitoolsk3 = mysqli_num_rows($q_get_inspeksilist_toolsk3);
+                        $q_get_inspeksilist_toolsk3 = mysqli_query($conn, "SELECT * FROM hse_inspeksilist WHERE kd_weekly = '$get_weekly[kd_weekly]' AND (jenis_inspeksi = 'inspeksi_p3k' OR jenis_inspeksi = 'inspeksi_apar')");
+                        $cek_inspeksitoolsk3 = mysqli_num_rows($q_get_inspeksilist_toolsk3);
 
-                      $q_get_inspeksilist_tools = mysqli_query($conn, "SELECT * FROM hse_inspeksilist WHERE kd_weekly = '$get_weekly[kd_weekly]' AND (jenis_inspeksi = 'inspeksi_gerinda' OR jenis_inspeksi = 'inspeksi_mesinlas' OR jenis_inspeksi = 'inspeksi_borlistrik' OR jenis_inspeksi = 'inspeksi_bordc' OR jenis_inspeksi = 'inspeksi_borduduk' OR jenis_inspeksi = 'inspeksi_cuttingwheel' OR jenis_inspeksi = 'inspeksi_amperemeter' OR jenis_inspeksi = 'inspeksi_megger')");
-                      $cek_inspeksitools = mysqli_num_rows($q_get_inspeksilist_tools);
+                        $q_get_inspeksilist_tools = mysqli_query($conn, "SELECT * FROM hse_inspeksilist WHERE kd_weekly = '$get_weekly[kd_weekly]' AND (jenis_inspeksi = 'inspeksi_gerinda' OR jenis_inspeksi = 'inspeksi_gerindadc' OR jenis_inspeksi = 'inspeksi_mesinlas' OR jenis_inspeksi = 'inspeksi_borac' OR jenis_inspeksi = 'inspeksi_bordc' OR jenis_inspeksi = 'inspeksi_borduduk' OR jenis_inspeksi = 'inspeksi_cuttingwheel' OR jenis_inspeksi = 'inspeksi_amperemeter' OR jenis_inspeksi = 'inspeksi_megger')");
+                        $cek_inspeksitools = mysqli_num_rows($q_get_inspeksilist_tools);
 
-                      $q_get_inspeksilist_alatberat = mysqli_query($conn, "SELECT * FROM hse_inspeksilist WHERE kd_weekly = '$get_weekly[kd_weekly]' AND (jenis_inspeksi = 'inspeksi_forklift' OR jenis_inspeksi = 'inspeksi_scissorlift' OR jenis_inspeksi = 'inspeksi_boomlift' OR jenis_inspeksi = 'inspeksi_crane')");
-                      $cek_inspeksialatberat = mysqli_num_rows($q_get_inspeksilist_alatberat);
+                        $q_get_inspeksilist_alatberat = mysqli_query($conn, "SELECT * FROM hse_inspeksilist WHERE kd_weekly = '$get_weekly[kd_weekly]' AND (jenis_inspeksi = 'inspeksi_forklift' OR jenis_inspeksi = 'inspeksi_scissorlift' OR jenis_inspeksi = 'inspeksi_boomlift' OR jenis_inspeksi = 'inspeksi_crane')");
+                        $cek_inspeksialatberat = mysqli_num_rows($q_get_inspeksilist_alatberat);
                     ?>
                       <tr data-widget="expandable-table" aria-expanded="false">
-                        <td>1</td>
+                        <td><?php echo $no_week; $no_week++; ?></td>
                         <td><b><?php echo "Week ".$get_weekly['week']; ?></b></td>
                         <td><?php echo date("d-m-Y", strtotime($get_weekly['tgl_awal'])); ?></td>
                         <td><?php echo date("d-m-Y", strtotime($get_weekly['tgl_akhir'])); ?></td>
@@ -479,11 +480,29 @@
                                     <td>
                                       <?php
                                         if($get_inspeksilist_tools['jenis_inspeksi'] == 'inspeksi_gerinda'){
-                                          echo "Inspeksi Gerinda";
+                                          if($get_inspeksilist_tools['status'] == "progress"){
+                                            echo "<a href='index.php?pages=forminspeksigerinda&kd=".$get_inspeksilist_tools['id']."'>Inspeksi Gerinda AC</a>";
+                                          }elseif($get_inspeksilist_tools['status'] == "completed"){
+                                            echo "<a href='index.php?pages=reportinspeksigerinda&kd=".$get_inspeksilist_tools['id']."'>Inspeksi Gerinda AC</a>";
+                                          }
+                                        }elseif($get_inspeksilist_tools['jenis_inspeksi'] == 'inspeksi_gerindadc'){
+                                          if($get_inspeksilist_tools['status'] == "progress"){
+                                            echo "<a href='index.php?pages=forminspeksigerindadc&kd=".$get_inspeksilist_tools['id']."'>Inspeksi Gerinda DC</a>";
+                                          }elseif($get_inspeksilist_tools['status'] == "completed"){
+                                            echo "<a href='index.php?pages=reportinspeksigerindadc&kd=".$get_inspeksilist_tools['id']."'>Inspeksi Gerinda DC</a>";
+                                          }
                                         }elseif($get_inspeksilist_tools['jenis_inspeksi'] == 'inspeksi_mesinlas'){
-                                          echo "Inspeksi Mesin Las";
-                                        }elseif($get_inspeksilist_tools['jenis_inspeksi'] == 'inspeksi_borlistrik'){
-                                          echo "Inspeksi Bor Listrik";
+                                          if($get_inspeksilist_tools['status'] == "progress"){
+                                            echo "<a href='index.php?pages=forminspeksimesinlas&kd=".$get_inspeksilist_tools['id']."'>Inspeksi Mesin Las</a>";
+                                          }elseif($get_inspeksilist_tools['status'] == "completed"){
+                                            echo "<a href='index.php?pages=reportinspeksimesinlas&kd=".$get_inspeksilist_tools['id']."'>Inspeksi Mesin Las</a>";
+                                          }
+                                        }elseif($get_inspeksilist_tools['jenis_inspeksi'] == 'inspeksi_borac'){
+                                          if($get_inspeksilist_tools['status'] == "progress"){
+                                            echo "<a href='index.php?pages=forminspeksiborac&kd=".$get_inspeksilist_tools['id']."'>Inspeksi Bor AC</a>";
+                                          }elseif($get_inspeksilist_tools['status'] == "completed"){
+                                            echo "<a href='index.php?pages=reportinspeksibordc&kd=".$get_inspeksilist_tools['id']."'>Inspeksi Bor DC</a>";
+                                          }
                                         }elseif($get_inspeksilist_tools['jenis_inspeksi'] == 'inspeksi_bordc'){
                                           echo "Inspeksi Bor DC";
                                         }elseif($get_inspeksilist_tools['jenis_inspeksi'] == 'inspeksi_borduduk'){
@@ -835,10 +854,11 @@
                     <option value="inspeksi_apd">Inspeksi APD</option>
                     <option value="inspeksi_apar">Inspeksi APAR</option>
                     <option value="inspeksi_p3k">Inspeksi P3K</option>
-                    <option value="inspeksi_gerinda" disabled>Inspeksi Gerinda</option>
-                    <option value="inspeksi_mesinlas" disabled>Inspeksi Mesin Las</option>
-                    <option value="inspeksi_borlistrik" disabled>Inspeksi Bor Listrik</option>
-                    <option value="inspeksi_borac" disabled>Inspeksi Bor DC</option>
+                    <option value="inspeksi_gerinda">Inspeksi Gerinda AC</option>
+                    <option value="inspeksi_gerindadc">Inspeksi Gerinda DC</option>
+                    <option value="inspeksi_mesinlas">Inspeksi Mesin Las</option>
+                    <option value="inspeksi_borac">Inspeksi Bor AC</option>
+                    <option value="inspeksi_bordc" disabled>Inspeksi Bor DC</option>
                     <option value="inspeksi_borduduk" disabled>Inspeksi Bor Duduk</option>
                     <option value="inspeksi_cuttingwheel" disabled>Inspeksi Cutting Wheel</option>
                     <option value="inspeksi_amperemeter" disabled>Inspeksi Ampere Meter</option>
