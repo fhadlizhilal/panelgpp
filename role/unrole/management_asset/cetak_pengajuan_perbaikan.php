@@ -4,9 +4,9 @@
   session_start();
   date_default_timezone_set('Asia/Jakarta');
 
-  if(!isset($_SESSION["role"]) || $_SESSION["role"] != "management_asset"){
-    header("location: ../../login.php");
-  }
+  // if(!isset($_SESSION["role"]) || $_SESSION["role"] != "management_asset"){
+  //   header("location: ../../login.php");
+  // }
 
   $tgl_now = date('Y-m-d');
   require_once "../../../dev/config.php";

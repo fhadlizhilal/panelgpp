@@ -104,7 +104,7 @@
     </table>
   </div>
 
-  <?php if($_SESSION['role'] == "management_asset"){ ?>
+  <?php if($_SESSION['role'] == "management_asset" || $_SESSION['role'] == "HSE"){ ?>
     <div class="card-footer" style="text-align: center;">
       <input type="hidden" name="id" value="<?php echo $id; ?>">
       <input type="hidden" name="kd_project" value="<?php echo $get_peminjaman['kd_project']; ?>">

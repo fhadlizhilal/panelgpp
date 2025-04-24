@@ -61,7 +61,7 @@
         <div class="row">
           <div class="col-12">
             <div class="card">
-              <?php if($_SESSION['role'] == "management_asset"){ ?>
+              <?php if($_SESSION['role'] == "management_asset" || $_SESSION['role'] == "HSE"){ ?>
                 <div class="card-header">
                   <h3 class="card-title float-sm-right" style="font-size: 12px;">
                     <a href="#modal" data-toggle='modal' data-target='#show_add_dbgeneral' data-id='<?php echo $get_forecast['kd_forecast']; ?>' data-toggle="tooltip" data-placement="bottom" title="Tambah DB General">
@@ -82,7 +82,7 @@
                       <th>Sub Barang</th>
                       <th>Satuan</th>
                       <th>Jenis</th>
-                      <?php if($_SESSION['role'] == "management_asset"){ ?>
+                      <?php if($_SESSION['role'] == "management_asset" || $_SESSION['role'] == "HSE"){ ?>
                         <th width="8%">#</th>
                       <?php } ?>
                     </tr>
@@ -102,7 +102,7 @@
                         <td><?php echo $get_DBgeneral['sub_barang']; ?></td>
                         <td><?php echo $get_DBgeneral['satuan']; ?></td>
                         <td><?php echo $get_DBgeneral['jenis']; ?></td>
-                        <?php if($_SESSION['role'] == "management_asset"){ ?>
+                        <?php if($_SESSION['role'] == "management_asset" || $_SESSION['role'] == "HSE"){ ?>
                           <td style="font-size: 14px;">
                             <form id="myFormA" method="POST" action="">
                               <input type="hidden" name="id" value="<?php echo $get_DBgeneral['id']; ?>">

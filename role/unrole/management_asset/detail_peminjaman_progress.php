@@ -163,7 +163,7 @@
                   <div class="card-body">
                     <div style="text-align: center; font-weight: bold; margin-bottom: 10px; float: left;">SURAT JALAN & PACKING LIST</div>
 
-                    <?php if($_SESSION['role'] == "management_asset"){ ?>
+                    <?php if($_SESSION['role'] == "management_asset" || $_SESSION['role'] == "HSE"){ ?>
                       <a href="#modal" data-toggle='modal' data-target='#show_add_suratjalan' data-id='<?php echo $get_peminjaman['id']; ?>' data-toggle="tooltip" data-placement="bottom" title="Buat Surat Jalan Baru">
                         <div class="btn btn-success btn-xs" style="float: right;"><small><span class="fa fa-plus"></span> Buat Surat Jalan</small></div>
                       </a>
@@ -271,7 +271,7 @@
                   </tbody>
                 </table>
 
-                <?php if($_SESSION['role'] == "management_asset"){ ?>
+                <?php if($_SESSION['role'] == "management_asset" || $_SESSION['role'] == "HSE"){ ?>
                   <div style="text-align: center; margin-top: 20px;">
                     <form method="POST" action="">
                       <input type="hidden" name="peminjaman_id" value="<?php echo $id; ?>">

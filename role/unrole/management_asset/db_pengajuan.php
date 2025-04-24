@@ -23,7 +23,7 @@
         <div class="row">
           <div class="col-12">
             <div class="card">
-              <?php if($_SESSION['role'] == "management_asset"){ ?>
+              <?php if($_SESSION['role'] == "management_asset" || $_SESSION['role'] == "HSE"){ ?>
                 <div class="card-header">
                   <h3 class="card-title float-sm-right" style="font-size: 12px;">
                     <a href="index.php?pages=pilihformpengajuan">

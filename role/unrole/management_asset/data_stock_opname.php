@@ -58,7 +58,7 @@
           <div class="col-12">
             <div class="card">
 
-              <?php if($_SESSION['role'] == "management_asset"){ ?>
+              <?php if($_SESSION['role'] == "management_asset" || $_SESSION['role'] == "HSE"){ ?>
                 <div class="card-header">
                   <h3 class="card-title float-sm-right" style="font-size: 12px;">
                     <a href="#modal" data-toggle='modal' data-target='#show_add_stockopname' data-id='<?php echo $get_forecast['kd_forecast']; ?>' data-toggle="tooltip" data-placement="bottom" title="Stock Opname Baru">

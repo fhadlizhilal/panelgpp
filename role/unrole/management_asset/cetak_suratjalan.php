@@ -4,9 +4,9 @@
   session_start();
   date_default_timezone_set('Asia/Jakarta');
 
-  if(!isset($_SESSION["role"]) || $_SESSION["role"] != "management_asset"){
-    header("location: ../../login.php");
-  }
+  // if(!isset($_SESSION["role"]) || $_SESSION["role"] != "management_asset"){
+  //   header("location: ../../login.php");
+  // }
 
   $this_datetime = date('Y-m-d H:i:s');
   $this_date = date('Y-m-d');

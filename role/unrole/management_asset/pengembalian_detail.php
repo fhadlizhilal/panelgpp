@@ -155,7 +155,7 @@
               <div class="card-header">
                 <h6 style="float: left;">List Pengembalian</h6>
 
-                <?php if($_SESSION['role'] == "management_asset"){ ?>
+                <?php if($_SESSION['role'] == "management_asset" || $_SESSION['role'] == "HSE"){ ?>
                   <h3 class="card-title float-sm-right" style="font-size: 12px;">
                     <a href="#modal" data-toggle='modal' data-target='#show_add_pengembalian' data-id='<?php echo $get_project['kd_project']; ?>' data-toggle="tooltip" data-placement="bottom" title="Tambah Pengembalian">
                       <div class="btn btn-success btn-sm" style="font-size: 10px">
@@ -300,7 +300,7 @@
 
                 <br>
 
-                <?php if($_SESSION['role'] == "management_asset"){ ?>
+                <?php if($_SESSION['role'] == "management_asset" || $_SESSION['role'] == "HSE"){ ?>
                   <form method="POST" action="">
                     <input type="hidden" name="kd_project" value="<?php echo $kd_project; ?>">
                     <center><button class="btn btn-success btn-sm" name="pengembalian_completed" value="completed" onclick="return confirm('Yakin pengembalian ini sudah selesai?')" <?php if($cek_total_kembali + $cek_status_waiting > 0){ echo "disabled"; } ?>><span class="fa fa-check"></span> Pengembalian Completed</button></center>

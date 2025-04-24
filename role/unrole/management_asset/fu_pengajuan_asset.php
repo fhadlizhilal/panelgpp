@@ -109,7 +109,7 @@
     </table>
   </div>
 
-  <?php if($_SESSION['role'] == "management_asset"){ ?>
+  <?php if($_SESSION['role'] == "management_asset" || $_SESSION['role'] == "HSE"){ ?>
 
     <div class="card-footer" style="text-align: center;">
       <input type="hidden" name="id" value="<?php echo $id; ?>">

@@ -61,7 +61,7 @@
         <div class="row">
           <div class="col-12">
             <div class="card">
-              <?php if($_SESSION['role'] == "management_asset"){ ?>
+              <?php if($_SESSION['role'] == "management_asset" || $_SESSION['role'] == "HSE"){ ?>
                 <div class="card-header">
                   <h3 class="card-title float-sm-right" style="font-size: 12px;">
                     <a href="#modal" data-toggle='modal' data-target='#show_add_entitas' data-id='<?php echo $get_forecast['kd_forecast']; ?>' data-toggle="tooltip" data-placement="bottom" title="Tambah Data Entitas">
@@ -77,7 +77,7 @@
                     <tr>
                       <th width="1%">No</th>
                       <th width="">Nama Entitas</th>
-                      <?php if($_SESSION['role'] == "management_asset"){ ?>
+                      <?php if($_SESSION['role'] == "management_asset" || $_SESSION['role'] == "HSE" ){ ?>
                         <th width="10%">#</th>
                       <?php } ?> 
                     </tr>
@@ -92,7 +92,7 @@
                       <tr>
                         <td><?php echo $i; ?></td>
                         <td><?php echo $get_entitas['entitas']; ?></td>
-                        <?php if($_SESSION['role'] == "management_asset"){ ?>
+                        <?php if($_SESSION['role'] == "management_asset" || $_SESSION['role'] == "HSE"){ ?>
                           <td style="font-size: 14px;">
                             <form method="POST" action="">
                               <input type="hidden" name="id" value="<?php echo $get_entitas['id']; ?>">

@@ -221,7 +221,7 @@
                   </tbody>
                 </table>
 
-                <?php if($_SESSION['role'] == "management_asset"){ ?>
+                <?php if($_SESSION['role'] == "management_asset" || $_SESSION['role'] == "HSE"){ ?>
                   <div style="text-align: center; margin-top: 20px;">
                     <form method="POST" action="">
                       <input type="hidden" name="peminjaman_id" value="<?php echo $id; ?>">
