@@ -21,16 +21,16 @@
     }
   }
 
-  if(isset($_POST['submit_inspeksi_gerinda'])){
-    if($_POST['submit_inspeksi_gerinda'] == "submit"){
-      $submit_inspeksi_gerinda = mysqli_query($conn, "UPDATE hse_inspeksilist SET status = 'completed' WHERE id = '$_POST[inspeksi_id]'");
-      $_SESSION['alert_success'] = "Berhasil! Inspeksi Gerinda Berhasil disubmit";
+  if(isset($_POST['submit_inspeksi_borac'])){
+    if($_POST['submit_inspeksi_borac'] == "submit"){
+      $submit_inspeksi_borac = mysqli_query($conn, "UPDATE hse_inspeksilist SET status = 'completed' WHERE id = '$_POST[inspeksi_id]'");
+      $_SESSION['alert_success'] = "Berhasil! Inspeksi Bor AC Berhasil disubmit";
 
-      if($submit_inspeksi_gerinda){
-        $_SESSION['alert_success'] = "Berhasil! Inspeksi Gerinda Berhasil disubmit";
+      if($submit_inspeksi_borac){
+        $_SESSION['alert_success'] = "Berhasil! Inspeksi Bor AC Berhasil disubmit";
         echo "<meta http-equiv='refresh' content='0; url=index.php?pages=detailproject&kd=$kd_project'>";
       }else{
-        $_SESSION['alert_error'] = "Gagal! Inspeksi Gerinda Gagal disubmit";
+        $_SESSION['alert_error'] = "Gagal! Inspeksi Bor AC Gagal disubmit";
       }
     }
   }
@@ -59,9 +59,9 @@
     }
   }
 
-  if(isset($_POST['add_dokumentasi_inspeksigerinda'])){
-    if($_POST['add_dokumentasi_inspeksigerinda'] == "Simpan"){
-      $uploadPath = "../../role/HSE/foto_inspeksi_gerinda/";
+  if(isset($_POST['add_dokumentasi_inspeksiborac'])){
+    if($_POST['add_dokumentasi_inspeksiborac'] == "Simpan"){
+      $uploadPath = "../../role/HSE/foto_inspeksi_borac/";
 
       // jika form upload file sudah di submit :
       $status = $statusMsg = ''; 
@@ -82,20 +82,20 @@
               $compressedImage = compressImage($imageTemp, $imageUploadPath, 10);
                 
               if($compressedImage){
-                $push_dokumentasi_inspeksigerinda = mysqli_query($conn, "INSERT INTO hse_inspeksilist_fotogerinda VALUES('','$_POST[inspeksi_id]','$fileName','$_POST[keterangan]')");
+                $push_dokumentasi_inspeksiborac = mysqli_query($conn, "INSERT INTO hse_inspeksilist_fotoborac VALUES('','$_POST[inspeksi_id]','$fileName','$_POST[keterangan]')");
 
-                if($push_dokumentasi_inspeksigerinda){
-                  $_SESSION['alert_success'] = "Berhasil! Dokumentasi Inspeksi Gerinda Berhasil Ditambahkan";
+                if($push_dokumentasi_inspeksiborac){
+                  $_SESSION['alert_success'] = "Berhasil! Dokumentasi Inspeksi Bor AC Berhasil Ditambahkan";
                 }else{
-                  unlink("../../role/HSE/foto_inspeksi_gerinda/".$fileName);
+                  unlink("../../role/HSE/foto_inspeksi_borac/".$fileName);
                   $_SESSION['alert_error'] = "Gagal! Dokumentasi Gagal ditambahkan <br>".mysqli_error($conn);
                 }
               }else{ 
-                unlink("../../role/HSE/foto_inspeksi_gerinda/".$fileName);
+                unlink("../../role/HSE/foto_inspeksi_borac/".$fileName);
                 $_SESSION['alert_error'] = "Gagal! Dokumentasi gagal disimpan, File foto tidak dapat dikompresi";
               } 
           }else{
-            unlink("../../role/HSE/foto_inspeksi_gerinda/".$fileName);
+            unlink("../../role/HSE/foto_inspeksi_borac/".$fileName);
             $_SESSION['alert_error'] = "Gagal! Maaf, hanya JPG, JPEG, PNG, & GIF yang diperbolehkan.";
           } 
       }else{
@@ -104,15 +104,15 @@
     }
   }
 
-  if(isset($_POST['delete_dokumentasi_inspeksigerinda'])){
-    if($_POST['delete_dokumentasi_inspeksigerinda'] == "Delete"){
-      $delete_dokumentasi_inspeksi_gerinda = mysqli_query($conn, "DELETE FROM hse_inspeksilist_fotogerinda WHERE id = '$_POST[id]'");
+  if(isset($_POST['delete_dokumentasi_inspeksiborac'])){
+    if($_POST['delete_dokumentasi_inspeksiborac'] == "Delete"){
+      $delete_dokumentasi_inspeksi_borac = mysqli_query($conn, "DELETE FROM hse_inspeksilist_fotoborac WHERE id = '$_POST[id]'");
 
-      if($delete_dokumentasi_inspeksi_gerinda){
-        unlink("../../role/HSE/foto_inspeksi_gerinda/".$_POST['foto']);
-        $_SESSION['alert_success'] = "Berhasil! Foto Gerinda Berhasil dihapus";
+      if($delete_dokumentasi_inspeksi_borac){
+        unlink("../../role/HSE/foto_inspeksi_borac/".$_POST['foto']);
+        $_SESSION['alert_success'] = "Berhasil! Foto Bor AC Berhasil dihapus";
       }else{
-        $_SESSION['alert_error'] = "Gagal! Foto Gerinda Gagal dihapus";
+        $_SESSION['alert_error'] = "Gagal! Foto Bor AC Gagal dihapus";
       }
     }
   }
@@ -335,37 +335,37 @@
                       $get_num_borac_rusak = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM hse_inspeksilist_detailborac WHERE inspeksi_id = '$_GET[kd]' AND hasil_akhir = 'Rusak'"));
                       $get_num_borac_hilang = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM hse_inspeksilist_detailborac WHERE inspeksi_id = '$_GET[kd]' AND hasil_akhir = 'Hilang'"));
 
-                      $get_jml_gerinda_onsite = mysqli_fetch_array(mysqli_query($conn, "SELECT SUM(jumlah) AS jml_gerinda_onsite FROM hse_toolsapdonsite_detailtools JOIN hse_tools ON hse_toolsapdonsite_detailtools.tools_id = hse_tools.id JOIN hse_toolsapdonsite ON hse_toolsapdonsite_detailtools.id_onsite = hse_toolsapdonsite.id WHERE hse_tools.tools = 'Bor AC' AND hse_toolsapdonsite.project_id = '$kd_project'"));
+                      $get_jml_borac_onsite = mysqli_fetch_array(mysqli_query($conn, "SELECT SUM(jumlah) AS jml_borac_onsite FROM hse_toolsapdonsite_detailtools JOIN hse_tools ON hse_toolsapdonsite_detailtools.tools_id = hse_tools.id JOIN hse_toolsapdonsite ON hse_toolsapdonsite_detailtools.id_onsite = hse_toolsapdonsite.id WHERE hse_tools.tools = 'Bor AC' AND hse_toolsapdonsite.project_id = '$kd_project'"));
 
                       $t_borac_hilangrusak_minggu_lalu = 0;
                       for($i=1;$i<$week;$i++){
                         $kd_weekly_cek = "week/".$i."/".$kd_project;
                         $get_inspeksilist_all = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM hse_inspeksilist WHERE kd_weekly = '$kd_weekly_cek'"));
 
-                        $t_borac_hilangrusak_minggu_lalu = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM hse_inspeksilist_detailgerinda WHERE inspeksi_id = '$get_inspeksilist_all[id]' AND (hasil_akhir = 'Rusak' OR hasil_akhir = 'Hilang')")) + $t_borac_hilangrusak_minggu_lalu;
+                        $t_borac_hilangrusak_minggu_lalu = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM hse_inspeksilist_detailborac WHERE inspeksi_id = '$get_inspeksilist_all[id]' AND (hasil_akhir = 'Rusak' OR hasil_akhir = 'Hilang')")) + $t_borac_hilangrusak_minggu_lalu;
                       }
 
-                      $cek_data_gerinda = "Lengkap";
+                      $cek_data_borac = "Lengkap";
                     ?>
                     <tr>
                       <td align="center"><?php echo $get_num_borac_baik; ?></td>
                       <td align="center"><?php echo $get_num_borac_rusak; ?></td>
                       <td align="center"><?php echo $get_num_borac_hilang; ?></td>
-                      <td align="center"><?php echo $get_jml_gerinda_onsite['jml_gerinda_onsite']; ?></td>
-                      <td align="center"><?php echo $get_jml_gerinda_onsite['jml_gerinda_onsite'] - $t_borac_hilangrusak_minggu_lalu; ?></td>
+                      <td align="center"><?php echo $get_jml_borac_onsite['jml_borac_onsite']; ?></td>
+                      <td align="center"><?php echo $get_jml_borac_onsite['jml_borac_onsite'] - $t_borac_hilangrusak_minggu_lalu; ?></td>
                     </tr>
 
-                    <?php if(($get_num_borac_baik + $get_num_borac_rusak + $get_num_borac_hilang) < ($get_jml_gerinda_onsite['jml_gerinda_onsite'] - $t_borac_hilangrusak_minggu_lalu)){ ?>
+                    <?php if(($get_num_borac_baik + $get_num_borac_rusak + $get_num_borac_hilang) < ($get_jml_borac_onsite['jml_borac_onsite'] - $t_borac_hilangrusak_minggu_lalu)){ ?>
                       <tr>
-                        <td colspan="5" align="center" style="color: white; background-color: red;"><small>Data Gerinda masih kurang dari jumlah Asset minggu ini!</small></td>
+                        <td colspan="5" align="center" style="color: white; background-color: red;"><small>Data Bor AC masih kurang dari jumlah Asset minggu ini!</small></td>
                       </tr>
-                    <?php $cek_data_gerinda = "Kurang"; } ?>
+                    <?php $cek_data_borac = "Kurang"; } ?>
                   </table>
 
                   <table class="table table-sm table-bordered" style="font-size: 12px; margin-bottom: 15px;">
                     <tr>
                       <td align="center" colspan="3">
-                        <b>DOKUMENTASI</b><a href="#modal" data-toggle='modal' data-target='#add_dokumentasi_inspeksigerinda' data-id='<?php echo $get_Project['id']; ?>' data-toggle="tooltip" data-placement="bottom" title="Tambah Dokumentasi">
+                        <b>DOKUMENTASI</b><a href="#modal" data-toggle='modal' data-target='#add_dokumentasi_inspeksiborac' data-id='<?php echo $get_Project['id']; ?>' data-toggle="tooltip" data-placement="bottom" title="Tambah Dokumentasi">
                           <div class="badge badge-info"><span class="fa fa-plus"></span> Tambah</div><br>
                           <small style="color: red;">*Lampiran Foto Minimal 4 Foto</small>
                         </a>
@@ -378,23 +378,23 @@
                     </tr>
                     <?php
                       $no=1;
-                      $jml_foto_gerinda = 0;
-                      $q_get_dokumentasi_inspeksi_gerinda = mysqli_query($conn, "SELECT * FROM hse_inspeksilist_fotogerinda WHERE inspeksi_id = '$_GET[kd]'");
-                      while($get_dokumentasi_inspeksi_gerinda = mysqli_fetch_array($q_get_dokumentasi_inspeksi_gerinda)){
+                      $jml_foto_borac = 0;
+                      $q_get_dokumentasi_inspeksi_borac = mysqli_query($conn, "SELECT * FROM hse_inspeksilist_fotoborac WHERE inspeksi_id = '$_GET[kd]'");
+                      while($get_dokumentasi_inspeksi_borac = mysqli_fetch_array($q_get_dokumentasi_inspeksi_borac)){
                     ?>
                       <tr>
                         <td><?php echo $no; ?></td>
                         <td align="center">
-                          <img src="../../role/HSE/foto_inspeksi_gerinda/<?php echo $get_dokumentasi_inspeksi_gerinda['foto']; ?>" width="100%"><br>
-                          (<?php echo $get_dokumentasi_inspeksi_gerinda['keterangan']; ?>)
+                          <img src="../../role/HSE/foto_inspeksi_borac/<?php echo $get_dokumentasi_inspeksi_borac['foto']; ?>" width="100%"><br>
+                          (<?php echo $get_dokumentasi_inspeksi_borac['keterangan']; ?>)
                         </td>
                         <td>
-                          <a href="#modal" data-toggle='modal' data-target='#show_delete_dokumentasi_gerinda' data-id='<?php echo $get_dokumentasi_inspeksi_gerinda['id']; ?>' data-toggle="tooltip" data-placement="bottom" title="Delete Dokumentasi">
+                          <a href="#modal" data-toggle='modal' data-target='#show_delete_dokumentasi_borac' data-id='<?php echo $get_dokumentasi_inspeksi_borac['id']; ?>' data-toggle="tooltip" data-placement="bottom" title="Delete Dokumentasi">
                             <span class="fa fa-trash" style="color: red; font-size: 16px;"></span>
                           </a>
                         </td>
                       </tr>
-                    <?php $jml_foto_gerinda++; $no++; } ?>
+                    <?php $jml_foto_borac++; $no++; } ?>
                   </table>
 
                   <div style="font-size: 12px; text-align: center; font-weight: bold; margin-bottom: 5px">APPROVAL</div>
@@ -446,7 +446,7 @@
                       <input type="hidden" name="inspeksi_id" value="<?php echo $_GET['kd']; ?>">
                       <a href="index.php?pages=detailproject&kd=<?php echo $kd_project; ?>" class="btn btn-info btn-sm"><span class="fa fa-reply"></span> Kembali</a>
                       
-                      <button onclick="return confirm('Yakin inspeksi Gerinda ini sudah lengkap dan sesuai ?')" class="btn btn-success btn-sm" name="submit_inspeksi_gerinda" value="submit" <?php if($get_inspeksilist['ttd_hse'] == "" OR $get_inspeksilist['ttd_sm'] == "" OR $jml_foto_gerinda < 4 OR $cek_data_gerinda == "Kurang"){ echo "disabled"; } ?>>Submit</button>
+                      <button onclick="return confirm('Yakin inspeksi Bor AC ini sudah lengkap dan sesuai ?')" class="btn btn-success btn-sm" name="submit_inspeksi_borac" value="submit" <?php if($get_inspeksilist['ttd_hse'] == "" OR $get_inspeksilist['ttd_sm'] == "" OR $jml_foto_borac < 4 OR $cek_data_borac == "Kurang"){ echo "disabled"; } ?>>Submit</button>
 
                     </form>
                   </div>
@@ -678,7 +678,7 @@
   <!-- /.modal -->
 
   <!-- Modal start here -->
-  <div class="modal fade" id="add_dokumentasi_inspeksigerinda" role="dialog">
+  <div class="modal fade" id="add_dokumentasi_inspeksiborac" role="dialog">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -705,7 +705,7 @@
             <br>
             <center>
               <input type="hidden" name="inspeksi_id" value="<?php echo $_GET['kd'] ?>">
-              <input type="submit" class="btn btn-info" name="add_dokumentasi_inspeksigerinda" value="Simpan">
+              <input type="submit" class="btn btn-info" name="add_dokumentasi_inspeksiborac" value="Simpan">
             </center>
           </form>
         </div>
@@ -716,11 +716,11 @@
   </div>
 
   <!-- Modal start here -->
-  <div class="modal fade" id="show_delete_dokumentasi_gerinda" role="dialog">
+  <div class="modal fade" id="show_delete_dokumentasi_borac" role="dialog">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title">Delete Dokumentasi Gerinda</h4>
+          <h4 class="modal-title">Delete Dokumentasi Bor AC</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>

@@ -5216,6 +5216,153 @@
     });
   </script>
 
+  <!-- ----- SHOW LIST PENGAJUAN - REPORT PROJECT ASSET ------------------------ -->
+  <script type="text/javascript">
+    $(document).ready(function(){
+        $('#show_list_pengajuan').on('show.bs.modal', function (e) {
+            var getID = $(e.relatedTarget).data('id');
+            /* fungsi AJAX untuk melakukan fetch data */
+            $.ajax({
+                type : 'post',
+                url : '../unrole/management_asset/show_list_pengajuan.php',
+                /* detail per identifier ditampung pada berkas detail.php yang berada di folder application/view */
+                data :  'getID='+ getID,
+                /* memanggil fungsi getDetail dan mengirimkannya */
+                success : function(data){
+                $('.modal-data').html(data);
+                /* menampilkan data dalam bentuk dokumen HTML */
+                }
+            });
+         });
+    });
+  </script>
+
+  <!-- ----- SHOW LIST SURAT JALAN - REPORT PROJECT ASSET ------------------------ -->
+  <script type="text/javascript">
+    $(document).ready(function(){
+        $('#show_list_suratjalan').on('show.bs.modal', function (e) {
+            var getID = $(e.relatedTarget).data('id');
+            /* fungsi AJAX untuk melakukan fetch data */
+            $.ajax({
+                type : 'post',
+                url : '../unrole/management_asset/show_list_suratjalan.php',
+                /* detail per identifier ditampung pada berkas detail.php yang berada di folder application/view */
+                data :  'getID='+ getID,
+                /* memanggil fungsi getDetail dan mengirimkannya */
+                success : function(data){
+                $('.modal-data').html(data);
+                /* menampilkan data dalam bentuk dokumen HTML */
+                }
+            });
+         });
+    });
+  </script>
+
+  <!-- ----- SHOW LIST PENGEMBALIAN - REPORT PROJECT ASSET ------------------------ -->
+  <script type="text/javascript">
+    $(document).ready(function(){
+        $('#show_list_pengembalian').on('show.bs.modal', function (e) {
+            var getID = $(e.relatedTarget).data('id');
+            /* fungsi AJAX untuk melakukan fetch data */
+            $.ajax({
+                type : 'post',
+                url : '../unrole/management_asset/show_list_pengembalian.php',
+                /* detail per identifier ditampung pada berkas detail.php yang berada di folder application/view */
+                data :  'getID='+ getID,
+                /* memanggil fungsi getDetail dan mengirimkannya */
+                success : function(data){
+                $('.modal-data').html(data);
+                /* menampilkan data dalam bentuk dokumen HTML */
+                }
+            });
+         });
+    });
+  </script>
+
+  <!-- ----- SHOW LIST TOTAL PEMINJAMAN - REPORT PROJECT ASSET ------------------------ -->
+  <script type="text/javascript">
+    $(document).ready(function(){
+        $('#show_detail_totalpeminjaman').on('show.bs.modal', function (e) {
+            var getID = $(e.relatedTarget).data('id');
+            /* fungsi AJAX untuk melakukan fetch data */
+            $.ajax({
+                type : 'post',
+                url : '../unrole/management_asset/detail_totalpeminjaman.php',
+                /* detail per identifier ditampung pada berkas detail.php yang berada di folder application/view */
+                data :  'getID='+ getID,
+                /* memanggil fungsi getDetail dan mengirimkannya */
+                success : function(data){
+                $('.modal-data').html(data);
+                /* menampilkan data dalam bentuk dokumen HTML */
+                }
+            });
+         });
+    });
+  </script>
+
+  <!-- ----- SHOW LIST TOTAL PENGAJUAN - REPORT PROJECT ASSET ------------------------ -->
+  <script type="text/javascript">
+    $(document).ready(function(){
+        $('#show_detail_totalpengajuan').on('show.bs.modal', function (e) {
+            var getID = $(e.relatedTarget).data('id');
+            /* fungsi AJAX untuk melakukan fetch data */
+            $.ajax({
+                type : 'post',
+                url : '../unrole/management_asset/detail_totalpengajuan.php',
+                /* detail per identifier ditampung pada berkas detail.php yang berada di folder application/view */
+                data :  'getID='+ getID,
+                /* memanggil fungsi getDetail dan mengirimkannya */
+                success : function(data){
+                $('.modal-data').html(data);
+                /* menampilkan data dalam bentuk dokumen HTML */
+                }
+            });
+         });
+    });
+  </script>
+
+  <!-- ----- SHOW LIST TOTAL REALISASI - REPORT PROJECT ASSET ------------------------ -->
+  <script type="text/javascript">
+    $(document).ready(function(){
+        $('#show_detail_totalrealisasi').on('show.bs.modal', function (e) {
+            var getID = $(e.relatedTarget).data('id');
+            /* fungsi AJAX untuk melakukan fetch data */
+            $.ajax({
+                type : 'post',
+                url : '../unrole/management_asset/detail_totalrealisasi.php',
+                /* detail per identifier ditampung pada berkas detail.php yang berada di folder application/view */
+                data :  'getID='+ getID,
+                /* memanggil fungsi getDetail dan mengirimkannya */
+                success : function(data){
+                $('.modal-data').html(data);
+                /* menampilkan data dalam bentuk dokumen HTML */
+                }
+            });
+         });
+    });
+  </script>
+
+  <!-- ----- SHOW LIST TOTAL SURAT JALAN - REPORT PROJECT ASSET ------------------------ -->
+  <script type="text/javascript">
+    $(document).ready(function(){
+        $('#show_detail_totalsuratjalan').on('show.bs.modal', function (e) {
+            var getID = $(e.relatedTarget).data('id');
+            /* fungsi AJAX untuk melakukan fetch data */
+            $.ajax({
+                type : 'post',
+                url : '../unrole/management_asset/detail_totalsuratjalan.php',
+                /* detail per identifier ditampung pada berkas detail.php yang berada di folder application/view */
+                data :  'getID='+ getID,
+                /* memanggil fungsi getDetail dan mengirimkannya */
+                success : function(data){
+                $('.modal-data').html(data);
+                /* menampilkan data dalam bentuk dokumen HTML */
+                }
+            });
+         });
+    });
+  </script>
+
 
     <!-- hitung data -->
     <?php 

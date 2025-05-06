@@ -2250,8 +2250,8 @@
             </a>
           </li>
 
-          <li class="nav-item <?php if($_GET['pages']=='pilihstock' || $_GET['pages']=='datastock' || $_GET['pages']=='pilihstockopname' || $_GET['pages']=='stockopname' || $_GET['pages']=='dataassetrusak' || $_GET['pages']=='reportpengembalianproject' || $_GET['pages']=='annualreport' || $_GET['pages']=='reportproject'){ echo 'menu-open'; } ?>">
-            <a href="#" class="nav-link <?php if($_GET['pages']=='pilihstock' || $_GET['pages']=='datastock' || $_GET['pages']=='pilihstockopname' || $_GET['pages']=='stockopname' || $_GET['pages']=='dataassetrusak' || $_GET['pages']=='reportpengembalianproject' || $_GET['pages']=='annualreport' || $_GET['pages']=='reportproject'){ echo 'active'; } ?>">
+          <li class="nav-item <?php if($_GET['pages']=='pilihstock' || $_GET['pages']=='datastock' || $_GET['pages']=='pilihstockopname' || $_GET['pages']=='stockopname' || $_GET['pages']=='dataassetrusak' || $_GET['pages']=='reportpengembalianproject' || $_GET['pages']=='annualreport' || $_GET['pages']=='reportproject' || $_GET['pages']=='reportprojectdetail'){ echo 'menu-open'; } ?>">
+            <a href="#" class="nav-link <?php if($_GET['pages']=='pilihstock' || $_GET['pages']=='datastock' || $_GET['pages']=='pilihstockopname' || $_GET['pages']=='stockopname' || $_GET['pages']=='dataassetrusak' || $_GET['pages']=='reportpengembalianproject' || $_GET['pages']=='annualreport' || $_GET['pages']=='reportproject' || $_GET['pages']=='reportprojectdetail'){ echo 'active'; } ?>">
               <i class="nav-icon fa fa-file-text-o"></i>
               <p>
                 Data Report
@@ -2284,7 +2284,7 @@
             </ul>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="index.php?pages=reportproject" class="nav-link <?php if($_GET['pages']=='reportproject'){ echo 'active'; } ?>">
+                <a href="index.php?pages=reportproject" class="nav-link <?php if($_GET['pages']=='reportproject' || $_GET['pages']=='reportprojectdetail'){ echo 'active'; } ?>">
                   <i class="fa fa-chevron-right nav-icon"></i>
                   <p>Report - Project</p>
                 </a>
@@ -2449,6 +2449,8 @@
       require_once "../unrole/management_asset/report_annual.php";
     }elseif($_GET["pages"]=="reportproject"){
       require_once "../unrole/management_asset/report_project.php";
+    }elseif($_GET["pages"]=="reportprojectdetail"){
+      require_once "../unrole/management_asset/report_project_detail.php";
     }
 
   ?>

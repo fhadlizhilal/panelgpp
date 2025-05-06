@@ -4188,6 +4188,27 @@
     });
   </script>
 
+  <!-- ----- DELETE DOKUMENTASI INSPEKSI BOR AC ------------------------ -->
+  <script type="text/javascript">
+    $(document).ready(function(){
+        $('#show_delete_dokumentasi_borac').on('show.bs.modal', function (e) {
+            var getID = $(e.relatedTarget).data('id');
+            /* fungsi AJAX untuk melakukan fetch data */
+            $.ajax({
+                type : 'post',
+                url : '../HSE/delete_dokumentasi_inspeksi_borac.php',
+                /* detail per identifier ditampung pada berkas detail.php yang berada di folder application/view */
+                data :  'getID='+ getID,
+                /* memanggil fungsi getDetail dan mengirimkannya */
+                success : function(data){
+                $('.modal-data').html(data);
+                /* menampilkan data dalam bentuk dokumen HTML */
+                }
+            });
+         });
+    });
+  </script>
+
     <!-- hitung data -->
     <?php 
         $this_year = date("Y");

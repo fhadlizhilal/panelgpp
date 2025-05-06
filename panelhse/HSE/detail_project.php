@@ -501,7 +501,7 @@
                                           if($get_inspeksilist_tools['status'] == "progress"){
                                             echo "<a href='index.php?pages=forminspeksiborac&kd=".$get_inspeksilist_tools['id']."'>Inspeksi Bor AC</a>";
                                           }elseif($get_inspeksilist_tools['status'] == "completed"){
-                                            echo "<a href='index.php?pages=reportinspeksibordc&kd=".$get_inspeksilist_tools['id']."'>Inspeksi Bor DC</a>";
+                                            echo "<a href='index.php?pages=reportinspeksiborac&kd=".$get_inspeksilist_tools['id']."'>Inspeksi Bor AC</a>";
                                           }
                                         }elseif($get_inspeksilist_tools['jenis_inspeksi'] == 'inspeksi_bordc'){
                                           echo "Inspeksi Bor DC";

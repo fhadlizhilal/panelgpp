@@ -32,9 +32,8 @@
                       <th>Project</th>
                       <th width="9%">Peminjaman</th>
                       <th width="9%">Pengajuan</th>
-                      <th width="9%">Realisasi</th>
-                      <th width="9%">Pengembalian</th>
                       <th width="9%">Surat Jalan</th>
+                      <th width="9%">Pengembalian</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -47,24 +46,36 @@
 
                        $jml_pengajuan = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM asset_pengajuan WHERE kd_project = '$get_project[kd_project]'"));
 
-                       $jml_realisasi = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM asset_realisasi JOIN asset_pengajuan ON asset_realisasi.pengajuan_id = asset_pengajuan.id WHERE asset_pengajuan.kd_project = '$get_project[kd_project]'"));
+                       $jml_suratjalan = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM asset_suratjalan JOIN asset_peminjaman ON asset_suratjalan.peminjaman_id = asset_peminjaman.id WHERE asset_peminjaman.kd_project = '$get_project[kd_project]'"));
 
                        $jml_pengembalian = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM asset_pengembalian WHERE kd_project = '$get_project[kd_project]'"));
-
-                       $jml_suratjalan = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM asset_suratjalan JOIN asset_peminjaman ON asset_suratjalan.peminjaman_id = asset_peminjaman.id WHERE asset_peminjaman.kd_project = '$get_project[kd_project]'"));
                     ?>
                       <tr>
                         <td><?php echo $no; ?></td>
-                        <td><?php echo $get_project['kd_project']." - ".$get_project['nm_project']; ?></td>
+                        <td>
+                          <a href="index.php?pages=reportprojectdetail&kd=<?php echo $get_project['kd_project']; ?>">
+                          <?php echo $get_project['kd_project']." - ".$get_project['nm_project']; ?>
+                        </td>
                         <td>
                           <a href="#modal" data-toggle='modal' data-target='#show_list_peminjaman' data-id='<?php echo $get_project['kd_project']; ?>' data-toggle="tooltip" data-placement="bottom" title="Show List Peminjaman">
                             <?php echo $jml_peminjaman; ?> Peminjaman
                           </a>
                         </td>
-                        <td><?php echo $jml_pengajuan; ?> Pengajuan</td>
-                        <td><?php echo $jml_realisasi; ?> Realisasi</td>
-                        <td><?php echo $jml_pengembalian; ?> Pengembalian</td>
-                        <td><?php echo $jml_suratjalan; ?> Surat Jalan</td>
+                        <td>
+                          <a href="#modal" data-toggle='modal' data-target='#show_list_pengajuan' data-id='<?php echo $get_project['kd_project']; ?>' data-toggle="tooltip" data-placement="bottom" title="Show List Pengajuan">
+                            <?php echo $jml_pengajuan; ?> Pengajuan
+                          </a>
+                        </td>
+                        <td>
+                          <a href="#modal" data-toggle='modal' data-target='#show_list_suratjalan' data-id='<?php echo $get_project['kd_project']; ?>' data-toggle="tooltip" data-placement="bottom" title="Show List Surat Jalan">
+                            <?php echo $jml_suratjalan; ?> Surat Jalan
+                          </a>
+                        </td>
+                        <td>
+                          <a href="#modal" data-toggle='modal' data-target='#show_list_pengembalian' data-id='<?php echo $get_project['kd_project']; ?>' data-toggle="tooltip" data-placement="bottom" title="Show List Pengembalian">
+                            <?php echo $jml_pengembalian; ?> Pengembalian
+                          </a>
+                        </td>
                       </tr>
                     <?php $no++; } ?>
                   </tbody>
@@ -90,6 +101,66 @@
       <div class="modal-content">
         <div class="modal-header">
           <h4 class="modal-title">List Peminjaman</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="modal-data"></div>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
+
+  <!-- Modal start here -->
+  <div class="modal fade" id="show_list_pengajuan" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">List Pengajuan</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="modal-data"></div>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
+
+  <!-- Modal start here -->
+  <div class="modal fade" id="show_list_suratjalan" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">List Surat Jalan</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="modal-data"></div>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
+
+  <!-- Modal start here -->
+  <div class="modal fade" id="show_list_pengembalian" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">List Pengembalian</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>

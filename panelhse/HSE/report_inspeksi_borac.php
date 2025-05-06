@@ -7,34 +7,34 @@
 
     $get_project = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM hse_project WHERE id = '$kd_project'"));
 
-    $get_num_inspeksi_mesinlas = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM hse_inspeksilist_detailmesinlas WHERE inspeksi_id = '$_GET[kd]'"));
+    $get_num_inspeksi_borac = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM hse_inspeksilist_detailborac WHERE inspeksi_id = '$_GET[kd]'"));
 
     // GET DATA MESIN LAS FROM DB
     $i = 0;
-    $q_get_inspeksilist_detailmesinlas = mysqli_query($conn, "SELECT * FROM hse_inspeksilist_detailmesinlas WHERE inspeksi_id = '$_GET[kd]'");
-    while($get_inspeksilist_detailmesinlas = mysqli_fetch_array($q_get_inspeksilist_detailmesinlas)){
-      $merek_tipe[$i] = $get_inspeksilist_detailmesinlas["merek_tipe"];
-      $point_1[$i] = $get_inspeksilist_detailmesinlas["point_1"];
-      $point_2[$i] = $get_inspeksilist_detailmesinlas["point_2"];
-      $point_3[$i] = $get_inspeksilist_detailmesinlas["point_3"];
-      $point_4[$i] = $get_inspeksilist_detailmesinlas["point_4"];
-      $point_5[$i] = $get_inspeksilist_detailmesinlas["point_5"];
-      $point_6[$i] = $get_inspeksilist_detailmesinlas["point_6"];
-      $point_7[$i] = $get_inspeksilist_detailmesinlas["point_7"];
-      $point_8[$i] = $get_inspeksilist_detailmesinlas["point_8"];
-      $point_9[$i] = $get_inspeksilist_detailmesinlas["point_9"];
-      $point_10[$i] = $get_inspeksilist_detailmesinlas["point_10"];
-      $point_11[$i] = $get_inspeksilist_detailmesinlas["point_11"];
+    $q_get_inspeksilist_detailborac = mysqli_query($conn, "SELECT * FROM hse_inspeksilist_detailborac WHERE inspeksi_id = '$_GET[kd]'");
+    while($get_inspeksilist_detailborac = mysqli_fetch_array($q_get_inspeksilist_detailborac)){
+      $merek_tipe[$i] = $get_inspeksilist_detailborac["merek_tipe"];
+      $point_1[$i] = $get_inspeksilist_detailborac["point_1"];
+      $point_2[$i] = $get_inspeksilist_detailborac["point_2"];
+      $point_3[$i] = $get_inspeksilist_detailborac["point_3"];
+      $point_4[$i] = $get_inspeksilist_detailborac["point_4"];
+      $point_5[$i] = $get_inspeksilist_detailborac["point_5"];
+      $point_6[$i] = $get_inspeksilist_detailborac["point_6"];
+      $point_7[$i] = $get_inspeksilist_detailborac["point_7"];
+      $point_8[$i] = $get_inspeksilist_detailborac["point_8"];
+      $point_9[$i] = $get_inspeksilist_detailborac["point_9"];
+      $point_10[$i] = $get_inspeksilist_detailborac["point_10"];
+      $point_11[$i] = $get_inspeksilist_detailborac["point_11"];
 
       $i++;
     }
 
-    // GET DOKUMENTASI MESIN LAS
+    // GET DOKUMENTASI BOR AC
     $x=0;
-    $q_get_dokumentasi_inspeksi_mesinlas = mysqli_query($conn, "SELECT * FROM hse_inspeksilist_fotomesinlas WHERE inspeksi_id = '$_GET[kd]'");
-    while($get_dokumentasi_inspeksi_mesinlas = mysqli_fetch_array($q_get_dokumentasi_inspeksi_mesinlas)){
-      $foto_mesinlas[$x] = $get_dokumentasi_inspeksi_mesinlas["foto"];
-      $keterangan_mesinlas[$x] = $get_dokumentasi_inspeksi_mesinlas["keterangan"];
+    $q_get_dokumentasi_inspeksi_borac = mysqli_query($conn, "SELECT * FROM hse_inspeksilist_fotoborac WHERE inspeksi_id = '$_GET[kd]'");
+    while($get_dokumentasi_inspeksi_borac = mysqli_fetch_array($q_get_dokumentasi_inspeksi_borac)){
+      $foto_mesinlas[$x] = $get_dokumentasi_inspeksi_borac["foto"];
+      $keterangan_mesinlas[$x] = $get_dokumentasi_inspeksi_borac["keterangan"];
 
       $x++;
     }
@@ -50,8 +50,8 @@
           <div class="col-lg-12 col-12">
             <div class="card" style="margin-right: -10px;">
 
-              <?php if($get_num_inspeksi_mesinlas <= 3){ ?>
-              <!--------------------------------- JUMLAH MESIN LAS <= 3 ---------------------------------------->
+              <?php if($get_num_inspeksi_borac <= 3){ ?>
+              <!--------------------------------- JUMLAH BOR AC <= 3 ---------------------------------------->
               <div class="card-body">
                 <div class="row" style="margin-bottom: 5px;">
                   <div class="col-6"><img src="../../dist/img/alamat_gpp_v2.jpg" width="210px"></div>
@@ -67,7 +67,7 @@
                             <img src="../../dist/img/logo/gpp-logo.png" width="50%">
                           </center>
                         </td>
-                        <td width="70%" style="font-size: 12px; font-weight: bold;"><center>CHECKLIST INSPEKSI MESIN LAS</center></td>
+                        <td width="70%" style="font-size: 12px; font-weight: bold;"><center>CHECKLIST INSPEKSI BOR AC</center></td>
                         <td width="10%" style="font-size: 12px">No. Dok</td>
                         <td style="font-size: 12px">GPP/HSE07/08/22</td>
                       </tr>
@@ -140,7 +140,7 @@
                       <tbody>
                         <tr>
                           <td>1</td>
-                          <td>Body / kondisi fisik mesin las dalam kondisi baik</td>
+                          <td>Kabel power dalam kondisi baik, tidak ada yang terkelupas atau sobek</td>
                           <td align="center">
                             <?php if($point_1[0] == "Baik"){ ?><span class="fa fa-check"></span><?php } ?>
                           </td>
@@ -182,7 +182,7 @@
                         </tr>
                         <tr>
                           <td>2</td>
-                          <td>Kondisi kabel-kabel tidak terkelupas dan dalam kondisi baik</td>
+                          <td>Tombol switch on/off berfungsi dengan baik</td>
                           <td align="center">
                             <?php if($point_2[0] == "Baik"){ ?><span class="fa fa-check"></span><?php } ?>
                           </td>
@@ -224,7 +224,7 @@
                         </tr>
                         <tr>
                           <td>3</td>
-                          <td>Steker pada kabel mesin las dalam kondisi bagus</td>
+                          <td>Tombol switch pemutar kedalam dan keluar berfunsi dengan baik</td>
                           <td align="center">
                             <?php if($point_3[0] == "Baik"){ ?><span class="fa fa-check"></span><?php } ?>
                           </td>
@@ -266,7 +266,7 @@
                         </tr>
                         <tr>
                           <td>4</td>
-                          <td>Kondisi power (On / Off) berfungsi dalam kondisi baik</td>
+                          <td>Pegangan tambahan</td>
                           <td align="center">
                             <?php if($point_4[0] == "Baik"){ ?><span class="fa fa-check"></span><?php } ?>
                           </td>
@@ -308,7 +308,7 @@
                         </tr>
                         <tr>
                           <td>5</td>
-                          <td>Rotary switch temperatur dalam kondisi baik</td>
+                          <td>Mesin penggerak atau motor penggerak berfungsi baik</td>
                           <td align="center">
                             <?php if($point_5[0] == "Baik"){ ?><span class="fa fa-check"></span><?php } ?>
                           </td>
@@ -350,7 +350,7 @@
                         </tr>
                         <tr>
                           <td>6</td>
-                          <td>Ampere meter berfungsi dengan baik</td>
+                          <td>Tombol pengunci tersedia dan dapat digunakan</td>
                           <td align="center">
                             <?php if($point_6[0] == "Baik"){ ?><span class="fa fa-check"></span><?php } ?>
                           </td>
@@ -392,7 +392,7 @@
                         </tr>
                         <tr>
                           <td>7</td>
-                          <td>Lampu indikator berfungsi</td>
+                          <td>Kunci pembuka mata bor tersedia</td>
                           <td align="center">
                             <?php if($point_7[0] == "Baik"){ ?><span class="fa fa-check"></span><?php } ?>
                           </td>
@@ -434,7 +434,7 @@
                         </tr>
                         <tr>
                           <td>8</td>
-                          <td>Mesin dan kipas pendingin berfungsi dengan baik</td>
+                          <td>Vent angin mesin bor tidak tertutup</td>
                           <td align="center">
                             <?php if($point_8[0] == "Baik"){ ?><span class="fa fa-check"></span><?php } ?>
                           </td>
@@ -476,7 +476,7 @@
                         </tr>
                         <tr>
                           <td>9</td>
-                          <td>Kutub massa dan elektroda dalam kondisi baik</td>
+                          <td>Badan mesin bor dalam kondisi baik</td>
                           <td align="center">
                             <?php if($point_9[0] == "Baik"){ ?><span class="fa fa-check"></span><?php } ?>
                           </td>
@@ -518,7 +518,7 @@
                         </tr>
                         <tr>
                           <td>10</td>
-                          <td>Kabel tidak terkelupas / terbakar dan holder massa pada kondisi baik</td>
+                          <td>Rumah mata bor dalam keadaan baik</td>
                           <td align="center">
                             <?php if($point_10[0] == "Baik"){ ?><span class="fa fa-check"></span><?php } ?>
                           </td>
@@ -556,48 +556,6 @@
                           </td>
                           <td align="center">
                             <?php if($point_10[2] == "NA"){ ?><span class="fa fa-minus"></span><?php } ?>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>11</td>
-                          <td>Kabel tidak terkelupas / terbakar dan holder elektroda pada kondisi baik</td>
-                          <td align="center">
-                            <?php if($point_11[0] == "Baik"){ ?><span class="fa fa-check"></span><?php } ?>
-                          </td>
-                          <td align="center">
-                            <?php if($point_11[0] == "Rusak"){ ?><span class="fa fa-close"></span><?php } ?>
-                          </td>
-                          <td align="center">
-                            <?php if($point_11[0] == "Hilang"){ ?><span class="fa fa-close"></span><?php } ?>
-                          </td>
-                          <td align="center">
-                            <?php if($point_11[0] == "NA"){ ?><span class="fa fa-minus"></span><?php } ?>
-                          </td>
-
-                          <td align="center">
-                            <?php if($point_11[1] == "Baik"){ ?><span class="fa fa-check"></span><?php } ?>
-                          </td>
-                          <td align="center">
-                            <?php if($point_11[1] == "Rusak"){ ?><span class="fa fa-close"></span><?php } ?>
-                          </td>
-                          <td align="center">
-                            <?php if($point_11[1] == "Hilang"){ ?><span class="fa fa-close"></span><?php } ?>
-                          </td>
-                          <td align="center">
-                            <?php if($point_11[1] == "NA"){ ?><span class="fa fa-minus"></span><?php } ?>
-                          </td>
-
-                          <td align="center">
-                            <?php if($point_11[2] == "Baik"){ ?><span class="fa fa-check"></span><?php } ?>
-                          </td>
-                          <td align="center">
-                            <?php if($point_11[2] == "Rusak"){ ?><span class="fa fa-close"></span><?php } ?>
-                          </td>
-                          <td align="center">
-                            <?php if($point_11[2] == "Hilang"){ ?><span class="fa fa-close"></span><?php } ?>
-                          </td>
-                          <td align="center">
-                            <?php if($point_11[2] == "NA"){ ?><span class="fa fa-minus"></span><?php } ?>
                           </td>
                         </tr>
                       </tbody>
@@ -732,9 +690,9 @@
                         <td align="center">Hilang</td>
                       </tr>
                       <?php
-                        $get_num_mesinlas_bagus = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM hse_inspeksilist_detailmesinlas WHERE inspeksi_id = '$_GET[kd]' AND hasil_akhir = 'Baik'"));
-                        $get_num_mesinlas_sedang = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM hse_inspeksilist_detailmesinlas WHERE inspeksi_id = '$_GET[kd]' AND hasil_akhir = 'Rusak'"));
-                        $get_num_mesinlas_buruk = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM hse_inspeksilist_detailmesinlas WHERE inspeksi_id = '$_GET[kd]' AND hasil_akhir = 'Hilang'"));
+                        $get_num_mesinlas_bagus = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM hse_inspeksilist_detailborac WHERE inspeksi_id = '$_GET[kd]' AND hasil_akhir = 'Baik'"));
+                        $get_num_mesinlas_sedang = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM hse_inspeksilist_detailborac WHERE inspeksi_id = '$_GET[kd]' AND hasil_akhir = 'Rusak'"));
+                        $get_num_mesinlas_buruk = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM hse_inspeksilist_detailborac WHERE inspeksi_id = '$_GET[kd]' AND hasil_akhir = 'Hilang'"));
 
                         $get_jml_mesinlas_onsite = mysqli_fetch_array(mysqli_query($conn, "SELECT SUM(jumlah) AS jml_mesinlas_onsite FROM hse_toolsapdonsite_detailtools JOIN hse_tools ON hse_toolsapdonsite_detailtools.tools_id = hse_tools.id JOIN hse_toolsapdonsite  ON hse_toolsapdonsite_detailtools.id_onsite = hse_toolsapdonsite.id WHERE hse_tools.tools = 'Travo Las' AND hse_toolsapdonsite.project_id = '$kd_project'"));
 
@@ -743,7 +701,7 @@
                           $kd_weekly_cek = "week/".$i."/".$kd_project;
                           $get_inspeksilist2 = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM hse_inspeksilist WHERE kd_weekly = '$kd_weekly_cek'"));
 
-                          $t_mesinlas_hilangrusak_minggu_lalu = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM hse_inspeksilist_detailmesinlas WHERE inspeksi_id = '$get_inspeksilist2[id]' AND (hasil_akhir = 'Rusak' OR hasil_akhir = 'Hilang')")) + $t_mesinlas_hilangrusak_minggu_lalu;
+                          $t_mesinlas_hilangrusak_minggu_lalu = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM hse_inspeksilist_detailborac WHERE inspeksi_id = '$get_inspeksilist2[id]' AND (hasil_akhir = 'Rusak' OR hasil_akhir = 'Hilang')")) + $t_mesinlas_hilangrusak_minggu_lalu;
                         }
                       ?>
                       <tr>
@@ -807,7 +765,7 @@
               </div>
               <!-- /.card-body -->
 
-              <?php }elseif($get_num_inspeksi_mesinlas <= 6){ ?>
+              <?php }elseif($get_num_inspeksi_borac <= 6){ ?>
 
 
               <!--------------------------------- JUMLAH GERINDA <= 6 ---------------------------------------->
@@ -899,7 +857,7 @@
                       <tbody>
                         <tr>
                           <td>1</td>
-                          <td>Body / kondisi fisik mesin las dalam kondisi baik</td>
+                          <td>Kabel power dalam kondisi baik, tidak ada yang terkelupas atau sobek</td>
                           <td align="center">
                             <?php if($point_1[0] == "Baik"){ ?><span class="fa fa-check"></span><?php } ?>
                           </td>
@@ -941,7 +899,7 @@
                         </tr>
                         <tr>
                           <td>2</td>
-                          <td>Kondisi kabel-kabel tidak terkelupas dan dalam kondisi baik</td>
+                          <td>Tombol switch on/off berfungsi dengan baik</td>
                           <td align="center">
                             <?php if($point_2[0] == "Baik"){ ?><span class="fa fa-check"></span><?php } ?>
                           </td>
@@ -983,7 +941,7 @@
                         </tr>
                         <tr>
                           <td>3</td>
-                          <td>Steker pada kabel mesin las dalam kondisi bagus</td>
+                          <td>Tombol switch pemutar kedalam dan keluar berfunsi dengan baik</td>
                           <td align="center">
                             <?php if($point_3[0] == "Baik"){ ?><span class="fa fa-check"></span><?php } ?>
                           </td>
@@ -1025,7 +983,7 @@
                         </tr>
                         <tr>
                           <td>4</td>
-                          <td>Kondisi power (On / Off) berfungsi dalam kondisi baik</td>
+                          <td>Pegangan tambahan</td>
                           <td align="center">
                             <?php if($point_4[0] == "Baik"){ ?><span class="fa fa-check"></span><?php } ?>
                           </td>
@@ -1067,7 +1025,7 @@
                         </tr>
                         <tr>
                           <td>5</td>
-                          <td>Rotary switch temperatur dalam kondisi baik</td>
+                          <td>Mesin penggerak atau motor penggerak berfungsi baik</td>
                           <td align="center">
                             <?php if($point_5[0] == "Baik"){ ?><span class="fa fa-check"></span><?php } ?>
                           </td>
@@ -1109,7 +1067,7 @@
                         </tr>
                         <tr>
                           <td>6</td>
-                          <td>Ampere meter berfungsi dengan baik</td>
+                          <td>Tombol pengunci tersedia dan dapat digunakan</td>
                           <td align="center">
                             <?php if($point_6[0] == "Baik"){ ?><span class="fa fa-check"></span><?php } ?>
                           </td>
@@ -1151,7 +1109,7 @@
                         </tr>
                         <tr>
                           <td>7</td>
-                          <td>Lampu indikator berfungsi</td>
+                          <td>Kunci pembuka mata bor tersedia</td>
                           <td align="center">
                             <?php if($point_7[0] == "Baik"){ ?><span class="fa fa-check"></span><?php } ?>
                           </td>
@@ -1193,7 +1151,7 @@
                         </tr>
                         <tr>
                           <td>8</td>
-                          <td>Mesin dan kipas pendingin berfungsi dengan baik</td>
+                          <td>Vent angin mesin bor tidak tertutup</td>
                           <td align="center">
                             <?php if($point_8[0] == "Baik"){ ?><span class="fa fa-check"></span><?php } ?>
                           </td>
@@ -1235,7 +1193,7 @@
                         </tr>
                         <tr>
                           <td>9</td>
-                          <td>Kutub massa dan elektroda dalam kondisi baik</td>
+                          <td>Badan mesin bor dalam kondisi baik</td>
                           <td align="center">
                             <?php if($point_9[0] == "Baik"){ ?><span class="fa fa-check"></span><?php } ?>
                           </td>
@@ -1277,7 +1235,7 @@
                         </tr>
                         <tr>
                           <td>10</td>
-                          <td>Kabel tidak terkelupas / terbakar dan holder massa pada kondisi baik</td>
+                          <td>Rumah mata bor dalam keadaan baik</td>
                           <td align="center">
                             <?php if($point_10[0] == "Baik"){ ?><span class="fa fa-check"></span><?php } ?>
                           </td>
@@ -1315,48 +1273,6 @@
                           </td>
                           <td align="center">
                             <?php if($point_10[2] == "NA"){ ?><span class="fa fa-minus"></span><?php } ?>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>11</td>
-                          <td>Kabel tidak terkelupas / terbakar dan holder elektroda pada kondisi baik</td>
-                          <td align="center">
-                            <?php if($point_11[0] == "Baik"){ ?><span class="fa fa-check"></span><?php } ?>
-                          </td>
-                          <td align="center">
-                            <?php if($point_11[0] == "Rusak"){ ?><span class="fa fa-close"></span><?php } ?>
-                          </td>
-                          <td align="center">
-                            <?php if($point_11[0] == "Hilang"){ ?><span class="fa fa-close"></span><?php } ?>
-                          </td>
-                          <td align="center">
-                            <?php if($point_11[0] == "NA"){ ?><span class="fa fa-minus"></span><?php } ?>
-                          </td>
-
-                          <td align="center">
-                            <?php if($point_11[1] == "Baik"){ ?><span class="fa fa-check"></span><?php } ?>
-                          </td>
-                          <td align="center">
-                            <?php if($point_11[1] == "Rusak"){ ?><span class="fa fa-close"></span><?php } ?>
-                          </td>
-                          <td align="center">
-                            <?php if($point_11[1] == "Hilang"){ ?><span class="fa fa-close"></span><?php } ?>
-                          </td>
-                          <td align="center">
-                            <?php if($point_11[1] == "NA"){ ?><span class="fa fa-minus"></span><?php } ?>
-                          </td>
-
-                          <td align="center">
-                            <?php if($point_11[2] == "Baik"){ ?><span class="fa fa-check"></span><?php } ?>
-                          </td>
-                          <td align="center">
-                            <?php if($point_11[2] == "Rusak"){ ?><span class="fa fa-close"></span><?php } ?>
-                          </td>
-                          <td align="center">
-                            <?php if($point_11[2] == "Hilang"){ ?><span class="fa fa-close"></span><?php } ?>
-                          </td>
-                          <td align="center">
-                            <?php if($point_11[2] == "NA"){ ?><span class="fa fa-minus"></span><?php } ?>
                           </td>
                         </tr>
                       </tbody>
@@ -1401,7 +1317,7 @@
                       <tbody>
                         <tr>
                           <td>1</td>
-                          <td>Body / kondisi fisik mesin las dalam kondisi baik</td>
+                          <td>Kabel power dalam kondisi baik, tidak ada yang terkelupas atau sobek</td>
                           <td align="center">
                             <?php if($point_1[3] == "Baik"){ ?><span class="fa fa-check"></span><?php } ?>
                           </td>
@@ -1443,7 +1359,7 @@
                         </tr>
                         <tr>
                           <td>2</td>
-                          <td>Kondisi kabel-kabel tidak terkelupas dan dalam kondisi baik</td>
+                          <td>Tombol switch on/off berfungsi dengan baik</td>
                           <td align="center">
                             <?php if($point_2[3] == "Baik"){ ?><span class="fa fa-check"></span><?php } ?>
                           </td>
@@ -1485,7 +1401,7 @@
                         </tr>
                         <tr>
                           <td>3</td>
-                          <td>Steker pada kabel mesin las dalam kondisi bagus</td>
+                          <td>Tombol switch pemutar kedalam dan keluar berfunsi dengan baik</td>
                           <td align="center">
                             <?php if($point_3[3] == "Baik"){ ?><span class="fa fa-check"></span><?php } ?>
                           </td>
@@ -1527,7 +1443,7 @@
                         </tr>
                         <tr>
                           <td>4</td>
-                          <td>Kondisi power (On / Off) berfungsi dalam kondisi baik</td>
+                          <td>Pegangan tambahan</td>
                           <td align="center">
                             <?php if($point_4[3] == "Baik"){ ?><span class="fa fa-check"></span><?php } ?>
                           </td>
@@ -1569,7 +1485,7 @@
                         </tr>
                         <tr>
                           <td>5</td>
-                          <td>Rotary switch temperatur dalam kondisi baik</td>
+                          <td>Mesin penggerak atau motor penggerak berfungsi baik</td>
                           <td align="center">
                             <?php if($point_5[3] == "Baik"){ ?><span class="fa fa-check"></span><?php } ?>
                           </td>
@@ -1611,7 +1527,7 @@
                         </tr>
                         <tr>
                           <td>6</td>
-                          <td>Ampere meter berfungsi dengan baik</td>
+                          <td>Tombol pengunci tersedia dan dapat digunakan</td>
                           <td align="center">
                             <?php if($point_6[3] == "Baik"){ ?><span class="fa fa-check"></span><?php } ?>
                           </td>
@@ -1653,7 +1569,7 @@
                         </tr>
                         <tr>
                           <td>7</td>
-                          <td>Lampu indikator berfungsi</td>
+                          <td>Kunci pembuka mata bor tersedia</td>
                           <td align="center">
                             <?php if($point_7[3] == "Baik"){ ?><span class="fa fa-check"></span><?php } ?>
                           </td>
@@ -1695,7 +1611,7 @@
                         </tr>
                         <tr>
                           <td>8</td>
-                          <td>Mesin dan kipas pendingin berfungsi dengan baik</td>
+                          <td>Vent angin mesin bor tidak tertutup</td>
                           <td align="center">
                             <?php if($point_8[3] == "Baik"){ ?><span class="fa fa-check"></span><?php } ?>
                           </td>
@@ -1737,7 +1653,7 @@
                         </tr>
                         <tr>
                           <td>9</td>
-                          <td>Kutub massa dan elektroda dalam kondisi baik</td>
+                          <td>Badan mesin bor dalam kondisi baik</td>
                           <td align="center">
                             <?php if($point_9[3] == "Baik"){ ?><span class="fa fa-check"></span><?php } ?>
                           </td>
@@ -1779,7 +1695,7 @@
                         </tr>
                         <tr>
                           <td>10</td>
-                          <td>Kabel tidak terkelupas / terbakar dan holder massa pada kondisi baik</td>
+                          <td>Rumah mata bor dalam keadaan baik</td>
                           <td align="center">
                             <?php if($point_10[3] == "Baik"){ ?><span class="fa fa-check"></span><?php } ?>
                           </td>
@@ -1817,48 +1733,6 @@
                           </td>
                           <td align="center">
                             <?php if($point_10[5] == "NA"){ ?><span class="fa fa-minus"></span><?php } ?>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>11</td>
-                          <td>Kabel tidak terkelupas / terbakar dan holder elektroda pada kondisi baik</td>
-                          <td align="center">
-                            <?php if($point_11[3] == "Baik"){ ?><span class="fa fa-check"></span><?php } ?>
-                          </td>
-                          <td align="center">
-                            <?php if($point_11[3] == "Rusak"){ ?><span class="fa fa-close"></span><?php } ?>
-                          </td>
-                          <td align="center">
-                            <?php if($point_11[3] == "Hilang"){ ?><span class="fa fa-close"></span><?php } ?>
-                          </td>
-                          <td align="center">
-                            <?php if($point_11[3] == "NA"){ ?><span class="fa fa-minus"></span><?php } ?>
-                          </td>
-
-                          <td align="center">
-                            <?php if($point_11[4] == "Baik"){ ?><span class="fa fa-check"></span><?php } ?>
-                          </td>
-                          <td align="center">
-                            <?php if($point_11[4] == "Rusak"){ ?><span class="fa fa-close"></span><?php } ?>
-                          </td>
-                          <td align="center">
-                            <?php if($point_11[4] == "Hilang"){ ?><span class="fa fa-close"></span><?php } ?>
-                          </td>
-                          <td align="center">
-                            <?php if($point_11[4] == "NA"){ ?><span class="fa fa-minus"></span><?php } ?>
-                          </td>
-
-                          <td align="center">
-                            <?php if($point_11[5] == "Baik"){ ?><span class="fa fa-check"></span><?php } ?>
-                          </td>
-                          <td align="center">
-                            <?php if($point_11[5] == "Rusak"){ ?><span class="fa fa-close"></span><?php } ?>
-                          </td>
-                          <td align="center">
-                            <?php if($point_11[5] == "Hilang"){ ?><span class="fa fa-close"></span><?php } ?>
-                          </td>
-                          <td align="center">
-                            <?php if($point_11[5] == "NA"){ ?><span class="fa fa-minus"></span><?php } ?>
                           </td>
                         </tr>
                       </tbody>
@@ -1995,9 +1869,9 @@
                         <td align="center">Hilang</td>
                       </tr>
                       <?php
-                        $get_num_mesinlas_bagus = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM hse_inspeksilist_detailmesinlas WHERE inspeksi_id = '$_GET[kd]' AND hasil_akhir = 'Baik'"));
-                        $get_num_mesinlas_sedang = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM hse_inspeksilist_detailmesinlas WHERE inspeksi_id = '$_GET[kd]' AND hasil_akhir = 'Rusak'"));
-                        $get_num_mesinlas_buruk = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM hse_inspeksilist_detailmesinlas WHERE inspeksi_id = '$_GET[kd]' AND hasil_akhir = 'Hilang'"));
+                        $get_num_mesinlas_bagus = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM hse_inspeksilist_detailborac WHERE inspeksi_id = '$_GET[kd]' AND hasil_akhir = 'Baik'"));
+                        $get_num_mesinlas_sedang = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM hse_inspeksilist_detailborac WHERE inspeksi_id = '$_GET[kd]' AND hasil_akhir = 'Rusak'"));
+                        $get_num_mesinlas_buruk = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM hse_inspeksilist_detailborac WHERE inspeksi_id = '$_GET[kd]' AND hasil_akhir = 'Hilang'"));
 
                         $get_jml_mesinlas_onsite = mysqli_fetch_array(mysqli_query($conn, "SELECT SUM(jumlah) AS jml_mesinlas_onsite FROM hse_toolsapdonsite_detailtools JOIN hse_tools ON hse_toolsapdonsite_detailtools.tools_id = hse_tools.id JOIN hse_toolsapdonsite  ON hse_toolsapdonsite_detailtools.id_onsite = hse_toolsapdonsite.id WHERE hse_tools.tools = 'Travo Las' AND hse_toolsapdonsite.project_id = '$kd_project'"));
 
@@ -2006,7 +1880,7 @@
                           $kd_weekly_cek = "week/".$i."/".$kd_project;
                           $get_inspeksilist2 = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM hse_inspeksilist WHERE kd_weekly = '$kd_weekly_cek'"));
 
-                          $t_mesinlas_hilangrusak_minggu_lalu = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM hse_inspeksilist_detailmesinlas WHERE inspeksi_id = '$get_inspeksilist2[id]' AND (hasil_akhir = 'Rusak' OR hasil_akhir = 'Hilang')")) + $t_mesinlas_hilangrusak_minggu_lalu;
+                          $t_mesinlas_hilangrusak_minggu_lalu = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM hse_inspeksilist_detailborac WHERE inspeksi_id = '$get_inspeksilist2[id]' AND (hasil_akhir = 'Rusak' OR hasil_akhir = 'Hilang')")) + $t_mesinlas_hilangrusak_minggu_lalu;
                         }
                       ?>
                       <tr>
@@ -2117,5 +1991,5 @@
   <!-- /.modal -->
 
   <script>
-    document.title = "<?php echo "Report Inspeksi Mesin Las W".$week." - ".$get_project['nama_project']; ?>";
+    document.title = "<?php echo "Report Inspeksi APAR W".$week." - ".$get_project['nama_project']; ?>";
   </script>
