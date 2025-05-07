@@ -9,7 +9,7 @@
 
     $get_num_inspeksi_borac = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM hse_inspeksilist_detailborac WHERE inspeksi_id = '$_GET[kd]'"));
 
-    // GET DATA MESIN LAS FROM DB
+    // GET DATA BOR AC FROM DB
     $i = 0;
     $q_get_inspeksilist_detailborac = mysqli_query($conn, "SELECT * FROM hse_inspeksilist_detailborac WHERE inspeksi_id = '$_GET[kd]'");
     while($get_inspeksilist_detailborac = mysqli_fetch_array($q_get_inspeksilist_detailborac)){
@@ -33,8 +33,8 @@
     $x=0;
     $q_get_dokumentasi_inspeksi_borac = mysqli_query($conn, "SELECT * FROM hse_inspeksilist_fotoborac WHERE inspeksi_id = '$_GET[kd]'");
     while($get_dokumentasi_inspeksi_borac = mysqli_fetch_array($q_get_dokumentasi_inspeksi_borac)){
-      $foto_mesinlas[$x] = $get_dokumentasi_inspeksi_borac["foto"];
-      $keterangan_mesinlas[$x] = $get_dokumentasi_inspeksi_borac["keterangan"];
+      $foto_borac[$x] = $get_dokumentasi_inspeksi_borac["foto"];
+      $keterangan_borac[$x] = $get_dokumentasi_inspeksi_borac["keterangan"];
 
       $x++;
     }
@@ -568,108 +568,108 @@
                       </tr>
                       <tr>
                         <td width="25%" align="center">
-                          <img src="../../role/HSE/foto_inspeksi_mesinlas/<?php echo $foto_mesinlas[0]; ?>" style="height: 150px;">
-                          <div style="text-align: center;"><?php echo $keterangan_mesinlas[0]; ?></div>
+                          <img src="../../role/HSE/foto_inspeksi_borac/<?php echo $foto_borac[0]; ?>" style="height: 150px;">
+                          <div style="text-align: center;"><?php echo $keterangan_borac[0]; ?></div>
                         </td>
                         <td width="25%" align="center">
-                          <img src="../../role/HSE/foto_inspeksi_mesinlas/<?php echo $foto_mesinlas[1]; ?>" style="height: 150px;">
-                          <div style="text-align: center;"><?php echo $keterangan_mesinlas[1]; ?></div>
+                          <img src="../../role/HSE/foto_inspeksi_borac/<?php echo $foto_borac[1]; ?>" style="height: 150px;">
+                          <div style="text-align: center;"><?php echo $keterangan_borac[1]; ?></div>
                         </td>
                         <td width="25%" align="center">
-                          <img src="../../role/HSE/foto_inspeksi_mesinlas/<?php echo $foto_mesinlas[2]; ?>" style="height: 150px;">
-                          <div style="text-align: center;"><?php echo $keterangan_mesinlas[2]; ?></div>
+                          <img src="../../role/HSE/foto_inspeksi_borac/<?php echo $foto_borac[2]; ?>" style="height: 150px;">
+                          <div style="text-align: center;"><?php echo $keterangan_borac[2]; ?></div>
                         </td>
                         <td width="25%" align="center">
-                          <img src="../../role/HSE/foto_inspeksi_mesinlas/<?php echo $foto_mesinlas[3]; ?>" style="height: 150px;">
-                          <div style="text-align: center;"><?php echo $keterangan_mesinlas[3]; ?></div>
+                          <img src="../../role/HSE/foto_inspeksi_borac/<?php echo $foto_borac[3]; ?>" style="height: 150px;">
+                          <div style="text-align: center;"><?php echo $keterangan_borac[3]; ?></div>
                         </td>
                       </tr>
                       <?php
-                        if($foto_mesinlas[4] <> "" || $foto_mesinlas[5] <> "" || $foto_mesinlas[6] <> "" || $foto_mesinlas[7] <> ""){ 
+                        if($foto_borac[4] <> "" || $foto_borac[5] <> "" || $foto_borac[6] <> "" || $foto_borac[7] <> ""){ 
                       ?>
                         <tr>
                           <td width="25%" align="center">
-                            <?php if($foto_mesinlas[4] <> ""){ ?>
-                              <img src="../../role/HSE/foto_inspeksi_mesinlas/<?php echo $foto_mesinlas[4]; ?>" style="height: 150px;">
-                              <div style="text-align: center;"><?php echo $keterangan_mesinlas[4]; ?></div>
+                            <?php if($foto_borac[4] <> ""){ ?>
+                              <img src="../../role/HSE/foto_inspeksi_borac/<?php echo $foto_borac[4]; ?>" style="height: 150px;">
+                              <div style="text-align: center;"><?php echo $keterangan_borac[4]; ?></div>
                             <?php } ?>
                           </td>
                           <td width="25%" align="center">
-                            <?php if($foto_mesinlas[5] <> ""){ ?>
-                              <img src="../../role/HSE/foto_inspeksi_mesinlas/<?php echo $foto_mesinlas[5]; ?>" style="height: 150px;">
-                              <div style="text-align: center;"><?php echo $keterangan_mesinlas[5]; ?></div>
+                            <?php if($foto_borac[5] <> ""){ ?>
+                              <img src="../../role/HSE/foto_inspeksi_borac/<?php echo $foto_borac[5]; ?>" style="height: 150px;">
+                              <div style="text-align: center;"><?php echo $keterangan_borac[5]; ?></div>
                             <?php } ?>
                           </td>
                           <td width="25%" align="center">
-                            <?php if($foto_mesinlas[6] <> ""){ ?>
-                              <img src="../../role/HSE/foto_inspeksi_mesinlas/<?php echo $foto_mesinlas[6]; ?>" style="height: 150px;">
-                              <div style="text-align: center;"><?php echo $keterangan_mesinlas[6]; ?></div>
+                            <?php if($foto_borac[6] <> ""){ ?>
+                              <img src="../../role/HSE/foto_inspeksi_borac/<?php echo $foto_borac[6]; ?>" style="height: 150px;">
+                              <div style="text-align: center;"><?php echo $keterangan_borac[6]; ?></div>
                             <?php } ?>
                           </td>
                           <td width="25%" align="center">
-                            <?php if($foto_mesinlas[7] <> ""){ ?>
-                              <img src="../../role/HSE/foto_inspeksi_mesinlas/<?php echo $foto_mesinlas[7]; ?>" style="height: 150px;">
-                              <div style="text-align: center;"><?php echo $keterangan_mesinlas[7]; ?></div>
+                            <?php if($foto_borac[7] <> ""){ ?>
+                              <img src="../../role/HSE/foto_inspeksi_borac/<?php echo $foto_borac[7]; ?>" style="height: 150px;">
+                              <div style="text-align: center;"><?php echo $keterangan_borac[7]; ?></div>
                             <?php } ?>
                           </td>
                         </tr>
                       <?php } ?>
                       <?php
-                        if($foto_mesinlas[8] <> "" || $foto_mesinlas[9] <> "" || $foto_mesinlas[10] <> "" || $foto_mesinlas[11] <> ""){
+                        if($foto_borac[8] <> "" || $foto_borac[9] <> "" || $foto_borac[10] <> "" || $foto_borac[11] <> ""){
                       ?>
                         <tr>
                           <td width="25%" align="center">
-                            <?php if($foto_mesinlas[8] <> ""){ ?>
-                              <img src="../../role/HSE/foto_inspeksi_mesinlas/<?php echo $foto_mesinlas[8]; ?>" style="height: 150px;">
-                              <div style="text-align: center;"><?php echo $keterangan_mesinlas[8]; ?></div>
+                            <?php if($foto_borac[8] <> ""){ ?>
+                              <img src="../../role/HSE/foto_inspeksi_borac/<?php echo $foto_borac[8]; ?>" style="height: 150px;">
+                              <div style="text-align: center;"><?php echo $keterangan_borac[8]; ?></div>
                             <?php } ?>
                           </td>
                           <td width="25%" align="center">
-                            <?php if($foto_mesinlas[9] <> ""){ ?>
-                              <img src="../../role/HSE/foto_inspeksi_mesinlas/<?php echo $foto_mesinlas[9]; ?>" style="height: 150px;">
-                              <div style="text-align: center;"><?php echo $keterangan_mesinlas[9]; ?></div>
+                            <?php if($foto_borac[9] <> ""){ ?>
+                              <img src="../../role/HSE/foto_inspeksi_borac/<?php echo $foto_borac[9]; ?>" style="height: 150px;">
+                              <div style="text-align: center;"><?php echo $keterangan_borac[9]; ?></div>
                             <?php } ?>
                           </td>
                           <td width="25%" align="center">
-                            <?php if($foto_mesinlas[10] <> ""){ ?>
-                              <img src="../../role/HSE/foto_inspeksi_mesinlas/<?php echo $foto_mesinlas[10]; ?>" style="height: 150px;">
-                              <div style="text-align: center;"><?php echo $keterangan_mesinlas[10]; ?></div>
+                            <?php if($foto_borac[10] <> ""){ ?>
+                              <img src="../../role/HSE/foto_inspeksi_borac/<?php echo $foto_borac[10]; ?>" style="height: 150px;">
+                              <div style="text-align: center;"><?php echo $keterangan_borac[10]; ?></div>
                             <?php } ?>
                           </td>
                           <td width="25%" align="center">
-                            <?php if($foto_mesinlas[11] <> ""){ ?>
-                              <img src="../../role/HSE/foto_inspeksi_mesinlas/<?php echo $foto_mesinlas[11]; ?>" style="height: 150px;">
-                              <div style="text-align: center;"><?php echo $keterangan_mesinlas[11]; ?></div>
+                            <?php if($foto_borac[11] <> ""){ ?>
+                              <img src="../../role/HSE/foto_inspeksi_borac/<?php echo $foto_borac[11]; ?>" style="height: 150px;">
+                              <div style="text-align: center;"><?php echo $keterangan_borac[11]; ?></div>
                             <?php } ?>
                           </td>
                         </tr>
                       <?php } ?>
                       <?php
-                        if($foto_mesinlas[12] <> "" || $foto_mesinlas[13] <> "" || $foto_mesinlas[14] <> "" || $foto_mesinlas[15] <> ""){
+                        if($foto_borac[12] <> "" || $foto_borac[13] <> "" || $foto_borac[14] <> "" || $foto_borac[15] <> ""){
                       ?>
                         <tr>
                           <td width="25%" align="center">
-                            <?php if($foto_mesinlas[12] <> ""){ ?>
-                              <img src="../../role/HSE/foto_inspeksi_mesinlas/<?php echo $foto_mesinlas[12]; ?>" style="height: 150px;">
-                              <div style="text-align: center;"><?php echo $keterangan_mesinlas[12]; ?></div>
+                            <?php if($foto_borac[12] <> ""){ ?>
+                              <img src="../../role/HSE/foto_inspeksi_borac/<?php echo $foto_borac[12]; ?>" style="height: 150px;">
+                              <div style="text-align: center;"><?php echo $keterangan_borac[12]; ?></div>
                             <?php } ?>
                           </td>
                           <td width="25%" align="center">
-                            <?php if($foto_mesinlas[13] <> ""){ ?>
-                              <img src="../../role/HSE/foto_inspeksi_mesinlas/<?php echo $foto_mesinlas[13]; ?>" style="height: 150px;">
-                              <div style="text-align: center;"><?php echo $keterangan_mesinlas[13]; ?></div>
+                            <?php if($foto_borac[13] <> ""){ ?>
+                              <img src="../../role/HSE/foto_inspeksi_borac/<?php echo $foto_borac[13]; ?>" style="height: 150px;">
+                              <div style="text-align: center;"><?php echo $keterangan_borac[13]; ?></div>
                             <?php } ?>
                           </td>
                           <td width="25%" align="center">
-                            <?php if($foto_mesinlas[14] <> ""){ ?>
-                              <img src="../../role/HSE/foto_inspeksi_mesinlas/<?php echo $foto_mesinlas[14]; ?>" style="height: 150px;">
-                              <div style="text-align: center;"><?php echo $keterangan_mesinlas[14]; ?></div>
+                            <?php if($foto_borac[14] <> ""){ ?>
+                              <img src="../../role/HSE/foto_inspeksi_borac/<?php echo $foto_borac[14]; ?>" style="height: 150px;">
+                              <div style="text-align: center;"><?php echo $keterangan_borac[14]; ?></div>
                             <?php } ?>
                           </td>
                           <td width="25%" align="center">
-                            <?php if($foto_mesinlas[15] <> ""){ ?>
-                              <img src="../../role/HSE/foto_inspeksi_mesinlas/<?php echo $foto_mesinlas[15]; ?>" style="height: 150px;">
-                              <div style="text-align: center;"><?php echo $keterangan_mesinlas[15]; ?></div>
+                            <?php if($foto_borac[15] <> ""){ ?>
+                              <img src="../../role/HSE/foto_inspeksi_borac/<?php echo $foto_borac[15]; ?>" style="height: 150px;">
+                              <div style="text-align: center;"><?php echo $keterangan_borac[15]; ?></div>
                             <?php } ?>
                           </td>
                         </tr>
@@ -690,26 +690,26 @@
                         <td align="center">Hilang</td>
                       </tr>
                       <?php
-                        $get_num_mesinlas_bagus = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM hse_inspeksilist_detailborac WHERE inspeksi_id = '$_GET[kd]' AND hasil_akhir = 'Baik'"));
-                        $get_num_mesinlas_sedang = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM hse_inspeksilist_detailborac WHERE inspeksi_id = '$_GET[kd]' AND hasil_akhir = 'Rusak'"));
-                        $get_num_mesinlas_buruk = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM hse_inspeksilist_detailborac WHERE inspeksi_id = '$_GET[kd]' AND hasil_akhir = 'Hilang'"));
+                        $get_num_borac_bagus = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM hse_inspeksilist_detailborac WHERE inspeksi_id = '$_GET[kd]' AND hasil_akhir = 'Baik'"));
+                        $get_num_borac_sedang = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM hse_inspeksilist_detailborac WHERE inspeksi_id = '$_GET[kd]' AND hasil_akhir = 'Rusak'"));
+                        $get_num_borac_buruk = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM hse_inspeksilist_detailborac WHERE inspeksi_id = '$_GET[kd]' AND hasil_akhir = 'Hilang'"));
 
-                        $get_jml_mesinlas_onsite = mysqli_fetch_array(mysqli_query($conn, "SELECT SUM(jumlah) AS jml_mesinlas_onsite FROM hse_toolsapdonsite_detailtools JOIN hse_tools ON hse_toolsapdonsite_detailtools.tools_id = hse_tools.id JOIN hse_toolsapdonsite  ON hse_toolsapdonsite_detailtools.id_onsite = hse_toolsapdonsite.id WHERE hse_tools.tools = 'Travo Las' AND hse_toolsapdonsite.project_id = '$kd_project'"));
+                        $get_jml_borac_onsite = mysqli_fetch_array(mysqli_query($conn, "SELECT SUM(jumlah) AS jml_borac_onsite FROM hse_toolsapdonsite_detailtools JOIN hse_tools ON hse_toolsapdonsite_detailtools.tools_id = hse_tools.id JOIN hse_toolsapdonsite  ON hse_toolsapdonsite_detailtools.id_onsite = hse_toolsapdonsite.id WHERE hse_tools.tools = 'Travo Las' AND hse_toolsapdonsite.project_id = '$kd_project'"));
 
-                        $t_mesinlas_hilangrusak_minggu_lalu = 0;
+                        $t_borac_hilangrusak_minggu_lalu = 0;
                         for($i=1;$i<$week;$i++){
                           $kd_weekly_cek = "week/".$i."/".$kd_project;
                           $get_inspeksilist2 = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM hse_inspeksilist WHERE kd_weekly = '$kd_weekly_cek'"));
 
-                          $t_mesinlas_hilangrusak_minggu_lalu = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM hse_inspeksilist_detailborac WHERE inspeksi_id = '$get_inspeksilist2[id]' AND (hasil_akhir = 'Rusak' OR hasil_akhir = 'Hilang')")) + $t_mesinlas_hilangrusak_minggu_lalu;
+                          $t_borac_hilangrusak_minggu_lalu = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM hse_inspeksilist_detailborac WHERE inspeksi_id = '$get_inspeksilist2[id]' AND (hasil_akhir = 'Rusak' OR hasil_akhir = 'Hilang')")) + $t_borac_hilangrusak_minggu_lalu;
                         }
                       ?>
                       <tr>
-                        <td align="center"><?php echo $get_num_mesinlas_bagus; ?></td>
-                        <td align="center"><?php echo $get_num_mesinlas_sedang; ?></td>
-                        <td align="center"><?php echo $get_num_mesinlas_buruk; ?></td>
-                        <td align="center"><?php echo $get_jml_mesinlas_onsite['jml_mesinlas_onsite']; ?></td>
-                        <td align="center"><?php echo $get_jml_mesinlas_onsite['jml_mesinlas_onsite'] - $t_mesinlas_hilangrusak_minggu_lalu; ?></td>
+                        <td align="center"><?php echo $get_num_borac_bagus; ?></td>
+                        <td align="center"><?php echo $get_num_borac_sedang; ?></td>
+                        <td align="center"><?php echo $get_num_borac_buruk; ?></td>
+                        <td align="center"><?php echo $get_jml_borac_onsite['jml_borac_onsite']; ?></td>
+                        <td align="center"><?php echo $get_jml_borac_onsite['jml_borac_onsite'] - $t_borac_hilangrusak_minggu_lalu; ?></td>
                       </tr>
                     </table>
 
@@ -1747,108 +1747,108 @@
                       </tr>
                       <tr>
                         <td width="25%" align="center">
-                          <img src="../../role/HSE/foto_inspeksi_mesinlas/<?php echo $foto_mesinlas[0]; ?>" style="height: 150px;">
-                          <div style="text-align: center;"><?php echo $keterangan_mesinlas[0]; ?></div>
+                          <img src="../../role/HSE/foto_inspeksi_borac/<?php echo $foto_borac[0]; ?>" style="height: 150px;">
+                          <div style="text-align: center;"><?php echo $keterangan_borac[0]; ?></div>
                         </td>
                         <td width="25%" align="center">
-                          <img src="../../role/HSE/foto_inspeksi_mesinlas/<?php echo $foto_mesinlas[1]; ?>" style="height: 150px;">
-                          <div style="text-align: center;"><?php echo $keterangan_mesinlas[1]; ?></div>
+                          <img src="../../role/HSE/foto_inspeksi_borac/<?php echo $foto_borac[1]; ?>" style="height: 150px;">
+                          <div style="text-align: center;"><?php echo $keterangan_borac[1]; ?></div>
                         </td>
                         <td width="25%" align="center">
-                          <img src="../../role/HSE/foto_inspeksi_mesinlas/<?php echo $foto_mesinlas[2]; ?>" style="height: 150px;">
-                          <div style="text-align: center;"><?php echo $keterangan_mesinlas[2]; ?></div>
+                          <img src="../../role/HSE/foto_inspeksi_borac/<?php echo $foto_borac[2]; ?>" style="height: 150px;">
+                          <div style="text-align: center;"><?php echo $keterangan_borac[2]; ?></div>
                         </td>
                         <td width="25%" align="center">
-                          <img src="../../role/HSE/foto_inspeksi_mesinlas/<?php echo $foto_mesinlas[3]; ?>" style="height: 150px;">
-                          <div style="text-align: center;"><?php echo $keterangan_mesinlas[3]; ?></div>
+                          <img src="../../role/HSE/foto_inspeksi_borac/<?php echo $foto_borac[3]; ?>" style="height: 150px;">
+                          <div style="text-align: center;"><?php echo $keterangan_borac[3]; ?></div>
                         </td>
                       </tr>
                       <?php
-                        if($foto_mesinlas[4] <> "" || $foto_mesinlas[5] <> "" || $foto_mesinlas[6] <> "" || $foto_mesinlas[7] <> ""){ 
+                        if($foto_borac[4] <> "" || $foto_borac[5] <> "" || $foto_borac[6] <> "" || $foto_borac[7] <> ""){ 
                       ?>
                         <tr>
                           <td width="25%" align="center">
-                            <?php if($foto_mesinlas[4] <> ""){ ?>
-                              <img src="../../role/HSE/foto_inspeksi_mesinlas/<?php echo $foto_mesinlas[4]; ?>" style="height: 150px;">
-                              <div style="text-align: center;"><?php echo $keterangan_mesinlas[4]; ?></div>
+                            <?php if($foto_borac[4] <> ""){ ?>
+                              <img src="../../role/HSE/foto_inspeksi_borac/<?php echo $foto_borac[4]; ?>" style="height: 150px;">
+                              <div style="text-align: center;"><?php echo $keterangan_borac[4]; ?></div>
                             <?php } ?>
                           </td>
                           <td width="25%" align="center">
-                            <?php if($foto_mesinlas[5] <> ""){ ?>
-                              <img src="../../role/HSE/foto_inspeksi_mesinlas/<?php echo $foto_mesinlas[5]; ?>" style="height: 150px;">
-                              <div style="text-align: center;"><?php echo $keterangan_mesinlas[5]; ?></div>
+                            <?php if($foto_borac[5] <> ""){ ?>
+                              <img src="../../role/HSE/foto_inspeksi_borac/<?php echo $foto_borac[5]; ?>" style="height: 150px;">
+                              <div style="text-align: center;"><?php echo $keterangan_borac[5]; ?></div>
                             <?php } ?>
                           </td>
                           <td width="25%" align="center">
-                            <?php if($foto_mesinlas[6] <> ""){ ?>
-                              <img src="../../role/HSE/foto_inspeksi_mesinlas/<?php echo $foto_mesinlas[6]; ?>" style="height: 150px;">
-                              <div style="text-align: center;"><?php echo $keterangan_mesinlas[6]; ?></div>
+                            <?php if($foto_borac[6] <> ""){ ?>
+                              <img src="../../role/HSE/foto_inspeksi_borac/<?php echo $foto_borac[6]; ?>" style="height: 150px;">
+                              <div style="text-align: center;"><?php echo $keterangan_borac[6]; ?></div>
                             <?php } ?>
                           </td>
                           <td width="25%" align="center">
-                            <?php if($foto_mesinlas[7] <> ""){ ?>
-                              <img src="../../role/HSE/foto_inspeksi_mesinlas/<?php echo $foto_mesinlas[7]; ?>" style="height: 150px;">
-                              <div style="text-align: center;"><?php echo $keterangan_mesinlas[7]; ?></div>
+                            <?php if($foto_borac[7] <> ""){ ?>
+                              <img src="../../role/HSE/foto_inspeksi_borac/<?php echo $foto_borac[7]; ?>" style="height: 150px;">
+                              <div style="text-align: center;"><?php echo $keterangan_borac[7]; ?></div>
                             <?php } ?>
                           </td>
                         </tr>
                       <?php } ?>
                       <?php
-                        if($foto_mesinlas[8] <> "" || $foto_mesinlas[9] <> "" || $foto_mesinlas[10] <> "" || $foto_mesinlas[11] <> ""){
+                        if($foto_borac[8] <> "" || $foto_borac[9] <> "" || $foto_borac[10] <> "" || $foto_borac[11] <> ""){
                       ?>
                         <tr>
                           <td width="25%" align="center">
-                            <?php if($foto_mesinlas[8] <> ""){ ?>
-                              <img src="../../role/HSE/foto_inspeksi_mesinlas/<?php echo $foto_mesinlas[8]; ?>" style="height: 150px;">
-                              <div style="text-align: center;"><?php echo $keterangan_mesinlas[8]; ?></div>
+                            <?php if($foto_borac[8] <> ""){ ?>
+                              <img src="../../role/HSE/foto_inspeksi_borac/<?php echo $foto_borac[8]; ?>" style="height: 150px;">
+                              <div style="text-align: center;"><?php echo $keterangan_borac[8]; ?></div>
                             <?php } ?>
                           </td>
                           <td width="25%" align="center">
-                            <?php if($foto_mesinlas[9] <> ""){ ?>
-                              <img src="../../role/HSE/foto_inspeksi_mesinlas/<?php echo $foto_mesinlas[9]; ?>" style="height: 150px;">
-                              <div style="text-align: center;"><?php echo $keterangan_mesinlas[9]; ?></div>
+                            <?php if($foto_borac[9] <> ""){ ?>
+                              <img src="../../role/HSE/foto_inspeksi_borac/<?php echo $foto_borac[9]; ?>" style="height: 150px;">
+                              <div style="text-align: center;"><?php echo $keterangan_borac[9]; ?></div>
                             <?php } ?>
                           </td>
                           <td width="25%" align="center">
-                            <?php if($foto_mesinlas[10] <> ""){ ?>
-                              <img src="../../role/HSE/foto_inspeksi_mesinlas/<?php echo $foto_mesinlas[10]; ?>" style="height: 150px;">
-                              <div style="text-align: center;"><?php echo $keterangan_mesinlas[10]; ?></div>
+                            <?php if($foto_borac[10] <> ""){ ?>
+                              <img src="../../role/HSE/foto_inspeksi_borac/<?php echo $foto_borac[10]; ?>" style="height: 150px;">
+                              <div style="text-align: center;"><?php echo $keterangan_borac[10]; ?></div>
                             <?php } ?>
                           </td>
                           <td width="25%" align="center">
-                            <?php if($foto_mesinlas[11] <> ""){ ?>
-                              <img src="../../role/HSE/foto_inspeksi_mesinlas/<?php echo $foto_mesinlas[11]; ?>" style="height: 150px;">
-                              <div style="text-align: center;"><?php echo $keterangan_mesinlas[11]; ?></div>
+                            <?php if($foto_borac[11] <> ""){ ?>
+                              <img src="../../role/HSE/foto_inspeksi_borac/<?php echo $foto_borac[11]; ?>" style="height: 150px;">
+                              <div style="text-align: center;"><?php echo $keterangan_borac[11]; ?></div>
                             <?php } ?>
                           </td>
                         </tr>
                       <?php } ?>
                       <?php
-                        if($foto_mesinlas[12] <> "" || $foto_mesinlas[13] <> "" || $foto_mesinlas[14] <> "" || $foto_mesinlas[15] <> ""){
+                        if($foto_borac[12] <> "" || $foto_borac[13] <> "" || $foto_borac[14] <> "" || $foto_borac[15] <> ""){
                       ?>
                         <tr>
                           <td width="25%" align="center">
-                            <?php if($foto_mesinlas[12] <> ""){ ?>
-                              <img src="../../role/HSE/foto_inspeksi_mesinlas/<?php echo $foto_mesinlas[12]; ?>" style="height: 150px;">
-                              <div style="text-align: center;"><?php echo $keterangan_mesinlas[12]; ?></div>
+                            <?php if($foto_borac[12] <> ""){ ?>
+                              <img src="../../role/HSE/foto_inspeksi_borac/<?php echo $foto_borac[12]; ?>" style="height: 150px;">
+                              <div style="text-align: center;"><?php echo $keterangan_borac[12]; ?></div>
                             <?php } ?>
                           </td>
                           <td width="25%" align="center">
-                            <?php if($foto_mesinlas[13] <> ""){ ?>
-                              <img src="../../role/HSE/foto_inspeksi_mesinlas/<?php echo $foto_mesinlas[13]; ?>" style="height: 150px;">
-                              <div style="text-align: center;"><?php echo $keterangan_mesinlas[13]; ?></div>
+                            <?php if($foto_borac[13] <> ""){ ?>
+                              <img src="../../role/HSE/foto_inspeksi_borac/<?php echo $foto_borac[13]; ?>" style="height: 150px;">
+                              <div style="text-align: center;"><?php echo $keterangan_borac[13]; ?></div>
                             <?php } ?>
                           </td>
                           <td width="25%" align="center">
-                            <?php if($foto_mesinlas[14] <> ""){ ?>
-                              <img src="../../role/HSE/foto_inspeksi_mesinlas/<?php echo $foto_mesinlas[14]; ?>" style="height: 150px;">
-                              <div style="text-align: center;"><?php echo $keterangan_mesinlas[14]; ?></div>
+                            <?php if($foto_borac[14] <> ""){ ?>
+                              <img src="../../role/HSE/foto_inspeksi_borac/<?php echo $foto_borac[14]; ?>" style="height: 150px;">
+                              <div style="text-align: center;"><?php echo $keterangan_borac[14]; ?></div>
                             <?php } ?>
                           </td>
                           <td width="25%" align="center">
-                            <?php if($foto_mesinlas[15] <> ""){ ?>
-                              <img src="../../role/HSE/foto_inspeksi_mesinlas/<?php echo $foto_mesinlas[15]; ?>" style="height: 150px;">
-                              <div style="text-align: center;"><?php echo $keterangan_mesinlas[15]; ?></div>
+                            <?php if($foto_borac[15] <> ""){ ?>
+                              <img src="../../role/HSE/foto_inspeksi_borac/<?php echo $foto_borac[15]; ?>" style="height: 150px;">
+                              <div style="text-align: center;"><?php echo $keterangan_borac[15]; ?></div>
                             <?php } ?>
                           </td>
                         </tr>
@@ -1869,26 +1869,26 @@
                         <td align="center">Hilang</td>
                       </tr>
                       <?php
-                        $get_num_mesinlas_bagus = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM hse_inspeksilist_detailborac WHERE inspeksi_id = '$_GET[kd]' AND hasil_akhir = 'Baik'"));
-                        $get_num_mesinlas_sedang = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM hse_inspeksilist_detailborac WHERE inspeksi_id = '$_GET[kd]' AND hasil_akhir = 'Rusak'"));
-                        $get_num_mesinlas_buruk = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM hse_inspeksilist_detailborac WHERE inspeksi_id = '$_GET[kd]' AND hasil_akhir = 'Hilang'"));
+                        $get_num_borac_bagus = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM hse_inspeksilist_detailborac WHERE inspeksi_id = '$_GET[kd]' AND hasil_akhir = 'Baik'"));
+                        $get_num_borac_sedang = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM hse_inspeksilist_detailborac WHERE inspeksi_id = '$_GET[kd]' AND hasil_akhir = 'Rusak'"));
+                        $get_num_borac_buruk = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM hse_inspeksilist_detailborac WHERE inspeksi_id = '$_GET[kd]' AND hasil_akhir = 'Hilang'"));
 
-                        $get_jml_mesinlas_onsite = mysqli_fetch_array(mysqli_query($conn, "SELECT SUM(jumlah) AS jml_mesinlas_onsite FROM hse_toolsapdonsite_detailtools JOIN hse_tools ON hse_toolsapdonsite_detailtools.tools_id = hse_tools.id JOIN hse_toolsapdonsite  ON hse_toolsapdonsite_detailtools.id_onsite = hse_toolsapdonsite.id WHERE hse_tools.tools = 'Travo Las' AND hse_toolsapdonsite.project_id = '$kd_project'"));
+                        $get_jml_borac_onsite = mysqli_fetch_array(mysqli_query($conn, "SELECT SUM(jumlah) AS jml_borac_onsite FROM hse_toolsapdonsite_detailtools JOIN hse_tools ON hse_toolsapdonsite_detailtools.tools_id = hse_tools.id JOIN hse_toolsapdonsite  ON hse_toolsapdonsite_detailtools.id_onsite = hse_toolsapdonsite.id WHERE hse_tools.tools = 'Travo Las' AND hse_toolsapdonsite.project_id = '$kd_project'"));
 
-                        $t_mesinlas_hilangrusak_minggu_lalu = 0;
+                        $t_borac_hilangrusak_minggu_lalu = 0;
                         for($i=1;$i<$week;$i++){
                           $kd_weekly_cek = "week/".$i."/".$kd_project;
                           $get_inspeksilist2 = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM hse_inspeksilist WHERE kd_weekly = '$kd_weekly_cek'"));
 
-                          $t_mesinlas_hilangrusak_minggu_lalu = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM hse_inspeksilist_detailborac WHERE inspeksi_id = '$get_inspeksilist2[id]' AND (hasil_akhir = 'Rusak' OR hasil_akhir = 'Hilang')")) + $t_mesinlas_hilangrusak_minggu_lalu;
+                          $t_borac_hilangrusak_minggu_lalu = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM hse_inspeksilist_detailborac WHERE inspeksi_id = '$get_inspeksilist2[id]' AND (hasil_akhir = 'Rusak' OR hasil_akhir = 'Hilang')")) + $t_borac_hilangrusak_minggu_lalu;
                         }
                       ?>
                       <tr>
-                        <td align="center"><?php echo $get_num_mesinlas_bagus; ?></td>
-                        <td align="center"><?php echo $get_num_mesinlas_sedang; ?></td>
-                        <td align="center"><?php echo $get_num_mesinlas_buruk; ?></td>
-                        <td align="center"><?php echo $get_jml_mesinlas_onsite['jml_mesinlas_onsite']; ?></td>
-                        <td align="center"><?php echo $get_jml_mesinlas_onsite['jml_mesinlas_onsite'] - $t_mesinlas_hilangrusak_minggu_lalu; ?></td>
+                        <td align="center"><?php echo $get_num_borac_bagus; ?></td>
+                        <td align="center"><?php echo $get_num_borac_sedang; ?></td>
+                        <td align="center"><?php echo $get_num_borac_buruk; ?></td>
+                        <td align="center"><?php echo $get_jml_borac_onsite['jml_borac_onsite']; ?></td>
+                        <td align="center"><?php echo $get_jml_borac_onsite['jml_borac_onsite'] - $t_borac_hilangrusak_minggu_lalu; ?></td>
                       </tr>
                     </table>
 

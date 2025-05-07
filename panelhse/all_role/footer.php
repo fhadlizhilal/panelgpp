@@ -4209,6 +4209,69 @@
     });
   </script>
 
+  <!-- ----- EDIT DATA INSPEKSI BOR DC ------------------------ -->
+  <script type="text/javascript">
+    $(document).ready(function(){
+        $('#show_edit_data_bordc').on('show.bs.modal', function (e) {
+            var getID = $(e.relatedTarget).data('id');
+            /* fungsi AJAX untuk melakukan fetch data */
+            $.ajax({
+                type : 'post',
+                url : '../HSE/edit_data_inspeksi_bordc.php',
+                /* detail per identifier ditampung pada berkas detail.php yang berada di folder application/view */
+                data :  'getID='+ getID,
+                /* memanggil fungsi getDetail dan mengirimkannya */
+                success : function(data){
+                $('.modal-data').html(data);
+                /* menampilkan data dalam bentuk dokumen HTML */
+                }
+            });
+         });
+    });
+  </script>
+
+  <!-- ----- DELETE DATA INSPEKSI BOR DC ------------------------ -->
+  <script type="text/javascript">
+    $(document).ready(function(){
+        $('#show_delete_data_bordc').on('show.bs.modal', function (e) {
+            var getID = $(e.relatedTarget).data('id');
+            /* fungsi AJAX untuk melakukan fetch data */
+            $.ajax({
+                type : 'post',
+                url : '../HSE/delete_data_inspeksi_bordc.php',
+                /* detail per identifier ditampung pada berkas detail.php yang berada di folder application/view */
+                data :  'getID='+ getID,
+                /* memanggil fungsi getDetail dan mengirimkannya */
+                success : function(data){
+                $('.modal-data').html(data);
+                /* menampilkan data dalam bentuk dokumen HTML */
+                }
+            });
+         });
+    });
+  </script>
+
+  <!-- ----- DELETE DOKUMENTASI INSPEKSI BOR DC ------------------------ -->
+  <script type="text/javascript">
+    $(document).ready(function(){
+        $('#show_delete_dokumentasi_bordc').on('show.bs.modal', function (e) {
+            var getID = $(e.relatedTarget).data('id');
+            /* fungsi AJAX untuk melakukan fetch data */
+            $.ajax({
+                type : 'post',
+                url : '../HSE/delete_dokumentasi_inspeksi_bordc.php',
+                /* detail per identifier ditampung pada berkas detail.php yang berada di folder application/view */
+                data :  'getID='+ getID,
+                /* memanggil fungsi getDetail dan mengirimkannya */
+                success : function(data){
+                $('.modal-data').html(data);
+                /* menampilkan data dalam bentuk dokumen HTML */
+                }
+            });
+         });
+    });
+  </script>
+
     <!-- hitung data -->
     <?php 
         $this_year = date("Y");

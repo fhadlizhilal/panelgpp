@@ -1536,6 +1536,10 @@
       require_once "form_inspeksi_borac.php";
     }elseif($_GET["pages"]=="reportinspeksiborac"){
       require_once "report_inspeksi_borac.php";
+    }elseif($_GET["pages"]=="forminspeksibordc"){
+      require_once "form_inspeksi_bordc.php";
+    }elseif($_GET["pages"]=="reportinspeksibordc"){
+      require_once "report_inspeksi_bordc.php";
     }
 
   ?>

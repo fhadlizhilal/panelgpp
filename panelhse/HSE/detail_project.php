@@ -504,7 +504,11 @@
                                             echo "<a href='index.php?pages=reportinspeksiborac&kd=".$get_inspeksilist_tools['id']."'>Inspeksi Bor AC</a>";
                                           }
                                         }elseif($get_inspeksilist_tools['jenis_inspeksi'] == 'inspeksi_bordc'){
-                                          echo "Inspeksi Bor DC";
+                                          if($get_inspeksilist_tools['status'] == "progress"){
+                                            echo "<a href='index.php?pages=forminspeksibordc&kd=".$get_inspeksilist_tools['id']."'>Inspeksi Bor DC</a>";
+                                          }elseif($get_inspeksilist_tools['status'] == "completed"){
+                                            echo "<a href='index.php?pages=reportinspeksibordc&kd=".$get_inspeksilist_tools['id']."'>Inspeksi Bor DC</a>";
+                                          }
                                         }elseif($get_inspeksilist_tools['jenis_inspeksi'] == 'inspeksi_borduduk'){
                                           echo "Inspeksi Bor Duduk";
                                         }elseif($get_inspeksilist_tools['jenis_inspeksi'] == 'inspeksi_cuttingwheel'){
@@ -851,22 +855,33 @@
               <div class="col-8">
                 <select class="form-control form-control-sm" name="jenis_inspeksi" required>
                     <option value="" selected disabled>---- Jenis Inspeksi ----</option>
-                    <option value="inspeksi_apd">Inspeksi APD</option>
-                    <option value="inspeksi_apar">Inspeksi APAR</option>
-                    <option value="inspeksi_p3k">Inspeksi P3K</option>
-                    <option value="inspeksi_gerinda">Inspeksi Gerinda AC</option>
-                    <option value="inspeksi_gerindadc">Inspeksi Gerinda DC</option>
-                    <option value="inspeksi_mesinlas">Inspeksi Mesin Las</option>
-                    <option value="inspeksi_borac">Inspeksi Bor AC</option>
-                    <option value="inspeksi_bordc" disabled>Inspeksi Bor DC</option>
-                    <option value="inspeksi_borduduk" disabled>Inspeksi Bor Duduk</option>
-                    <option value="inspeksi_cuttingwheel" disabled>Inspeksi Cutting Wheel</option>
-                    <option value="inspeksi_amperemeter" disabled>Inspeksi Ampere Meter</option>
-                    <option value="inspeksi_meger" disabled>Inspeksi Meger</option>
-                    <option value="inspeksi_forklift" disabled>Inspeksi Forklift</option>
-                    <option value="inspeksi_scissorlift" disabled>Inspeksi Scissor Lift</option>
-                    <option value="inspeksi_boomlift" disabled>Inspeksi Boom Lift</option>
-                    <option value="inspeksi_crane" disabled>Inspeksi Crane</option>
+                    <optgroup label="Personal Protective Equipment">
+                        <option value="inspeksi_apd">Inspeksi APD</option>
+                        <option value="inspeksi_apar">Inspeksi APAR</option>
+                        <option value="inspeksi_p3k">Inspeksi P3K</option>
+                    </optgroup>
+                    
+                    <optgroup label="Power Tools" style="font">
+                        <option value="inspeksi_gerinda">Inspeksi Gerinda AC</option>
+                        <option value="inspeksi_gerindadc">Inspeksi Gerinda DC</option>
+                        <option value="inspeksi_mesinlas">Inspeksi Mesin Las</option>
+                        <option value="inspeksi_borac">Inspeksi Bor AC</option>
+                        <option value="inspeksi_bordc">Inspeksi Bor DC</option>
+                        <option value="inspeksi_borduduk" disabled>Inspeksi Bor Duduk</option>
+                        <option value="inspeksi_cuttingwheel" disabled>Inspeksi Cutting Wheel</option>
+                    </optgroup>
+                    
+                    <optgroup label="Measurement Tools">
+                        <option value="inspeksi_amperemeter" disabled>Inspeksi Ampere Meter</option>
+                        <option value="inspeksi_meger" disabled>Inspeksi Meger</option>
+                    </optgroup>
+                    
+                    <optgroup label="Heavy Equipment">
+                        <option value="inspeksi_forklift" disabled>Inspeksi Forklift</option>
+                        <option value="inspeksi_scissorlift" disabled>Inspeksi Scissor Lift</option>
+                        <option value="inspeksi_boomlift" disabled>Inspeksi Boom Lift</option>
+                        <option value="inspeksi_crane" disabled>Inspeksi Crane</option>
+                    </optgroup>
                 </select>
               </div>
             </div>

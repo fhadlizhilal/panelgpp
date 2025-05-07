@@ -564,13 +564,15 @@
                                     <td>
                                       <?php
                                         if($get_inspeksilist_tools['jenis_inspeksi'] == 'inspeksi_gerinda'){
-                                          echo "Inspeksi Gerinda";
+                                          echo "<a href='index.php?pages=reportinspeksi&kd=".$get_inspeksilist_tools['id']."'>Inspeksi Gerinda AC</a>";
+                                        }elseif($get_inspeksilist_tools['jenis_inspeksi'] == 'inspeksi_gerindadc'){
+                                          echo "<a href='index.php?pages=reportinspeksi&kd=".$get_inspeksilist_tools['id']."'>Inspeksi Gerinda DC</a>";
                                         }elseif($get_inspeksilist_tools['jenis_inspeksi'] == 'inspeksi_mesinlas'){
-                                          echo "Inspeksi Mesin Las";
-                                        }elseif($get_inspeksilist_tools['jenis_inspeksi'] == 'inspeksi_borlistrik'){
-                                          echo "Inspeksi Bor Listrik";
+                                          echo "<a href='index.php?pages=reportinspeksi&kd=".$get_inspeksilist_tools['id']."'>Inspeksi Mesin Las</a>";
+                                        }elseif($get_inspeksilist_tools['jenis_inspeksi'] == 'inspeksi_borac'){
+                                          echo "<a href='index.php?pages=reportinspeksi&kd=".$get_inspeksilist_tools['id']."'>Inspeksi Bor AC</a>";
                                         }elseif($get_inspeksilist_tools['jenis_inspeksi'] == 'inspeksi_bordc'){
-                                          echo "Inspeksi Bor DC";
+                                          echo "<a href='index.php?pages=reportinspeksi&kd=".$get_inspeksilist_tools['id']."'>Inspeksi Bor DC</a>";
                                         }elseif($get_inspeksilist_tools['jenis_inspeksi'] == 'inspeksi_borduduk'){
                                           echo "Inspeksi Bor Duduk";
                                         }elseif($get_inspeksilist_tools['jenis_inspeksi'] == 'inspeksi_cuttingwheel'){
@@ -587,7 +589,9 @@
                                       <?php if($get_inspeksilist_tools['status'] == "progress"){ ?>
                                         <div class="badge badge-warning">P</div>
                                       <?php }elseif($get_inspeksilist_tools['status'] == "completed"){ ?>
-                                        <div class="badge badge-success">C</div>
+                                        <a href="#modal" data-toggle='modal' data-target='#show_inspeksi_to_progress' data-id='<?php echo $get_inspeksilist_tools['id']; ?>' data-toggle="tooltip" data-placement="bottom" title="To Progress">
+                                          <div class="badge badge-success">C</div>
+                                        </a>
                                       <?php } ?>
                                     </td>
                                   </tr>
