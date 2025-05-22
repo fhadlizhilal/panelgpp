@@ -154,6 +154,42 @@
               </li>
             </ul>
           </li>
+
+          <li class="nav-item <?php if($_GET['pages'] == 'db_jenis' || $_GET['pages'] == 'db_ruangan' || $_GET['pages'] == 'data_asset' || $_GET['pages'] == 'penempatan_asset'){ echo "menu-open"; } ?>">
+            <a href="#" class="nav-link <?php if($_GET['pages'] == 'db_jenis' || $_GET['pages'] == 'db_ruangan' || $_GET['pages'] == 'data_asset' || $_GET['pages'] == 'penempatan_asset'){ echo "active"; } ?>">
+              <i class="nav-icon fa fa-file-text-o"></i>
+              <p>
+                Kelola Asset
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="index.php?pages=db_jenis" class="nav-link <?php if($_GET['pages'] == 'db_jenis'){ echo "active"; } ?>">
+                  <i class="fa fa-chevron-right nav-icon"></i>
+                  <p>DB Jenis</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="index.php?pages=db_ruangan" class="nav-link <?php if($_GET['pages'] == 'db_ruangan'){ echo "active"; } ?>">
+                  <i class="fa fa-chevron-right nav-icon"></i>
+                  <p>DB Ruangan</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="index.php?pages=data_asset" class="nav-link <?php if($_GET['pages'] == 'data_asset'){ echo "active"; } ?>">
+                  <i class="fa fa-chevron-right nav-icon"></i>
+                  <p>Data Asset</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="index.php?pages=penempatan_asset" class="nav-link <?php if($_GET['pages'] == 'penempatan_asset'){ echo "active"; } ?>">
+                  <i class="fa fa-chevron-right nav-icon"></i>
+                  <p>Penempatan Asset</p>
+                </a>
+              </li>
+            </ul>
+          </li>
                                            
         </ul>
       </nav>
@@ -174,6 +210,14 @@
       require_once "../unrole/ga_penilaian/neat_and_clean.php";
     }elseif($_GET["pages"]=="cleaning"){
       require_once "../unrole/ga_penilaian/cleaning.php";
+    }elseif($_GET["pages"]=="db_jenis"){
+      require_once "../unrole/ga_asset/db_jenis.php";
+    }elseif($_GET["pages"]=="db_ruangan"){
+      require_once "../unrole/ga_asset/db_ruangan.php";
+    }elseif($_GET["pages"]=="data_asset"){
+      require_once "../unrole/ga_asset/data_asset.php";
+    }elseif($_GET["pages"]=="penempatan_asset"){
+      require_once "../unrole/ga_asset/penempatan_asset.php";
     }
 
   ?>

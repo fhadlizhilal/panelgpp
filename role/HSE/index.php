@@ -1903,8 +1903,9 @@
 
           <li class="nav-header"></li>
           <li class="nav-header">Kelola Data HSE</li>
-          <li class="nav-item <?php if($_GET['pages']=="datauserhse" || $_GET['pages']=="datamanpower" || $_GET['pages']=="dataproject" || $_GET['pages']=="datajabatan" || $_GET['pages']=="datatools" || $_GET['pages']=="datatoolsk3" || $_GET['pages']=="dataapd" || $_GET['pages']=="datasertifikat" || $_GET['pages']=="datasertifikasi" || $_GET['pages']=="detailproject" || $_GET['pages']=="formdailyreporthse" || $_GET['pages']=="dailyreporthse" || $_GET['pages']=="weeklyreport" || $_GET['pages']=="manpowerplan_list" || $_GET['pages']=="manpowerplan" || $_GET['pages']=="report_inspeksiapd" || $_GET['pages']=="reportinspeksiapar"){ echo "menu-open"; } ?>">
-            <a href="#" class="nav-link <?php if($_GET['pages']=="datauserhse" || $_GET['pages']=="datamanpower" || $_GET['pages']=="dataproject" || $_GET['pages']=="datajabatan" || $_GET['pages']=="datatools" || $_GET['pages']=="datatoolsk3" || $_GET['pages']=="dataapd" || $_GET['pages']=="datasertifikat" || $_GET['pages']=="datasertifikasi" || $_GET['pages']=="detailproject" || $_GET['pages']=="formdailyreporthse" || $_GET['pages']=="dailyreporthse" || $_GET['pages']=="weeklyreport" || $_GET['pages']=="manpowerplan_list" || $_GET['pages']=="manpowerplan" || $_GET['pages']=="report_inspeksiapd" || $_GET['pages']=="reportinspeksiapar"){ echo "active"; } ?>">
+          <li class="nav-item <?php if($_GET['pages']=="datauserhse" || $_GET['pages']=="datamanpower" || $_GET['pages']=="dataproject" || $_GET['pages']=="datajabatan" || $_GET['pages']=="datatools" || $_GET['pages']=="datatoolsk3" || $_GET['pages']=="dataapd" || $_GET['pages']=="datasertifikat" || $_GET['pages']=="datasertifikasi" || $_GET['pages']=="detailproject" || $_GET['pages']=="formdailyreporthse" || $_GET['pages']=="dailyreporthse" || $_GET['pages']=="weeklyreport" || $_GET['pages']=="manpowerplan_list" || $_GET['pages']=="manpowerplan" || $_GET['pages']=="report_inspeksiapd" || $_GET['pages']=="reportinspeksiapar" || $_GET['pages']=="reportinspeksip3k" || $_GET['pages']=="reportinspeksigerinda" || $_GET['pages']=="reportinspeksigerindadc" || $_GET['pages']=="reportinspeksimesinlas" || $_GET['pages']=="reportinspeksiborac" || $_GET['pages']=="reportinspeksibordc"){ echo "menu-open"; } ?>">
+            
+            <a href="#" class="nav-link <?php if($_GET['pages']=="datauserhse" || $_GET['pages']=="datamanpower" || $_GET['pages']=="dataproject" || $_GET['pages']=="datajabatan" || $_GET['pages']=="datatools" || $_GET['pages']=="datatoolsk3" || $_GET['pages']=="dataapd" || $_GET['pages']=="datasertifikat" || $_GET['pages']=="datasertifikasi" || $_GET['pages']=="detailproject" || $_GET['pages']=="formdailyreporthse" || $_GET['pages']=="dailyreporthse" || $_GET['pages']=="weeklyreport" || $_GET['pages']=="manpowerplan_list" || $_GET['pages']=="manpowerplan" || $_GET['pages']=="report_inspeksiapd" || $_GET['pages']=="reportinspeksiapar" || $_GET['pages']=="reportinspeksip3k" || $_GET['pages']=="reportinspeksigerinda" || $_GET['pages']=="reportinspeksigerindadc" || $_GET['pages']=="reportinspeksimesinlas" || $_GET['pages']=="reportinspeksiborac" || $_GET['pages']=="reportinspeksibordc"){ echo "active"; } ?>">
               <i class="nav-icon fa fa-file-text-o"></i>
               <p>
                 Database HSE
@@ -1925,7 +1926,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="index.php?pages=dataproject" class="nav-link <?php if($_GET['pages'] == "dataproject" || $_GET['pages'] == "detailproject" || $_GET['pages']=="formdailyreporthse" || $_GET['pages']=="dailyreporthse" || $_GET['pages']=="weeklyreport" || $_GET['pages']=="report_inspeksiapd" || $_GET['pages']=="reportinspeksiapar"){ echo "active";} ?>">
+                <a href="index.php?pages=dataproject" class="nav-link <?php if($_GET['pages'] == "dataproject" || $_GET['pages'] == "detailproject" || $_GET['pages']=="formdailyreporthse" || $_GET['pages']=="dailyreporthse" || $_GET['pages']=="weeklyreport" || $_GET['pages']=="report_inspeksiapd" || $_GET['pages']=="reportinspeksiapar" || $_GET['pages']=="reportinspeksip3k" || $_GET['pages']=="reportinspeksigerinda" || $_GET['pages']=="reportinspeksigerindadc" || $_GET['pages']=="reportinspeksimesinlas" || $_GET['pages']=="reportinspeksiborac" || $_GET['pages']=="reportinspeksibordc"){ echo "active";} ?>">
                   <i class="fa fa-chevron-right nav-icon"></i>
                   <p>Data Project</p>
                 </a>
@@ -2250,8 +2251,8 @@
             </a>
           </li>
 
-          <li class="nav-item <?php if($_GET['pages']=='pilihstock' || $_GET['pages']=='datastock' || $_GET['pages']=='pilihstockopname' || $_GET['pages']=='stockopname' || $_GET['pages']=='dataassetrusak' || $_GET['pages']=='reportpengembalianproject' || $_GET['pages']=='annualreport' || $_GET['pages']=='reportproject' || $_GET['pages']=='reportprojectdetail'){ echo 'menu-open'; } ?>">
-            <a href="#" class="nav-link <?php if($_GET['pages']=='pilihstock' || $_GET['pages']=='datastock' || $_GET['pages']=='pilihstockopname' || $_GET['pages']=='stockopname' || $_GET['pages']=='dataassetrusak' || $_GET['pages']=='reportpengembalianproject' || $_GET['pages']=='annualreport' || $_GET['pages']=='reportproject' || $_GET['pages']=='reportprojectdetail'){ echo 'active'; } ?>">
+          <li class="nav-item <?php if($_GET['pages']=='pilihstock' || $_GET['pages']=='datastock' || $_GET['pages']=='pilihstockopname' || $_GET['pages']=='stockopname' || $_GET['pages']=='dataassetrusak' || $_GET['pages']=='reportpengembalianproject' || $_GET['pages']=='annualreport' || $_GET['pages']=='reportproject' || $_GET['pages']=='reportprojectdetail' || $_GET['pages']=='datastockopnamesite'){ echo 'menu-open'; } ?>">
+            <a href="#" class="nav-link <?php if($_GET['pages']=='pilihstock' || $_GET['pages']=='datastock' || $_GET['pages']=='pilihstockopname' || $_GET['pages']=='stockopname' || $_GET['pages']=='dataassetrusak' || $_GET['pages']=='reportpengembalianproject' || $_GET['pages']=='annualreport' || $_GET['pages']=='reportproject' || $_GET['pages']=='reportprojectdetail' || $_GET['pages']=='datastockopnamesite'){ echo 'active'; } ?>">
               <i class="nav-icon fa fa-file-text-o"></i>
               <p>
                 Data Report
@@ -2271,6 +2272,14 @@
                 <a href="index.php?pages=pilihstockopname" class="nav-link <?php if($_GET['pages']=='pilihstockopname' || $_GET['pages']=='stockopname'){ echo 'active'; } ?>">
                   <i class="fa fa-chevron-right nav-icon"></i>
                   <p>Stock Opname</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="index.php?pages=datastockopnamesite" class="nav-link <?php if($_GET['pages']=='datastockopnamesite'){ echo 'active'; } ?>">
+                  <i class="fa fa-chevron-right nav-icon"></i>
+                  <p>Stock Opname - Site</p>
                 </a>
               </li>
             </ul>
@@ -2346,7 +2355,17 @@
     }elseif($_GET["pages"]=="reportinspeksiapar"){
       require_once "../../panelhse/HSE/report_inspeksi_apar.php";
     }elseif($_GET["pages"]=="reportinspeksip3k"){
-      require_once "../../panelhse/HSE/report_inspeksi_p3k.php"; 
+      require_once "../../panelhse/HSE/report_inspeksi_p3k.php";
+    }elseif($_GET["pages"]=="reportinspeksigerinda"){
+      require_once "../../panelhse/HSE/report_inspeksi_gerinda.php";
+    }elseif($_GET["pages"]=="reportinspeksigerindadc"){
+      require_once "../../panelhse/HSE/report_inspeksi_gerindadc.php";
+    }elseif($_GET["pages"]=="reportinspeksimesinlas"){
+      require_once "../../panelhse/HSE/report_inspeksi_mesinlas.php";
+    }elseif($_GET["pages"]=="reportinspeksiborac"){
+      require_once "../../panelhse/HSE/report_inspeksi_borac.php";
+    }elseif($_GET["pages"]=="reportinspeksibordc"){
+      require_once "../../panelhse/HSE/report_inspeksi_bordc.php";
     }elseif($_GET["pages"]=="weeklyreport"){
       require_once "weeklyreport_hse.php";
     }elseif($_GET["pages"]=="manpowerplan_list"){
@@ -2451,6 +2470,8 @@
       require_once "../unrole/management_asset/report_project.php";
     }elseif($_GET["pages"]=="reportprojectdetail"){
       require_once "../unrole/management_asset/report_project_detail.php";
+    }elseif($_GET["pages"]=="datastockopnamesite"){
+      require_once "../unrole/management_asset/data_stockopname_site.php";
     }
 
   ?>

@@ -464,7 +464,7 @@
                       $q_get_inspeksilist_toolsk3 = mysqli_query($conn, "SELECT * FROM hse_inspeksilist WHERE kd_weekly = '$get_weekly[kd_weekly]' AND (jenis_inspeksi = 'inspeksi_p3k' OR jenis_inspeksi = 'inspeksi_apar')");
                       $cek_inspeksitoolsk3 = mysqli_num_rows($q_get_inspeksilist_toolsk3);
 
-                      $q_get_inspeksilist_tools = mysqli_query($conn, "SELECT * FROM hse_inspeksilist WHERE kd_weekly = '$get_weekly[kd_weekly]' AND (jenis_inspeksi = 'inspeksi_gerinda' OR jenis_inspeksi = 'inspeksi_mesinlas' OR jenis_inspeksi = 'inspeksi_borlistrik' OR jenis_inspeksi = 'inspeksi_bordc' OR jenis_inspeksi = 'inspeksi_borduduk' OR jenis_inspeksi = 'inspeksi_cuttingwheel' OR jenis_inspeksi = 'inspeksi_amperemeter' OR jenis_inspeksi = 'inspeksi_megger')");
+                      $q_get_inspeksilist_tools = mysqli_query($conn, "SELECT * FROM hse_inspeksilist WHERE kd_weekly = '$get_weekly[kd_weekly]' AND (jenis_inspeksi = 'inspeksi_gerinda' OR jenis_inspeksi = 'inspeksi_gerindadc' OR jenis_inspeksi = 'inspeksi_mesinlas' OR jenis_inspeksi = 'inspeksi_borac' OR jenis_inspeksi = 'inspeksi_bordc' OR jenis_inspeksi = 'inspeksi_borduduk' OR jenis_inspeksi = 'inspeksi_cuttingwheel' OR jenis_inspeksi = 'inspeksi_amperemeter' OR jenis_inspeksi = 'inspeksi_megger')");
                       $cek_inspeksitools = mysqli_num_rows($q_get_inspeksilist_tools);
 
                       $q_get_inspeksilist_alatberat = mysqli_query($conn, "SELECT * FROM hse_inspeksilist WHERE kd_weekly = '$get_weekly[kd_weekly]' AND (jenis_inspeksi = 'inspeksi_forklift' OR jenis_inspeksi = 'inspeksi_scissorlift' OR jenis_inspeksi = 'inspeksi_boomlift' OR jenis_inspeksi = 'inspeksi_crane')");
@@ -564,15 +564,15 @@
                                     <td>
                                       <?php
                                         if($get_inspeksilist_tools['jenis_inspeksi'] == 'inspeksi_gerinda'){
-                                          echo "<a href='index.php?pages=reportinspeksi&kd=".$get_inspeksilist_tools['id']."'>Inspeksi Gerinda AC</a>";
+                                          echo "<a href='index.php?pages=reportinspeksigerinda&kd=".$get_inspeksilist_tools['id']."'>Inspeksi Gerinda AC</a>";
                                         }elseif($get_inspeksilist_tools['jenis_inspeksi'] == 'inspeksi_gerindadc'){
-                                          echo "<a href='index.php?pages=reportinspeksi&kd=".$get_inspeksilist_tools['id']."'>Inspeksi Gerinda DC</a>";
+                                          echo "<a href='index.php?pages=reportinspeksigerindadc&kd=".$get_inspeksilist_tools['id']."'>Inspeksi Gerinda DC</a>";
                                         }elseif($get_inspeksilist_tools['jenis_inspeksi'] == 'inspeksi_mesinlas'){
-                                          echo "<a href='index.php?pages=reportinspeksi&kd=".$get_inspeksilist_tools['id']."'>Inspeksi Mesin Las</a>";
+                                          echo "<a href='index.php?pages=reportinspeksimesinlas&kd=".$get_inspeksilist_tools['id']."'>Inspeksi Mesin Las</a>";
                                         }elseif($get_inspeksilist_tools['jenis_inspeksi'] == 'inspeksi_borac'){
-                                          echo "<a href='index.php?pages=reportinspeksi&kd=".$get_inspeksilist_tools['id']."'>Inspeksi Bor AC</a>";
+                                          echo "<a href='index.php?pages=reportinspeksiborac&kd=".$get_inspeksilist_tools['id']."'>Inspeksi Bor AC</a>";
                                         }elseif($get_inspeksilist_tools['jenis_inspeksi'] == 'inspeksi_bordc'){
-                                          echo "<a href='index.php?pages=reportinspeksi&kd=".$get_inspeksilist_tools['id']."'>Inspeksi Bor DC</a>";
+                                          echo "<a href='index.php?pages=reportinspeksibordc&kd=".$get_inspeksilist_tools['id']."'>Inspeksi Bor DC</a>";
                                         }elseif($get_inspeksilist_tools['jenis_inspeksi'] == 'inspeksi_borduduk'){
                                           echo "Inspeksi Bor Duduk";
                                         }elseif($get_inspeksilist_tools['jenis_inspeksi'] == 'inspeksi_cuttingwheel'){

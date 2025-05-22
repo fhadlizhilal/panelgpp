@@ -1,13 +1,50 @@
-<?php
-  setlocale(LC_TIME, 'id_ID');
-  $get_inspeksilist = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM hse_inspeksilist WHERE id = '$_GET[kd]'"));
-  $data_array = explode("/", $get_inspeksilist['kd_weekly']);
-  $week = $data_array[1];
-  $kd_project = $data_array[2];
+<style>
+    .preview-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    .preview-box {
+        border: 1px solid #ccc;
+        padding: 10px;
+        text-align: center;
+        max-width: 140px;
+    }
+    .preview-box img {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 10px;
+    }
+</style>
+<script>
+    function handleFiles(input) {
+        const container = document.getElementById('preview-container');
+        container.innerHTML = ''; // Clear preview sebelumnya
 
-  $get_project = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM hse_project WHERE id = '$kd_project'"));
-  $get_hseOfficer = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM hse_manpower WHERE id = '$get_inspeksilist[hse_officer]'"));
-?>
+        const files = input.files;
+
+        for (let i = 0; i < files.length; i++) {
+            const file = files[i];
+
+            if (file.type.startsWith("image/")) {
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    const div = document.createElement('div');
+                    div.classList.add('preview-box');
+                    div.innerHTML = `
+                        <img src="${e.target.result}" alt="Preview" style="height: 100px">
+                        <p><div style="font-weight: bold; font-size: 10px">${file.name}</div></p>
+                        <input type="text" style="width: 120px" name="keterangan[]" placeholder="Keterangan untuk ${file.name}" required>
+                    `;
+                    container.appendChild(div);
+                };
+
+                reader.readAsDataURL(file);
+            }
+        }
+    }
+</script>
 
 <style>
     #signaturePad {
@@ -30,6 +67,56 @@
         display: none;
     }
 </style>
+
+<?php
+  setlocale(LC_TIME, 'id_ID');
+  $get_inspeksilist = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM hse_inspeksilist WHERE id = '$_GET[kd]'"));
+  $data_array = explode("/", $get_inspeksilist['kd_weekly']);
+  $week = $data_array[1];
+  $kd_project = $data_array[2];
+
+  $get_project = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM hse_project WHERE id = '$kd_project'"));
+  $get_hseOfficer = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM hse_manpower WHERE id = '$get_inspeksilist[hse_officer]'"));
+
+
+  if(isset($_POST['add_dokumentasi_inspeksiapd_v2'])){
+    if($_POST['add_dokumentasi_inspeksiapd_v2'] == "Upload"){
+      $jml_uploaddokumentasi_berhasil = 0;
+      $jml_uploaddokumentasi_gagal = 0;
+      $nodate = date('YmdHis');
+      $inspeksi_id = $_POST['inspeksi_id'];
+      $target_dir = "../../role/HSE/foto_inspeksi_apd/";
+
+      $total = count($_FILES['gambar']['name']);
+      $keterangan = $_POST['keterangan'];
+
+      for ($i = 0; $i < $total; $i++) {
+        $tmpFilePath = $_FILES['gambar']['tmp_name'][$i];
+        $filename = $nodate."_".basename($_FILES['gambar']['name'][$i]);
+        $target_file = $target_dir . $filename;
+
+        $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+        $allowed_types = ['jpg', 'jpeg', 'png', 'gif'];
+
+        // Ukuran Kompresi 10 (bisa diganti dengan yang lain)
+        $compressedImage = compressImage($tmpFilePath, $target_file, 10);
+          
+        if ($tmpFilePath != "" && in_array($imageFileType, $allowed_types)) {
+            if($compressedImage){
+                $push_dokumentasi_inspeksiapd = mysqli_query($conn, "INSERT INTO hse_inspeksilist_fotoapd VALUES('','$inspeksi_id','$filename','$keterangan[$i]')");
+                $jml_uploaddokumentasi_berhasil++;
+            }else{
+                $jml_uploaddokumentasi_gagal++;
+             }
+        } else {
+            $jml_uploaddokumentasi_gagal++;
+        }
+          
+      }
+      $_SESSION['alert_success'] = $jml_uploaddokumentasi_berhasil." Foto Berhasil Diupload! <br>".$jml_uploaddokumentasi_gagal." Foto Gagal Diupload!";
+    }
+  }
+?>
 
 <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -1160,25 +1247,13 @@
           </button>
         </div>
         <div class="modal-body">
-          <form method="POST" action="" enctype="multipart/form-data">
-            <div class="form-group row" style="margin-bottom: 8px;">
-              <label class="col-3 col-form-label" style="font-size: 12px;">Foto</label>
-              <div class="col-9">
-                <input type="file" class="form-control form-control-sm" name="file">
-              </div>
-            </div>
-            <div class="form-group row" style="margin-bottom: 8px;">
-              <label class="col-3 col-form-label" style="font-size: 12px;">Keterangan</label>
-              <div class="col-9">
-                <textarea class="form-control form-control-sm" name="keterangan"></textarea>
-              </div>
-            </div>
-
-            <br>
-            <center>
-              <input type="hidden" name="inspeksi_id" value="<?php echo $_GET['kd'] ?>">
-              <input type="submit" class="btn btn-info" name="add_dokumentasi_inspeksiapd" value="Simpan">
-            </center>
+          <form id="myForm4" action="" method="post" enctype="multipart/form-data">
+            <input type="file" name="gambar[]" multiple onchange="handleFiles(this)" accept="image/*" required><br>
+            <small style="color: red;">*Lampiran Foto Minimal 4 Foto</small><br>
+            <div id="preview-container" class="preview-container"></div>
+            <hr>
+            <input type="hidden" name="inspeksi_id" value="<?php echo $_GET['kd'] ?>">
+            <input type="submit" class="btn btn-secondary btn-xs" name="add_dokumentasi_inspeksiapd_v2" value="Upload"><br><br>
           </form>
         </div>
       </div>

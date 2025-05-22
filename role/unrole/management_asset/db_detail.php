@@ -77,7 +77,7 @@
               <?php } ?>
               <!-- ///.card-header -->
               <div class="card-body">
-                <table id="setHariLibur1" class="table table-bordered table-striped table-sm" style="font-size: 12px;">
+                <table id="setHariLibur1" class="table table-bordered table-striped table-sm" style="font-size: 10px;">
                   <thead>
                     <tr>
                       <th width="1%">No</th>
@@ -86,10 +86,11 @@
                       <th>Nama Barang</th>
                       <th>Tipe Barang</th>
                       <th>Sub Barang</th>
-                      <th>Satuan</th>
                       <th>Tipe Detail</th>
                       <th>Merek</th>
                       <th>Jenis</th>
+                      <th>Satuan</th>
+                      <th>Harga Satuan</th>
                       <?php if($_SESSION['role'] == "management_asset" || $_SESSION['role'] == "HSE"){ ?>
                         <th width="6%">#</th>
                       <?php } ?>
@@ -102,6 +103,8 @@
                       while($get_DBDetail = mysqli_fetch_array($q_getDBDetail)){
                         $get_DBgeneral = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM asset_db_general WHERE id = '$get_DBDetail[general_code_id]'"));
                         $get_merek = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM asset_db_merek WHERE id = '$get_DBDetail[merek_id]'"));
+
+                        $get_harga_terbaru = mysqli_fetch_array(mysqli_query($conn, "SELECT harga_satuan from asset_realisasi WHERE detail_code = '$get_DBDetail[detail_code]' ORDER BY id DESC"));
                     ?>
                       <tr>
                         <td><?php echo $no; ?></td>
@@ -110,10 +113,11 @@
                         <td><?php echo $get_DBgeneral['nama_barang']; ?></td>
                         <td><?php echo $get_DBgeneral['tipe_barang']; ?></td>
                         <td><?php echo $get_DBgeneral['sub_barang']; ?></td>
-                        <td><?php echo $get_DBgeneral['satuan']; ?></td>
                         <td><?php echo $get_DBDetail['tipe_detail']; ?></td>
                         <td><?php echo $get_merek['merek']; ?></td>
                         <td><?php echo $get_DBgeneral['jenis']; ?></td>
+                        <td><?php echo $get_DBgeneral['satuan']; ?></td>
+                        <td><?php echo "Rp " . number_format($get_harga_terbaru['harga_satuan'], 0, ',', '.'); ?></td>
                         <?php if($_SESSION['role'] == "management_asset" || $_SESSION['role'] == "HSE"){ ?>
                           <td style="font-size: 14px;">
                             <form id="myFormA" method="POST" action="">

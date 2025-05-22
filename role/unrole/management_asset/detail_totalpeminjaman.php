@@ -65,7 +65,7 @@
           $grand_total_apd = 0;
           $q_total_peminjamanapd = mysqli_query($conn, "SELECT t3.general_code, t3.nama_barang, t3.tipe_barang, t3.sub_barang, SUM(t1.qty) AS total_qty, t3.satuan, t3.jenis FROM asset_peminjaman_detail t1 JOIN asset_peminjaman t2 ON t1.peminjaman_id = t2.id JOIN asset_db_general t3 ON t1.general_code = t3.general_code WHERE t2.kd_project = '$kd_project' AND t3.jenis = 'APD' GROUP BY t1.general_code");
           while($get_total_peminjamanapd = mysqli_fetch_array($q_total_peminjamanapd)){
-            $harga_satuan_max = mysqli_fetch_array(mysqli_query($conn, "SELECT t1.id, t3.general_code, t1.detail_code, t1.harga_satuan FROM asset_realisasi t1 JOIN asset_db_detail t2 ON t1.detail_code = t2.detail_code JOIN asset_db_general t3 ON t2.general_code_id = t3.id WHERE t3.general_code = '$get_total_peminjamanapd[general_code]' ORDER BY t1.harga_satuan DESC"));
+            $harga_satuan_max = mysqli_fetch_array(mysqli_query($conn, "SELECT t1.id, t3.general_code, t1.detail_code, t1.harga_satuan FROM asset_realisasi t1 JOIN asset_db_detail t2 ON t1.detail_code = t2.detail_code JOIN asset_db_general t3 ON t2.general_code_id = t3.id WHERE t3.general_code = '$get_total_peminjamanapd[general_code]' ORDER BY t1.id DESC"));
 
             $total_harga = $harga_satuan_max['harga_satuan'] * $get_total_peminjamanapd['total_qty'];
             $grand_total_apd = $grand_total_apd + $total_harga;
@@ -110,7 +110,7 @@
           $grand_total_tools = 0;
           $q_total_peminjamantools = mysqli_query($conn, "SELECT t3.general_code, t3.nama_barang, t3.tipe_barang, t3.sub_barang, SUM(t1.qty) AS total_qty, t3.satuan, t3.jenis FROM asset_peminjaman_detail t1 JOIN asset_peminjaman t2 ON t1.peminjaman_id = t2.id JOIN asset_db_general t3 ON t1.general_code = t3.general_code WHERE t2.kd_project = '$kd_project' AND t3.jenis = 'Tools' GROUP BY t1.general_code");
           while($get_total_peminjamanapd = mysqli_fetch_array($q_total_peminjamantools)){
-            $harga_satuan_max = mysqli_fetch_array(mysqli_query($conn, "SELECT t1.id, t3.general_code, t1.detail_code, t1.harga_satuan FROM asset_realisasi t1 JOIN asset_db_detail t2 ON t1.detail_code = t2.detail_code JOIN asset_db_general t3 ON t2.general_code_id = t3.id WHERE t3.general_code = '$get_total_peminjamanapd[general_code]' ORDER BY t1.harga_satuan DESC"));
+            $harga_satuan_max = mysqli_fetch_array(mysqli_query($conn, "SELECT t1.id, t3.general_code, t1.detail_code, t1.harga_satuan FROM asset_realisasi t1 JOIN asset_db_detail t2 ON t1.detail_code = t2.detail_code JOIN asset_db_general t3 ON t2.general_code_id = t3.id WHERE t3.general_code = '$get_total_peminjamanapd[general_code]' ORDER BY t1.id DESC"));
 
             $total_harga = $harga_satuan_max['harga_satuan'] * $get_total_peminjamanapd['total_qty'];
             $grand_total_tools = $grand_total_tools + $total_harga;
@@ -156,7 +156,7 @@
           $grand_total_inv = 0;
           $q_total_peminjamaninv = mysqli_query($conn, "SELECT t3.general_code, t3.nama_barang, t3.tipe_barang, t3.sub_barang, SUM(t1.qty) AS total_qty, t3.satuan, t3.jenis FROM asset_peminjaman_detail t1 JOIN asset_peminjaman t2 ON t1.peminjaman_id = t2.id JOIN asset_db_general t3 ON t1.general_code = t3.general_code WHERE t2.kd_project = '$kd_project' AND t3.jenis = 'Inventaris' GROUP BY t1.general_code");
           while($get_total_peminjamanapd = mysqli_fetch_array($q_total_peminjamaninv)){
-            $harga_satuan_max = mysqli_fetch_array(mysqli_query($conn, "SELECT t1.id, t3.general_code, t1.detail_code, t1.harga_satuan FROM asset_realisasi t1 JOIN asset_db_detail t2 ON t1.detail_code = t2.detail_code JOIN asset_db_general t3 ON t2.general_code_id = t3.id WHERE t3.general_code = '$get_total_peminjamanapd[general_code]' ORDER BY t1.harga_satuan DESC"));
+            $harga_satuan_max = mysqli_fetch_array(mysqli_query($conn, "SELECT t1.id, t3.general_code, t1.detail_code, t1.harga_satuan FROM asset_realisasi t1 JOIN asset_db_detail t2 ON t1.detail_code = t2.detail_code JOIN asset_db_general t3 ON t2.general_code_id = t3.id WHERE t3.general_code = '$get_total_peminjamanapd[general_code]' ORDER BY t1.id DESC"));
 
             $total_harga = $harga_satuan_max['harga_satuan'] * $get_total_peminjamanapd['total_qty'];
             $grand_total_inv = $grand_total_inv + $total_harga;

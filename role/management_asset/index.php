@@ -381,8 +381,8 @@
             </a>
           </li>
 
-          <li class="nav-item <?php if($_GET['pages']=='pilihstock' || $_GET['pages']=='datastock' || $_GET['pages']=='pilihstockopname' || $_GET['pages']=='stockopname' || $_GET['pages']=='dataassetrusak' || $_GET['pages']=='reportpengembalianproject' || $_GET['pages']=='annualreport' || $_GET['pages']=='reportproject' || $_GET['pages']=='reportprojectdetail'){ echo 'menu-open'; } ?>">
-            <a href="#" class="nav-link <?php if($_GET['pages']=='pilihstock' || $_GET['pages']=='datastock' || $_GET['pages']=='pilihstockopname' || $_GET['pages']=='stockopname' || $_GET['pages']=='dataassetrusak' || $_GET['pages']=='reportpengembalianproject' || $_GET['pages']=='annualreport' || $_GET['pages']=='reportproject' || $_GET['pages']=='reportprojectdetail'){ echo 'active'; } ?>">
+          <li class="nav-item <?php if($_GET['pages']=='pilihstock' || $_GET['pages']=='datastock' || $_GET['pages']=='pilihstockopname' || $_GET['pages']=='stockopname' || $_GET['pages']=='dataassetrusak' || $_GET['pages']=='reportpengembalianproject' || $_GET['pages']=='annualreport' || $_GET['pages']=='reportproject' || $_GET['pages']=='reportprojectdetail' || $_GET['pages']=='datastockopnamesite'){ echo 'menu-open'; } ?>">
+            <a href="#" class="nav-link <?php if($_GET['pages']=='pilihstock' || $_GET['pages']=='datastock' || $_GET['pages']=='pilihstockopname' || $_GET['pages']=='stockopname' || $_GET['pages']=='dataassetrusak' || $_GET['pages']=='reportpengembalianproject' || $_GET['pages']=='annualreport' || $_GET['pages']=='reportproject' || $_GET['pages']=='reportprojectdetail' || $_GET['pages']=='datastockopnamesite'){ echo 'active'; } ?>">
               <i class="nav-icon fa fa-file-text-o"></i>
               <p>
                 Data Report
@@ -402,6 +402,14 @@
                 <a href="index.php?pages=pilihstockopname" class="nav-link <?php if($_GET['pages']=='pilihstockopname' || $_GET['pages']=='stockopname'){ echo 'active'; } ?>">
                   <i class="fa fa-chevron-right nav-icon"></i>
                   <p>Stock Opname</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="index.php?pages=datastockopnamesite" class="nav-link <?php if($_GET['pages']=='datastockopnamesite'){ echo 'active'; } ?>">
+                  <i class="fa fa-chevron-right nav-icon"></i>
+                  <p>Stock Opname - Site</p>
                 </a>
               </li>
             </ul>
@@ -542,6 +550,8 @@
       require_once "../unrole/management_asset/report_project.php";
     }elseif($_GET["pages"]=="reportprojectdetail"){
       require_once "../unrole/management_asset/report_project_detail.php";
+    }elseif($_GET["pages"]=="datastockopnamesite"){
+      require_once "../unrole/management_asset/data_stockopname_site.php";
     }
   ?>
   <!-- ./Konten Wrapper -->

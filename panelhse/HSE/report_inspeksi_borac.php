@@ -1991,5 +1991,5 @@
   <!-- /.modal -->
 
   <script>
-    document.title = "<?php echo "Report Inspeksi APAR W".$week." - ".$get_project['nama_project']; ?>";
+    document.title = "<?php echo "Report Inspeksi Bor AC W".$week." - ".$get_project['nama_project']; ?>";
   </script>

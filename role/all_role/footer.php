@@ -5363,6 +5363,153 @@
     });
   </script>
 
+  <!-- ----- EDIT STATUS SO SITE ------------------------ -->
+  <script type="text/javascript">
+    $(document).ready(function(){
+        $('#show_edit_status_sosite').on('show.bs.modal', function (e) {
+            var getID = $(e.relatedTarget).data('id');
+            /* fungsi AJAX untuk melakukan fetch data */
+            $.ajax({
+                type : 'post',
+                url : '../unrole/management_asset/edit_status_sosite.php',
+                /* detail per identifier ditampung pada berkas detail.php yang berada di folder application/view */
+                data :  'getID='+ getID,
+                /* memanggil fungsi getDetail dan mengirimkannya */
+                success : function(data){
+                $('.modal-data').html(data);
+                /* menampilkan data dalam bentuk dokumen HTML */
+                }
+            });
+         });
+    });
+  </script>
+
+  <!-- ----- SHOW DETAIL SO SITE ------------------------ -->
+  <script type="text/javascript">
+    $(document).ready(function(){
+        $('#show_detail_sosite').on('show.bs.modal', function (e) {
+            var getID = $(e.relatedTarget).data('id');
+            /* fungsi AJAX untuk melakukan fetch data */
+            $.ajax({
+                type : 'post',
+                url : '../unrole/management_asset/detail_sosite.php',
+                /* detail per identifier ditampung pada berkas detail.php yang berada di folder application/view */
+                data :  'getID='+ getID,
+                /* memanggil fungsi getDetail dan mengirimkannya */
+                success : function(data){
+                $('.modal-data').html(data);
+                /* menampilkan data dalam bentuk dokumen HTML */
+                }
+            });
+         });
+    });
+  </script>
+
+  <!-- ----- SHOW DELETE SO SITE ------------------------ -->
+  <script type="text/javascript">
+    $(document).ready(function(){
+        $('#show_delete_sosite').on('show.bs.modal', function (e) {
+            var getID = $(e.relatedTarget).data('id');
+            /* fungsi AJAX untuk melakukan fetch data */
+            $.ajax({
+                type : 'post',
+                url : '../unrole/management_asset/delete_data_sosite.php',
+                /* detail per identifier ditampung pada berkas detail.php yang berada di folder application/view */
+                data :  'getID='+ getID,
+                /* memanggil fungsi getDetail dan mengirimkannya */
+                success : function(data){
+                $('.modal-data').html(data);
+                /* menampilkan data dalam bentuk dokumen HTML */
+                }
+            });
+         });
+    });
+  </script>
+
+  <!-- ----- SHOW EDIT GA RUANGAN ------------------------ -->
+  <script type="text/javascript">
+    $(document).ready(function(){
+        $('#show_edit_ruangan').on('show.bs.modal', function (e) {
+            var getID = $(e.relatedTarget).data('id');
+            /* fungsi AJAX untuk melakukan fetch data */
+            $.ajax({
+                type : 'post',
+                url : '../unrole/ga_asset/edit_ruangan.php',
+                /* detail per identifier ditampung pada berkas detail.php yang berada di folder application/view */
+                data :  'getID='+ getID,
+                /* memanggil fungsi getDetail dan mengirimkannya */
+                success : function(data){
+                $('.modal-data').html(data);
+                /* menampilkan data dalam bentuk dokumen HTML */
+                }
+            });
+         });
+    });
+  </script>
+
+  <!-- ----- SHOW EDIT GA JENIS ------------------------ -->
+  <script type="text/javascript">
+    $(document).ready(function(){
+        $('#show_edit_jenis').on('show.bs.modal', function (e) {
+            var getID = $(e.relatedTarget).data('id');
+            /* fungsi AJAX untuk melakukan fetch data */
+            $.ajax({
+                type : 'post',
+                url : '../unrole/ga_asset/edit_jenis.php',
+                /* detail per identifier ditampung pada berkas detail.php yang berada di folder application/view */
+                data :  'getID='+ getID,
+                /* memanggil fungsi getDetail dan mengirimkannya */
+                success : function(data){
+                $('.modal-data').html(data);
+                /* menampilkan data dalam bentuk dokumen HTML */
+                }
+            });
+         });
+    });
+  </script> 
+
+  <!-- ----- SHOW EDIT GA ASSET ------------------------ -->
+  <script type="text/javascript">
+    $(document).ready(function(){
+        $('#show_edit_dataasset').on('show.bs.modal', function (e) {
+            var getID = $(e.relatedTarget).data('id');
+            /* fungsi AJAX untuk melakukan fetch data */
+            $.ajax({
+                type : 'post',
+                url : '../unrole/ga_asset/edit_asset.php',
+                /* detail per identifier ditampung pada berkas detail.php yang berada di folder application/view */
+                data :  'getID='+ getID,
+                /* memanggil fungsi getDetail dan mengirimkannya */
+                success : function(data){
+                $('.modal-data').html(data);
+                /* menampilkan data dalam bentuk dokumen HTML */
+                }
+            });
+         });
+    });
+  </script>
+
+  <!-- ----- SHOW DETAIL DATA GA ASSET ------------------------ -->
+  <script type="text/javascript">
+    $(document).ready(function(){
+        $('#show_detail_dataasset').on('show.bs.modal', function (e) {
+            var getID = $(e.relatedTarget).data('id');
+            /* fungsi AJAX untuk melakukan fetch data */
+            $.ajax({
+                type : 'post',
+                url : '../unrole/ga_asset/detail_dataasset.php',
+                /* detail per identifier ditampung pada berkas detail.php yang berada di folder application/view */
+                data :  'getID='+ getID,
+                /* memanggil fungsi getDetail dan mengirimkannya */
+                success : function(data){
+                $('.modal-data').html(data);
+                /* menampilkan data dalam bentuk dokumen HTML */
+                }
+            });
+         });
+    });
+  </script>
+
 
     <!-- hitung data -->
     <?php 

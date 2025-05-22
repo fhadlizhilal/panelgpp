@@ -210,11 +210,9 @@
                                 <?php } ?>
                               </td>
                               <td>
-                                <?php if($get_suratjalan['status'] == "dalam pengiriman"){ ?>
-                                  <a href="#modal" data-toggle='modal' data-target='#show_edit_suratjalan' data-id='<?php echo $get_suratjalan['id']; ?>' data-toggle="tooltip" data-placement="bottom" title="Edit Surat Jalan">
+                                <a href="#modal" data-toggle='modal' data-target='#show_edit_suratjalan' data-id='<?php echo $get_suratjalan['id']; ?>' data-toggle="tooltip" data-placement="bottom" title="Edit Surat Jalan">
                                     <span class="fa fa-edit"></span>
                                   </a>
-                                <?php } ?>
                               </td>
                             </tr>
                         <?php $no++; } ?>
