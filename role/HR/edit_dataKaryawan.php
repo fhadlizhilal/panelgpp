@@ -44,6 +44,14 @@
           <input type="Date" class="form-control" name="tgl_masuk" value="<?php echo $getKaryawan['tgl_masuk']; ?>" required>
         </div>
         <div class="form-group">
+          <label>Status</label>
+          <select class="form-control" name="status" required>
+              <option value="" disabled>-- Pilih Status --</option>
+              <option value="aktif" <?php if($getKaryawan['status'] == "aktif"){ echo "selected"; } ?>>Aktif</option>
+              <option value="non-aktif" <?php if($getKaryawan['status'] == "non-aktif"){ echo "selected"; } ?>>Non-Aktif</option>
+          </select>
+        </div>
+        <div class="form-group">
           <label>Foto</label>
           <input type="text" class="form-control" name="foto" value="<?php echo $getKaryawan['foto']; ?>" required>
         </div>

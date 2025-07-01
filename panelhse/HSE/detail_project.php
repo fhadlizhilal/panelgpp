@@ -512,7 +512,11 @@
                                         }elseif($get_inspeksilist_tools['jenis_inspeksi'] == 'inspeksi_borduduk'){
                                           echo "Inspeksi Bor Duduk";
                                         }elseif($get_inspeksilist_tools['jenis_inspeksi'] == 'inspeksi_cuttingwheel'){
-                                          echo "Inspeksi Cutting Wheel";
+                                          if($get_inspeksilist_tools['status'] == "progress"){
+                                            echo "<a href='index.php?pages=forminspeksicuttingwheel&kd=".$get_inspeksilist_tools['id']."'>Inspeksi Cutting Wheel</a>";
+                                          }elseif($get_inspeksilist_tools['status'] == "completed"){
+                                            echo "<a href='index.php?pages=reportinspeksicuttingwheel&kd=".$get_inspeksilist_tools['id']."'>Inspeksi Cutting Wheel</a>";
+                                          }
                                         }elseif($get_inspeksilist_tools['jenis_inspeksi'] == 'inspeksi_amperemeter'){
                                           echo "Inspeksi Ampere Meter";
                                         }elseif($get_inspeksilist_tools['jenis_inspeksi'] == 'inspeksi_megger'){

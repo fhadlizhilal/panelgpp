@@ -180,7 +180,7 @@
                           <tbody>
                             <?php
                               $no=1;
-                              $q_getKaryawan = mysqli_query($conn, "SELECT * FROM karyawan WHERE nik != '12150101190187' AND nik != '12150102020784' AND nik != '12150104100159' AND nik != '12150211080696' ORDER BY nama ASC");
+                              $q_getKaryawan = mysqli_query($conn, "SELECT * FROM karyawan WHERE status = 'aktif' AND nik != '12150101190187' AND nik != '12150102020784' AND nik != '12150104100159' AND nik != '12150211080696' ORDER BY nama ASC");
                               while($get_karyawan = mysqli_fetch_array($q_getKaryawan)){
                                 //Update from tugas_kantor
                                   $q_tugasKantor = mysqli_query($conn, "SELECT * FROM tugas_kantor WHERE nik = '$get_karyawan[nik]' AND dari <= '$_SESSION[tgl_cuti]' AND sampai >= '$_SESSION[tgl_cuti]'");
@@ -230,7 +230,7 @@
                           <tbody>
                             <?php
                               $no=1;
-                              $q_getKaryawan = mysqli_query($conn, "SELECT * FROM karyawan WHERE nik != '12150101190187' AND nik != '12150102020784' AND nik != '12150104100159' AND nik != '12150211080696' ORDER BY nama ASC");
+                              $q_getKaryawan = mysqli_query($conn, "SELECT * FROM karyawan WHERE status = 'aktif' AND nik != '12150101190187' AND nik != '12150102020784' AND nik != '12150104100159' AND nik != '12150211080696' ORDER BY nama ASC");
                               while($get_karyawan = mysqli_fetch_array($q_getKaryawan)){
                                 //Update from tugas_kantor
                                   $q_tugasKantor = mysqli_query($conn, "SELECT * FROM tugas_kantor WHERE nik = '$get_karyawan[nik]' AND dari <= '$_SESSION[tgl_cuti]' AND sampai >= '$_SESSION[tgl_cuti]'");

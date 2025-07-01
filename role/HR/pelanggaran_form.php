@@ -47,7 +47,7 @@
                         <select class="form-control" name="nik_karyawan" style="font-size: 11px;">
                           <option value="" selected disabled>----- Pilih Karyawan -----</option>
                           <?php
-                            $q_getKaryawan = mysqli_query($conn, "SELECT * FROM karyawan WHERE nik != '12150101190187' AND nik != '12150102020784' AND nik != '12150104100159' ORDER BY nama ASC");
+                            $q_getKaryawan = mysqli_query($conn, "SELECT * FROM karyawan WHERE status = 'aktif' AND nik != '12150101190187' AND nik != '12150102020784' AND nik != '12150103100159' AND nik != '12150211080696' ORDER BY nama ASC");
                             while($get_karyawan = mysqli_fetch_array($q_getKaryawan)){
                           ?>
                             <option value="<?php echo $get_karyawan['nik']; ?>"><?php echo $get_karyawan['nama']; ?></option>

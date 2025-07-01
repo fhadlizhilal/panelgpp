@@ -151,7 +151,7 @@
                           $tgl = date('Y-m-d', strtotime('+1 days', strtotime($tgl)));
                         }
 
-                        $q_getKaryawan = mysqli_query($conn, "SELECT * FROM karyawan WHERE nik != '12150101190187' AND nik != '12150102020784' AND nik != '12150104100159' ORDER BY jabatan_id ASC");
+                        $q_getKaryawan = mysqli_query($conn, "SELECT * FROM karyawan WHERE status = 'aktif' AND nik != '12150101190187' AND nik != '12150102020784' AND nik != '12150103100159' AND nik != '12150211080696' ORDER BY nama ASC");
                         while($getKaryawan = mysqli_fetch_array($q_getKaryawan)){
                       ?>
                       <tr>

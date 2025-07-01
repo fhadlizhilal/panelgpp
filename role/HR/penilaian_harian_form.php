@@ -6,13 +6,9 @@
     $_SESSION['tanggal_penilaian'] = date("d-m-Y", strtotime($_GET['tanggal_penilaian']));
   }
 
-  $bulan_penilaian = date("m", strtotime($_SESSION['tanggal_penilaian']));
-  $tahun_penilaian = date("Y", strtotime($_SESSION['tanggal_penilaian']));
-  $tgl_penilaian = date("Y-m-d", strtotime($_SESSION['tanggal_penilaian']));
-
   //Set tanggal dan Jam Absen Pulang
   if(isset($_GET['set_penilaian'])){
-    $q_getKaryawan = mysqli_query($conn, "SELECT * FROM karyawan WHERE nik != '12150101190187' AND nik != '12150102020784' AND nik != '12150104100159' ORDER BY jabatan_id ASC");
+    $q_getKaryawan = mysqli_query($conn, "SELECT * FROM karyawan WHERE status = 'aktif' AND nik != '12150101190187' AND nik != '12150102020784' AND nik != '12150103100159' AND nik != '12150211080696' ORDER BY jabatan_id ASC");
     $jmlDataAbsenMasuk = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM absen_masuk WHERE tanggal = '$_GET[tanggal_penilaian]'"));
     mysqli_query($conn, "TRUNCATE TABLE penilaian_harian_tmp");
     
@@ -35,18 +31,12 @@
           $program = "";
         }
 
-        $cek_izin_bulan_ini = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM absen_masuk WHERE nik = '$nik' AND MONTH(tanggal) = '$bulan_penilaian' AND YEAR(tanggal) = '$tahun_penilaian' AND (status = 'Izin Tidak Masuk' OR status = 'Sakit - Tanpa SKD' OR status = 'Tanpa Keterangan') AND tanggal <= '$tgl_penilaian'"));
-
-        if($cek_izin_bulan_ini > 1 AND ($getAbsenMasuk['status'] == "Izin Tidak Masuk" OR $getAbsenMasuk['status'] == "Sakit - Tanpa SKD" OR $getAbsenMasuk['status'] == "Tanpa Keterangan")){
-          $program = "Tidak";
-          $seragam = "Tidak";
-          $nametag = "Tidak";
-        }
-
         mysqli_query($conn, "INSERT INTO penilaian_harian_tmp VALUES ('','$nik','$program','$seragam','$nametag')");
       }
     }
   }
+
+  $tgl_penilaian = date("Y-m-d", strtotime($_SESSION['tanggal_penilaian']));
 
   function tanggal_indo($tanggal, $cetak_hari = false)
   {
@@ -158,7 +148,7 @@
                           <td>Jml Karyawan</td>
                           <td>:</td>
                           <td>
-                            <b><?php echo $count_karyawan = mysqli_num_rows(mysqli_query($conn,"SELECT * FROM karyawan WHERE nik != '12150101190187' AND nik != '12150102020784' AND nik != '12150104100159'")); ?></b>
+                            <b><?php echo $count_karyawan = mysqli_num_rows(mysqli_query($conn,"SELECT * FROM karyawan WHERE status = 'aktif' AND nik != '12150101190187' AND nik != '12150102020784' AND nik != '12150103100159' AND nik != '12150211080696'")); ?></b>
                           </td>
                         </tr>
                         <tr>
@@ -239,7 +229,7 @@
                   <tbody>
                     <?php
                     if($cek_AbsenMasuk > 0){
-                      $q_getKaryawan = mysqli_query($conn, "SELECT * FROM karyawan WHERE nik != '12150101190187' AND nik != '12150102020784' AND nik != '12150104100159' ORDER BY jabatan_id ASC");
+                      $q_getKaryawan = mysqli_query($conn, "SELECT * FROM karyawan WHERE status = 'aktif' AND nik != '12150101190187' AND nik != '12150102020784' AND nik != '12150103100159' AND nik != '12150211080696' ORDER BY nama ASC");
                       while($get_karyawan = mysqli_fetch_array($q_getKaryawan)){
                         $get_absenMasuk = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM absen_masuk WHERE nik = '$get_karyawan[nik]' AND tanggal = '$tgl_penilaian'"));
                         $get_penilaianTmp = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM penilaian_harian_tmp WHERE nik = '$get_karyawan[nik]'"));

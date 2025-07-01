@@ -68,7 +68,7 @@
               <form method="GET" action="index.php?pages=report_daily">
                 <div class="inner">
                   <div class="row">
-                    <div class="col-lg-2 col-sm-2 col-xs-2 col-2"></div>
+                    <div class="col-2"></div>
                     <div class="col-lg-2 col-sm-2 col-xs-2 col-2">
                       <div class="form-group">
                         <center><label>Dari Tanggal</label></center>
@@ -88,7 +88,7 @@
                             <option value="all_karyawan" selected>Semua Karyawan</option>
                             <option value="_karyawan" disabled>----- Karyawan -----</option>
                             <?php 
-                            $q_karyawan = mysqli_query($conn, "SELECT * from karyawan");
+                            $q_karyawan = mysqli_query($conn, "SELECT * from karyawan WHERE status = 'aktif' AND nik != '12150211080696' ORDER BY nama ASC");
                             while($get_karyawan = mysqli_fetch_array($q_karyawan)){
                           ?>
                             <option value="<?php echo $get_karyawan['nik']; ?>"><?php echo $get_karyawan['nama']; ?></option>
@@ -141,7 +141,7 @@
                   <tbody>
                     <?php
                       if($_GET['karyawan'] == "all_karyawan"){
-                        $q_get_karyawan = mysqli_query($conn, "SELECT * FROM karyawan");
+                        $q_get_karyawan = mysqli_query($conn, "SELECT * FROM karyawan WHERE status = 'aktif' ORDER BY nama ASC");
                       }else{
                         $cek_nik = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM karyawan WHERE nik = '$_GET[karyawan]'"));
                         if($cek_nik > 0){

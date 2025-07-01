@@ -68,7 +68,7 @@
           $grand_total_apd = 0;
           $q_total_suratjalan = mysqli_query($conn, "SELECT a.detail_code, e.nama_barang, e.tipe_barang, d.tipe_detail, f.merek, e.sub_barang, SUM(a.qty) AS total_qty, e.satuan FROM asset_suratjalan_detail a JOIN asset_suratjalan b ON a.suratjalan_id = b.id JOIN asset_peminjaman c ON b.peminjaman_id = c.id JOIN asset_db_detail d ON a.detail_code = d.detail_code JOIN asset_db_general e ON d.general_code_id = e.id JOIN asset_db_merek f ON d.merek_id = f.id WHERE c.jenis = 'apd' AND c.kd_project = '$kd_project' GROUP BY a.detail_code ORDER BY e.nama_barang ASC");
           while($get_total_suratjalan = mysqli_fetch_array($q_total_suratjalan)){
-            $harga_terbaru = mysqli_fetch_array(mysqli_query($conn, "SELECT harga_satuan FROM asset_realisasi WHERE detail_code = '$get_total_suratjalan[detail_code]'"));
+            $harga_terbaru = mysqli_fetch_array(mysqli_query($conn, "SELECT harga_satuan FROM asset_realisasi WHERE detail_code = '$get_total_suratjalan[detail_code]' ORDER BY id DESC"));
             $total_harga = $get_total_suratjalan['total_qty'] * $harga_terbaru['harga_satuan'];
             $grand_total_apd = $grand_total_apd + $total_harga;
         ?>
@@ -116,7 +116,7 @@
           $grand_total_tools = 0;
           $q_total_suratjalan = mysqli_query($conn, "SELECT a.detail_code, e.nama_barang, e.tipe_barang, d.tipe_detail, f.merek, e.sub_barang, SUM(a.qty) AS total_qty, e.satuan FROM asset_suratjalan_detail a JOIN asset_suratjalan b ON a.suratjalan_id = b.id JOIN asset_peminjaman c ON b.peminjaman_id = c.id JOIN asset_db_detail d ON a.detail_code = d.detail_code JOIN asset_db_general e ON d.general_code_id = e.id JOIN asset_db_merek f ON d.merek_id = f.id WHERE c.jenis = 'tools' AND c.kd_project = '$kd_project' GROUP BY a.detail_code ORDER BY e.nama_barang ASC");
           while($get_total_suratjalan = mysqli_fetch_array($q_total_suratjalan)){
-            $harga_terbaru = mysqli_fetch_array(mysqli_query($conn, "SELECT harga_satuan FROM asset_realisasi WHERE detail_code = '$get_total_suratjalan[detail_code]'"));
+            $harga_terbaru = mysqli_fetch_array(mysqli_query($conn, "SELECT harga_satuan FROM asset_realisasi WHERE detail_code = '$get_total_suratjalan[detail_code]' ORDER BY id DESC"));
             $total_harga = $get_total_suratjalan['total_qty'] * $harga_terbaru['harga_satuan'];
             $grand_total_tools = $grand_total_tools + $total_harga;
         ?>
@@ -165,7 +165,7 @@
           $grand_total_inv = 0;
           $q_total_pengajuan = mysqli_query($conn, "SELECT a.detail_code, e.nama_barang, e.tipe_barang, d.tipe_detail, f.merek, e.sub_barang, SUM(a.qty) AS total_qty, e.satuan FROM asset_suratjalan_detail a JOIN asset_suratjalan b ON a.suratjalan_id = b.id JOIN asset_peminjaman c ON b.peminjaman_id = c.id JOIN asset_db_detail d ON a.detail_code = d.detail_code JOIN asset_db_general e ON d.general_code_id = e.id JOIN asset_db_merek f ON d.merek_id = f.id WHERE c.jenis = 'inventaris' AND c.kd_project = '$kd_project' GROUP BY a.detail_code ORDER BY e.nama_barang ASC");
           while($get_total_suratjalan = mysqli_fetch_array($q_total_pengajuan)){
-            $harga_terbaru = mysqli_fetch_array(mysqli_query($conn, "SELECT harga_satuan FROM asset_realisasi WHERE detail_code = '$get_total_suratjalan[detail_code]'"));
+            $harga_terbaru = mysqli_fetch_array(mysqli_query($conn, "SELECT harga_satuan FROM asset_realisasi WHERE detail_code = '$get_total_suratjalan[detail_code]' ORDER BY id DESC"));
             $total_harga = $get_total_suratjalan['total_qty'] * $harga_terbaru['harga_satuan'];
             $grand_total_inv = $grand_total_inv + $total_harga;
         ?>
@@ -194,10 +194,10 @@
     <table class="table table-sm" style="font-size: 11px">
       <thead>
         <tr>
-          <th>TOTAL PENGAJUAN APD</th>
-          <th>TOTAL PENGAJUAN TOOLS</th>
-          <th>TOTAL PENGAJUAN INVENTARIS</th>
-          <th>TOTAL PENGAJUAN</th>
+          <th>TOTAL SURAT JALAN APD</th>
+          <th>TOTAL SURAT JALAN TOOLS</th>
+          <th>TOTAL SURAT JALAN INVENTARIS</th>
+          <th>TOTAL SURAT JALAN</th>
         </tr>
       </thead>
       <tbody>

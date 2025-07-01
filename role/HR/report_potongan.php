@@ -128,7 +128,7 @@
                   <tbody>
                     <?php
                       $no = 0;
-                      $q_getKaryawan = mysqli_query($conn, "SELECT * FROM karyawan WHERE nik != '12150101190187' AND nik != '12150102020784' AND nik != '12150104100159' ORDER BY nama ASC");
+                      $q_getKaryawan = mysqli_query($conn, "SELECT * FROM karyawan WHERE status = 'aktif' AND nik != '12150101190187' AND nik != '12150102020784' AND nik != '12150104100159' ORDER BY nama ASC");
                       while($getKaryawan = mysqli_fetch_array($q_getKaryawan)){
                         $no++;
                         $getPotongan = mysqli_fetch_array(mysqli_query($conn,"SELECT SUM(potongan_terlambat) AS PotonganTerlambat, SUM(potongan_absen) AS PotonganKehadiran, SUM(potongan_program) AS PotonganProgram, SUM(potongan_grooming) AS PotonganGrooming, SUM(potongan_output) AS PotonganOutput FROM potongan WHERE nik = '$getKaryawan[nik]' AND tanggal >= '$dari' AND tanggal <= '$sampai'"));
@@ -187,7 +187,7 @@
                                     $t_potOutput = 0;
                                     $t_potTotal = 0;
 
-                                    $q_getPotongan = mysqli_query($conn,"SELECT * FROM potongan WHERE nik ='$getKaryawan[nik]' AND tanggal >= '$dari' AND tanggal <= '$sampai'");
+                                    $q_getPotongan = mysqli_query($conn,"SELECT * FROM potongan WHERE nik ='$getKaryawan[nik]' AND tanggal >= '$dari' AND tanggal <= '$sampai' ORDER BY tanggal ASC");
                                     while($potongan = mysqli_fetch_array($q_getPotongan)){
                                       $no_2++;
                                       $t_terlambat = $t_terlambat + $potongan['toleransi_bulanini'];

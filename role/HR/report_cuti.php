@@ -83,6 +83,8 @@
                           <option value="2022" <?php if($tahunGet == "2022"){ echo "selected"; } ?>>2022</option>
                           <option value="2023" <?php if($tahunGet == "2023"){ echo "selected"; } ?>>2023</option>
                           <option value="2024" <?php if($tahunGet == "2024"){ echo "selected"; } ?>>2024</option>
+                          <option value="2025" <?php if($tahunGet == "2025"){ echo "selected"; } ?>>2025</option>
+                          <option value="2026" <?php if($tahunGet == "2026"){ echo "selected"; } ?>>2026</option>
                         </select>
                       </div>
                     </div>
@@ -123,7 +125,7 @@
                     <?php
                       $no = 0;
                       $getSetting = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM setting"));
-                      $q_getKaryawan = mysqli_query($conn, "SELECT * FROM karyawan WHERE nik != '12150101190187' AND nik != '12150102020784' AND nik != '12150104100159' ORDER BY nama ASC");
+                      $q_getKaryawan = mysqli_query($conn, "SELECT * FROM karyawan WHERE status = 'aktif' AND nik != '12150101190187' AND nik != '12150102020784' AND nik != '12150104100159' ORDER BY nama ASC");
                       while($getKaryawan = mysqli_fetch_array($q_getKaryawan)){
                         $no = $no + 1;
                         $sisa_cuti_tahunan1 = $getSetting['cuti_tahunan'];
@@ -147,155 +149,6 @@
                                 $jarak = $getAbsensi1['sampai'] - $getAbsensi1['dari'];
                                 $hari2 = $jarak / 60 / 60 / 24;
                                 $hari2 = $hari2 + 1;
-
-                                //hitung cuti & izin perbulan                                            
-                                if(date('m', strtotime($getAbsensi1['dari'])) == '1' AND date('m', strtotime($getAbsensi1['sampai'])) == '1' AND ($getAbsensi1['status'] == "Izin Tidak Masuk" OR $getAbsensi1['status'] == "Sakit - Tanpa SKD" OR $getAbsensi1['status'] == "Tanpa Keterangan")){
-
-                                  $bulanke[1] = $bulanke[1] + 1;
-
-                                  if($bulanke[1] < 1 AND $hari2 > 1){
-                                    $sisa_cuti_tahunan1 = $sisa_cuti_tahunan1-($hari2 - 1);
-                                  }elseif($bulanke[1] > 1){
-                                    $sisa_cuti_tahunan1 = $sisa_cuti_tahunan1 - $hari2;
-                                  }else{
-                                    $sisa_cuti_tahunan1 = $sisa_cuti_tahunan1;
-                                  }
-
-                                }elseif(date('m', strtotime($getAbsensi1['dari'])) == '2' AND date('m', strtotime($getAbsensi1['sampai'])) == '2' AND ($getAbsensi1['status'] == "Izin Tidak Masuk" OR $getAbsensi1['status'] == "Sakit - Tanpa SKD" OR $getAbsensi1['status'] == "Tanpa Keterangan")){
-
-                                  $bulanke[2] = $bulanke[2] + 1;
-
-                                  if($bulanke[2] < 1 AND $hari2 > 1){
-                                    $sisa_cuti_tahunan1 = $sisa_cuti_tahunan1-($hari2 - 1);
-                                  }elseif($bulanke[2] > 1){
-                                    $sisa_cuti_tahunan1 = $sisa_cuti_tahunan1 - $hari2;
-                                  }else{
-                                    $sisa_cuti_tahunan1 = $sisa_cuti_tahunan1;
-                                  }
-
-                                }elseif(date('m', strtotime($getAbsensi1['dari'])) == '3' AND date('m', strtotime($getAbsensi1['sampai'])) == '3' AND ($getAbsensi1['status'] == "Izin Tidak Masuk" OR $getAbsensi1['status'] == "Sakit - Tanpa SKD" OR $getAbsensi1['status'] == "Tanpa Keterangan")){
-
-                                  $bulanke[3] = $bulanke[3] + 1;
-
-                                  if($bulanke[3] < 1 AND $hari2 > 1){
-                                    $sisa_cuti_tahunan1 = $sisa_cuti_tahunan1-($hari2 - 1);
-                                  }elseif($bulanke[3] > 1){
-                                    $sisa_cuti_tahunan1 = $sisa_cuti_tahunan1 - $hari2;
-                                  }else{
-                                    $sisa_cuti_tahunan1 = $sisa_cuti_tahunan1;
-                                  }
-
-                                }elseif(date('m', strtotime($getAbsensi1['dari'])) == '4' AND date('m', strtotime($getAbsensi1['sampai'])) == '4' AND ($getAbsensi1['status'] == "Izin Tidak Masuk" OR $getAbsensi1['status'] == "Sakit - Tanpa SKD" OR $getAbsensi1['status'] == "Tanpa Keterangan")){
-
-                                  $bulanke[4] = $bulanke[4] + 1;
-
-                                  if($bulanke[4] < 1 AND $hari2 > 1){
-                                    $sisa_cuti_tahunan1 = $sisa_cuti_tahunan1-($hari2 - 1);
-                                  }elseif($bulanke[4] > 1){
-                                    $sisa_cuti_tahunan1 = $sisa_cuti_tahunan1 - $hari2;
-                                  }else{
-                                    $sisa_cuti_tahunan1 = $sisa_cuti_tahunan1;
-                                  }
-
-                                }elseif(date('m', strtotime($getAbsensi1['dari'])) == '5' AND date('m', strtotime($getAbsensi1['sampai'])) == '5' AND ($getAbsensi1['status'] == "Izin Tidak Masuk" OR $getAbsensi1['status'] == "Sakit - Tanpa SKD" OR $getAbsensi1['status'] == "Tanpa Keterangan")){
-
-                                  $bulanke[5] = $bulanke[5] + 1;
-
-                                  if($bulanke[5] < 1 AND $hari2 > 1){
-                                    $sisa_cuti_tahunan1 = $sisa_cuti_tahunan1-($hari2 - 1);
-                                  }elseif($bulanke[5] > 1){
-                                    $sisa_cuti_tahunan1 = $sisa_cuti_tahunan1 - $hari2;
-                                  }else{
-                                    $sisa_cuti_tahunan1 = $sisa_cuti_tahunan1;
-                                  }
-
-                                }elseif(date('m', strtotime($getAbsensi1['dari'])) == '6' AND date('m', strtotime($getAbsensi1['sampai'])) == '6' AND ($getAbsensi1['status'] == "Izin Tidak Masuk" OR $getAbsensi1['status'] == "Sakit - Tanpa SKD" OR $getAbsensi1['status'] == "Tanpa Keterangan")){
-
-                                  $bulanke[6] = $bulanke[6] + 1;
-
-                                  if($bulanke[6] < 1 AND $hari2 > 1){
-                                    $sisa_cuti_tahunan1 = $sisa_cuti_tahunan1-($hari2 - 1);
-                                  }elseif($bulanke[6] > 1){
-                                    $sisa_cuti_tahunan1 = $sisa_cuti_tahunan1 - $hari2;
-                                  }else{
-                                    $sisa_cuti_tahunan1 = $sisa_cuti_tahunan1;
-                                  }
-
-                                }elseif(date('m', strtotime($getAbsensi1['dari'])) == '7' AND date('m', strtotime($getAbsensi1['sampai'])) == '7' AND ($getAbsensi1['status'] == "Izin Tidak Masuk" OR $getAbsensi1['status'] == "Sakit - Tanpa SKD" OR $getAbsensi1['status'] == "Tanpa Keterangan")){
-
-                                  $bulanke[7] = $bulanke[7] + 1;
-
-                                  if($bulanke[7] < 1 AND $hari2 > 1){
-                                    $sisa_cuti_tahunan1 = $sisa_cuti_tahunan1-($hari2 - 1);
-                                  }elseif($bulanke[7] > 1){
-                                    $sisa_cuti_tahunan1 = $sisa_cuti_tahunan1 - $hari2;
-                                  }else{
-                                    $sisa_cuti_tahunan1 = $sisa_cuti_tahunan1;
-                                  }
-
-                                }elseif(date('m', strtotime($getAbsensi1['dari'])) == '8' AND date('m', strtotime($getAbsensi1['sampai'])) == '8' AND ($getAbsensi1['status'] == "Izin Tidak Masuk" OR $getAbsensi1['status'] == "Sakit - Tanpa SKD" OR $getAbsensi1['status'] == "Tanpa Keterangan")){
-
-                                  $bulanke[8] = $bulanke[8] + 1;
-
-                                  if($bulanke[8] < 1 AND $hari2 > 1){
-                                    $sisa_cuti_tahunan1 = $sisa_cuti_tahunan1-($hari2 - 1);
-                                  }elseif($bulanke[8] > 1){
-                                    $sisa_cuti_tahunan1 = $sisa_cuti_tahunan1 - $hari2;
-                                  }else{
-                                    $sisa_cuti_tahunan1 = $sisa_cuti_tahunan1;
-                                  }
-
-                                }elseif(date('m', strtotime($getAbsensi1['dari'])) == '9' AND date('m', strtotime($getAbsensi1['sampai'])) == '9' AND ($getAbsensi1['status'] == "Izin Tidak Masuk" OR $getAbsensi1['status'] == "Sakit - Tanpa SKD" OR $getAbsensi1['status'] == "Tanpa Keterangan")){
-
-                                  $bulanke[9] = $bulanke[9] + 1;
-
-                                  if($bulanke[9] < 1 AND $hari2 > 1){
-                                    $sisa_cuti_tahunan1 = $sisa_cuti_tahunan1-($hari2 - 1);
-                                  }elseif($bulanke[9] > 1){
-                                    $sisa_cuti_tahunan1 = $sisa_cuti_tahunan1 - $hari2;
-                                  }else{
-                                    $sisa_cuti_tahunan1 = $sisa_cuti_tahunan1;
-                                  }
-
-                                }elseif(date('m', strtotime($getAbsensi1['dari'])) == '10' AND date('m', strtotime($getAbsensi1['sampai'])) == '10' AND ($getAbsensi1['status'] == "Izin Tidak Masuk" OR $getAbsensi1['status'] == "Sakit - Tanpa SKD" OR $getAbsensi1['status'] == "Tanpa Keterangan")){
-
-                                  $bulanke[10] = $bulanke[10] + 1;
-
-                                  if($bulanke[10] < 1 AND $hari2 > 1){
-                                    $sisa_cuti_tahunan1 = $sisa_cuti_tahunan1-($hari2 - 1);
-                                  }elseif($bulanke[10] > 1){
-                                    $sisa_cuti_tahunan1 = $sisa_cuti_tahunan1 - $hari2;
-                                  }else{
-                                    $sisa_cuti_tahunan1 = $sisa_cuti_tahunan1;
-                                  }
-
-                                }elseif(date('m', strtotime($getAbsensi1['dari'])) == '11' AND date('m', strtotime($getAbsensi1['sampai'])) == '11' AND ($getAbsensi1['status'] == "Izin Tidak Masuk" OR $getAbsensi1['status'] == "Sakit - Tanpa SKD" OR $getAbsensi1['status'] == "Tanpa Keterangan")){
-
-                                  $bulanke[11] = $bulanke[11] + 1;
-
-                                  if($bulanke[11] < 1 AND $hari2 > 1){
-                                    $sisa_cuti_tahunan1 = $sisa_cuti_tahunan1-($hari2 - 1);
-                                  }elseif($bulanke[11] > 1){
-                                    $sisa_cuti_tahunan1 = $sisa_cuti_tahunan1 - $hari2;
-                                  }else{
-                                    $sisa_cuti_tahunan1 = $sisa_cuti_tahunan1;
-                                  }
-
-                                }elseif(date('m', strtotime($getAbsensi1['dari'])) == '12' AND date('m', strtotime($getAbsensi1['sampai'])) == '12' AND ($getAbsensi1['status'] == "Izin Tidak Masuk" OR $getAbsensi1['status'] == "Sakit - Tanpa SKD" OR $getAbsensi1['status'] == "Tanpa Keterangan")){
-
-                                  $bulanke[12] = $bulanke[12] + 1;
-
-                                  if($bulanke[12] < 1 AND $hari2 > 1){
-                                    $sisa_cuti_tahunan1 = $sisa_cuti_tahunan1-($hari2 - 1);
-                                  }elseif($bulanke[12] > 1){
-                                    $sisa_cuti_tahunan1 = $sisa_cuti_tahunan1 - $hari2;
-                                  }else{
-                                    $sisa_cuti_tahunan1 = $sisa_cuti_tahunan1;
-                                  }
-
-                                }else{
-                                  $sisa_cuti_tahunan1 = $sisa_cuti_tahunan1;
-                                }
 
                                 if($getAbsensi1['status'] == "Cuti - Tahunan"){
                                   $sisa_cuti_tahunan1 = $sisa_cuti_tahunan1 - $hari2;
@@ -378,7 +231,7 @@
                                     }
 
 
-                                    $q_getAbsensi = mysqli_query($conn, "SELECT * FROM absensi WHERE nik = '$getKaryawan[nik]' AND year(dari)='$tahunGet'");
+                                    $q_getAbsensi = mysqli_query($conn, "SELECT * FROM absensi WHERE nik = '$getKaryawan[nik]' AND year(dari)='$tahunGet' ORDER BY dari ASC");
                                     while($getAbsensi = mysqli_fetch_array($q_getAbsensi)){
                                       $no_2 = $no_2 + 1;
                                   ?>
@@ -397,155 +250,6 @@
                                       </td>
                                       <td>
                                         <?php
-                                          //hitung cuti & izin perbulan                                            
-                                          if(date('m', strtotime($getAbsensi['dari'])) == '1' AND date('m', strtotime($getAbsensi['sampai'])) == '1' AND ($getAbsensi['status'] == "Izin Tidak Masuk" OR $getAbsensi['status'] == "Sakit - Tanpa SKD" OR $getAbsensi['status'] == "Tanpa Keterangan")){
-
-                                            $bulan[1] = $bulan[1] + 1;
-
-                                            if($bulan[1] < 1 AND $hari > 1){
-                                              $sisa_cuti_tahunan = $sisa_cuti_tahunan-($hari - 1);
-                                            }elseif($bulan[1] > 1){
-                                              $sisa_cuti_tahunan = $sisa_cuti_tahunan - $hari;
-                                            }else{
-                                              $sisa_cuti_tahunan = $sisa_cuti_tahunan;
-                                            }
-
-                                          }elseif(date('m', strtotime($getAbsensi['dari'])) == '2' AND date('m', strtotime($getAbsensi['sampai'])) == '2' AND ($getAbsensi['status'] == "Izin Tidak Masuk" OR $getAbsensi['status'] == "Sakit - Tanpa SKD" OR $getAbsensi['status'] == "Tanpa Keterangan")){
-
-                                            $bulan[2] = $bulan[2] + 1;
-
-                                            if($bulan[2] < 1 AND $hari > 1){
-                                              $sisa_cuti_tahunan = $sisa_cuti_tahunan-($hari - 1);
-                                            }elseif($bulan[2] > 1){
-                                              $sisa_cuti_tahunan = $sisa_cuti_tahunan - $hari;
-                                            }else{
-                                              $sisa_cuti_tahunan = $sisa_cuti_tahunan;
-                                            }
-
-                                          }elseif(date('m', strtotime($getAbsensi['dari'])) == '3' AND date('m', strtotime($getAbsensi['sampai'])) == '3' AND ($getAbsensi['status'] == "Izin Tidak Masuk" OR $getAbsensi['status'] == "Sakit - Tanpa SKD" OR $getAbsensi['status'] == "Tanpa Keterangan")){
-
-                                            $bulan[3] = $bulan[3] + 1;
-
-                                            if($bulan[3] < 1 AND $hari > 1){
-                                              $sisa_cuti_tahunan = $sisa_cuti_tahunan-($hari - 1);
-                                            }elseif($bulan[3] > 1){
-                                              $sisa_cuti_tahunan = $sisa_cuti_tahunan - $hari;
-                                            }else{
-                                              $sisa_cuti_tahunan = $sisa_cuti_tahunan;
-                                            }
-
-                                          }elseif(date('m', strtotime($getAbsensi['dari'])) == '4' AND date('m', strtotime($getAbsensi['sampai'])) == '4' AND ($getAbsensi['status'] == "Izin Tidak Masuk" OR $getAbsensi['status'] == "Sakit - Tanpa SKD" OR $getAbsensi['status'] == "Tanpa Keterangan")){
-
-                                            $bulan[4] = $bulan[4] + 1;
-
-                                            if($bulan[4] < 1 AND $hari > 1){
-                                              $sisa_cuti_tahunan = $sisa_cuti_tahunan-($hari - 1);
-                                            }elseif($bulan[4] > 1){
-                                              $sisa_cuti_tahunan = $sisa_cuti_tahunan - $hari;
-                                            }else{
-                                              $sisa_cuti_tahunan = $sisa_cuti_tahunan;
-                                            }
-
-                                          }elseif(date('m', strtotime($getAbsensi['dari'])) == '5' AND date('m', strtotime($getAbsensi['sampai'])) == '5' AND ($getAbsensi['status'] == "Izin Tidak Masuk" OR $getAbsensi['status'] == "Sakit - Tanpa SKD" OR $getAbsensi['status'] == "Tanpa Keterangan")){
-
-                                            $bulan[5] = $bulan[5] + 1;
-
-                                            if($bulan[5] < 1 AND $hari > 1){
-                                              $sisa_cuti_tahunan = $sisa_cuti_tahunan-($hari - 1);
-                                            }elseif($bulan[5] > 1){
-                                              $sisa_cuti_tahunan = $sisa_cuti_tahunan - $hari;
-                                            }else{
-                                              $sisa_cuti_tahunan = $sisa_cuti_tahunan;
-                                            }
-
-                                          }elseif(date('m', strtotime($getAbsensi['dari'])) == '6' AND date('m', strtotime($getAbsensi['sampai'])) == '6' AND ($getAbsensi['status'] == "Izin Tidak Masuk" OR $getAbsensi['status'] == "Sakit - Tanpa SKD" OR $getAbsensi['status'] == "Tanpa Keterangan")){
-
-                                            $bulan[6] = $bulan[6] + 1;
-
-                                            if($bulan[6] < 1 AND $hari > 1){
-                                              $sisa_cuti_tahunan = $sisa_cuti_tahunan-($hari - 1);
-                                            }elseif($bulan[6] > 1){
-                                              $sisa_cuti_tahunan = $sisa_cuti_tahunan - $hari;
-                                            }else{
-                                              $sisa_cuti_tahunan = $sisa_cuti_tahunan;
-                                            }
-
-                                          }elseif(date('m', strtotime($getAbsensi['dari'])) == '7' AND date('m', strtotime($getAbsensi['sampai'])) == '7' AND ($getAbsensi['status'] == "Izin Tidak Masuk" OR $getAbsensi['status'] == "Sakit - Tanpa SKD" OR $getAbsensi['status'] == "Tanpa Keterangan")){
-
-                                            $bulan[7] = $bulan[7] + 1;
-
-                                            if($bulan[7] < 1 AND $hari > 1){
-                                              $sisa_cuti_tahunan = $sisa_cuti_tahunan-($hari - 1);
-                                            }elseif($bulan[7] > 1){
-                                              $sisa_cuti_tahunan = $sisa_cuti_tahunan - $hari;
-                                            }else{
-                                              $sisa_cuti_tahunan = $sisa_cuti_tahunan;
-                                            }
-
-                                          }elseif(date('m', strtotime($getAbsensi['dari'])) == '8' AND date('m', strtotime($getAbsensi['sampai'])) == '8' AND ($getAbsensi['status'] == "Izin Tidak Masuk" OR $getAbsensi['status'] == "Sakit - Tanpa SKD" OR $getAbsensi['status'] == "Tanpa Keterangan")){
-
-                                            $bulan[8] = $bulan[8] + 1;
-
-                                            if($bulan[8] < 1 AND $hari > 1){
-                                              $sisa_cuti_tahunan = $sisa_cuti_tahunan-($hari - 1);
-                                            }elseif($bulan[8] > 1){
-                                              $sisa_cuti_tahunan = $sisa_cuti_tahunan - $hari;
-                                            }else{
-                                              $sisa_cuti_tahunan = $sisa_cuti_tahunan;
-                                            }
-
-                                          }elseif(date('m', strtotime($getAbsensi['dari'])) == '9' AND date('m', strtotime($getAbsensi['sampai'])) == '9' AND ($getAbsensi['status'] == "Izin Tidak Masuk" OR $getAbsensi['status'] == "Sakit - Tanpa SKD" OR $getAbsensi['status'] == "Tanpa Keterangan")){
-
-                                            $bulan[9] = $bulan[9] + 1;
-
-                                            if($bulan[9] < 1 AND $hari > 1){
-                                              $sisa_cuti_tahunan = $sisa_cuti_tahunan-($hari - 1);
-                                            }elseif($bulan[9] > 1){
-                                              $sisa_cuti_tahunan = $sisa_cuti_tahunan - $hari;
-                                            }else{
-                                              $sisa_cuti_tahunan = $sisa_cuti_tahunan;
-                                            }
-
-                                          }elseif(date('m', strtotime($getAbsensi['dari'])) == '10' AND date('m', strtotime($getAbsensi['sampai'])) == '10' AND ($getAbsensi['status'] == "Izin Tidak Masuk" OR $getAbsensi['status'] == "Sakit - Tanpa SKD" OR $getAbsensi['status'] == "Tanpa Keterangan")){
-
-                                            $bulan[10] = $bulan[10] + 1;
-
-                                            if($bulan[10] < 1 AND $hari > 1){
-                                              $sisa_cuti_tahunan = $sisa_cuti_tahunan-($hari - 1);
-                                            }elseif($bulan[10] > 1){
-                                              $sisa_cuti_tahunan = $sisa_cuti_tahunan - $hari;
-                                            }else{
-                                              $sisa_cuti_tahunan = $sisa_cuti_tahunan;
-                                            }
-
-                                          }elseif(date('m', strtotime($getAbsensi['dari'])) == '11' AND date('m', strtotime($getAbsensi['sampai'])) == '11' AND ($getAbsensi['status'] == "Izin Tidak Masuk" OR $getAbsensi['status'] == "Sakit - Tanpa SKD" OR $getAbsensi['status'] == "Tanpa Keterangan")){
-
-                                            $bulan[11] = $bulan[11] + 1;
-
-                                            if($bulan[11] < 1 AND $hari > 1){
-                                              $sisa_cuti_tahunan = $sisa_cuti_tahunan-($hari - 1);
-                                            }elseif($bulan[11] > 1){
-                                              $sisa_cuti_tahunan = $sisa_cuti_tahunan - $hari;
-                                            }else{
-                                              $sisa_cuti_tahunan = $sisa_cuti_tahunan;
-                                            }
-
-                                          }elseif(date('m', strtotime($getAbsensi['dari'])) == '12' AND date('m', strtotime($getAbsensi['sampai'])) == '12' AND ($getAbsensi['status'] == "Izin Tidak Masuk" OR $getAbsensi['status'] == "Sakit - Tanpa SKD" OR $getAbsensi['status'] == "Tanpa Keterangan")){
-
-                                            $bulan[12] = $bulan[12] + 1;
-
-                                            if($bulan[12] < 1 AND $hari > 1){
-                                              $sisa_cuti_tahunan = $sisa_cuti_tahunan-($hari - 1);
-                                            }elseif($bulan[12] > 1){
-                                              $sisa_cuti_tahunan = $sisa_cuti_tahunan - $hari;
-                                            }else{
-                                              $sisa_cuti_tahunan = $sisa_cuti_tahunan;
-                                            }
-
-                                          }else{
-                                            $sisa_cuti_tahunan = $sisa_cuti_tahunan;
-                                          }
-
                                           if($getAbsensi['status'] == "Cuti - Tahunan"){
                                             $sisa_cuti_tahunan = $sisa_cuti_tahunan - $hari;
                                           }

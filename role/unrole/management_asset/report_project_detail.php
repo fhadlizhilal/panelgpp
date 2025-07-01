@@ -464,6 +464,16 @@
                         </td>
                       </tr>
                      <?php $no++;} ?>
+
+                     <tr>
+                      <td colspan="9" align="center">
+                        <div style="margin: 10px;">
+                          <a href="#modal" data-toggle='modal' data-target='#show_detail_totalpengembalian' data-id='<?php echo $_GET['kd']; ?>' data-toggle="tooltip" data-placement="bottom" title="Detail Total Pengembalian">
+                            <b>Lihat Total Pengembalian <span class="fa fa-file-text-o"></span></b>
+                          </a>
+                        </div>
+                      </td>
+                    </tr>
                   </tbody>
                 </table>
               </div>
@@ -606,6 +616,28 @@
         </div> -->
         <div class="modal-body">
           <form id="myFormB" method="POST" action="">
+            <div class="modal-data"></div>
+          </form>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
+
+  <!-- Modal start here -->
+  <div class="modal fade" id="show_detail_totalpengembalian" role="dialog">
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <!-- <div class="modal-header">
+          <h4 class="modal-title">Detail Pengajuan</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div> -->
+        <div class="modal-body">
+          <form id="myForm2" method="POST" action="">
             <div class="modal-data"></div>
           </form>
         </div>

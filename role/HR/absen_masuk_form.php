@@ -82,7 +82,7 @@
                       <center>
                         <input type="submit" class="btn btn-success btn-md" name="upload" value="Upload">
                       </center>
-                    </div>
+                    </div>                  
                   </div>
                 </div>
               </form>
@@ -99,7 +99,7 @@
               <form method="POST" action="index.php?pages=form_absen_masuk">
                 <div class="inner">
                   <div class="row">
-                    <div class="col-lg-1"></div>
+                    <div class="col-1"></div>
                     <div class="col-lg-5 col-sm-5 col-xs-5 col-5">
                       <div class="form-group">
                         <center><label>Set Tanggal</label></center>
@@ -164,7 +164,7 @@
                         <tr>
                           <td>Jml Karyawan</td>
                           <td>:</td>
-                          <td><b><?php echo $count_karyawan = mysqli_num_rows(mysqli_query($conn,"SELECT * FROM karyawan WHERE nik != '12150101190187' AND nik != '12150102020784' AND nik != '12150104100159' AND nik != '12150211080696' ORDER BY nama ASC")); ?></b></td>
+                          <td><b><?php echo $count_karyawan = mysqli_num_rows(mysqli_query($conn,"SELECT * FROM karyawan WHERE status = 'aktif' AND nik != '12150101190187' AND nik != '12150102020784' AND nik != '12150104100159' AND nik != '12150211080696' ORDER BY nama ASC")); ?></b></td>
                         </tr>
                         <tr>
                           <td>Jml Data</td>
@@ -173,7 +173,7 @@
                             <?php
                               //count field
                               $jml_data = 0;
-                              $q_getKaryawan = mysqli_query($conn, "SELECT * FROM karyawan WHERE nik != '12150101190187' AND nik != '12150102020784' AND nik != '12150104100159' AND nik != '12150211080696' ORDER BY nama ASC");
+                              $q_getKaryawan = mysqli_query($conn, "SELECT * FROM karyawan WHERE status = 'aktif' AND nik != '12150101190187' AND nik != '12150102020784' AND nik != '12150104100159' AND nik != '12150211080696' ORDER BY nama ASC");
                               while($get_karyawan = mysqli_fetch_array($q_getKaryawan)){
                                 $getTmpAbsen = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM absen_masuk_tmp WHERE nik = '$get_karyawan[nik]'"));
                                 if($getTmpAbsen['jam'] != "-" AND $getTmpAbsen['status'] != "-" AND $getTmpAbsen['fingerprint'] != "-"){
@@ -240,7 +240,7 @@
                   </thead>
                   <tbody>
                     <?php
-                      $q_getKaryawan = mysqli_query($conn, "SELECT * FROM karyawan WHERE nik != '12150101190187' AND nik != '12150102020784' AND nik != '12150104100159' AND nik != '12150211080696' ORDER BY nama ASC");
+                      $q_getKaryawan = mysqli_query($conn, "SELECT * FROM karyawan WHERE status = 'aktif' AND nik != '12150101190187' AND nik != '12150102020784' AND nik != '12150104100159' AND nik != '12150211080696' ORDER BY nama ASC");
                       while($get_karyawan = mysqli_fetch_array($q_getKaryawan)){
                         $getTmpAbsen = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM absen_masuk_tmp WHERE nik = '$get_karyawan[nik]'"));
                     ?>

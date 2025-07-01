@@ -12,7 +12,7 @@
                 <option value="SemuaKaryawan">Semua Karyawan</option>
                 <option value="" selected disabled>--- Pilih Karyawan ---</option>
             <?php
-              $q_get_karyawan = mysqli_query($conn, "SELECT * FROM karyawan");
+              $q_get_karyawan = mysqli_query($conn, "SELECT * FROM karyawan WHERE status = 'aktif' ORDER BY nama ASC");
               while($get_karyawan = mysqli_fetch_array($q_get_karyawan)){
             ?>
                 <option value="<?php echo $get_karyawan['nik']; ?>"><?php echo $get_karyawan['nama']; ?></option>

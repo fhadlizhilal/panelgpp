@@ -209,7 +209,7 @@
   if(isset($_POST['edit_data_karyawan'])){
     if($_POST['edit_data_karyawan'] == "Ubah"){
       //edit data karyawan
-      $edit_karyawan = mysqli_query($conn, "UPDATE karyawan SET nik = '$_POST[nik]', nama = '$_POST[nm_karyawan]', jabatan_id = '$_POST[jabatan]', gaji = '$_POST[gaji]', tgl_masuk = '$_POST[tgl_masuk]' WHERE nik = '$_POST[id]'");
+      $edit_karyawan = mysqli_query($conn, "UPDATE karyawan SET nik = '$_POST[nik]', nama = '$_POST[nm_karyawan]', jabatan_id = '$_POST[jabatan]', gaji = '$_POST[gaji]', tgl_masuk = '$_POST[tgl_masuk]', status = '$_POST[status]' WHERE nik = '$_POST[id]'");
 
       if($edit_karyawan){
         $_SESSION['alert_success'] = "Berhasil! Data Karyawan berhasil diubah";
@@ -223,7 +223,7 @@
   if(isset($_POST['add_data_karyawan'])){
     if($_POST['add_data_karyawan'] == "Simpan"){
       //edit data karyawan
-      $add_karyawan = mysqli_query($conn, "INSERT INTO karyawan VALUES('','$_POST[nik]','$_POST[nm_karyawan]','$_POST[jabatan]','$_POST[username]','$_POST[password]','$_POST[role]','$_POST[nohp]','$_POST[email]','$_POST[gaji]','$_POST[foto]','$_POST[tgl_masuk]')");
+      $add_karyawan = mysqli_query($conn, "INSERT INTO karyawan VALUES('','$_POST[nik]','$_POST[nm_karyawan]','$_POST[jabatan]','$_POST[username]','$_POST[password]','$_POST[role]','$_POST[nohp]','$_POST[email]','$_POST[gaji]','$_POST[foto]','$_POST[tgl_masuk]','aktif')");
 
       if($add_karyawan){
         $_SESSION['alert_success'] = "Berhasil! Data Karyawan baru berhasil disimpan";
@@ -282,6 +282,7 @@
 
     }
   }
+
 
   //Edit Absen Masuk
   if(isset($_POST['edit_absen_masuk'])){
@@ -371,21 +372,12 @@
       $thisYear = date("Y", strtotime($tanggal));
       $cuti_tahunan_terpakai = mysqli_num_rows(mysqli_query($conn,"SELECT * FROM absen_masuk WHERE nik = '$nik' AND YEAR(tanggal)='$thisYear' AND status = 'Cuti - Tahunan'"));
       
-      $total_izin_cuti = 0;
-      for($z=1;$z<=12;$z++){
-        $izin_bulan[$z] = 0;
-        $izin_bulan[$z] = mysqli_num_rows(mysqli_query($conn,"SELECT * FROM absen_masuk WHERE nik = '$nik' AND YEAR(tanggal)='$thisYear' AND MONTH(tanggal)='$z' AND (status = 'Izin Tidak Masuk' OR status = 'Sakit - Tanpa SKD' OR status = 'Tanpa Keterangan')"));
-        if($izin_bulan[$z] > 0){
-          $izin_bulan[$z] = $izin_bulan[$z] - 1;
-        }
+      $total_izin = 0;
+      $sum_izin = 0;
+      $sum_izin = mysqli_num_rows(mysqli_query($conn,"SELECT * FROM absen_masuk WHERE nik = '$nik' AND tanggal < '$tanggal' AND tanggal >= '$awal_bulan' AND (status = 'Izin Tidak Masuk' OR status = 'Sakit - Tanpa SKD' OR status = 'Tanpa Keterangan')"));
+      $total_izin = $total_izin + $sum_izin;
 
-        $total_izin_cuti = $total_izin_cuti + $izin_bulan[$z];
-      }
-
-      $cuti_tahunan = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM setting"));
-      $sisa_cuti = $cuti_tahunan["cuti_tahunan"] - $cuti_tahunan_terpakai - $total_izin_cuti;
-
-      if($sisa_cuti < 0 AND ($status = 'Izin Tidak Masuk' OR $status = 'Sakit - Tanpa SKD' OR $status = 'Tanpa Keterangan')){
+      if($total_izin > 0 AND ($status == "Izin Tidak Masuk" OR $status == "Sakit - Tanpa SKD" OR $status == "Tanpa Keterangan")){
         $dataKaryawan = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM karyawan WHERE nik = '$nik'"));
         $potongan_terlambat = ($dataKaryawan['gaji']/20)*($param['potongan_terlambat']/100);
         $potongan_program = ($dataKaryawan['gaji']/20)*($param['potongan_program']/100);
@@ -773,6 +765,7 @@
               $status = $getAbsenTmp['status'];
               $fingerprint = $getAbsenTmp['fingerprint'];
               $keterangan = $getAbsenTmp['keterangan'];
+              $awal_bulan = date("Y", strtotime($tanggal))."-".date("m", strtotime($tanggal))."-01";
 
               //Sum total terlambat sebelum hari ini
               $getTerlambatBulanIni = mysqli_fetch_array(mysqli_query($conn, "SELECT SUM(terlambat) AS terlambat_bulanini FROM absen_masuk WHERE month(tanggal) = '$bulan_ini' AND nik = '$nik'"));
@@ -828,21 +821,11 @@
               $thisYear = date("Y", strtotime($tanggal));
               $cuti_tahunan_terpakai = mysqli_num_rows(mysqli_query($conn,"SELECT * FROM absen_masuk WHERE nik = '$nik' AND YEAR(tanggal)='$thisYear' AND status = 'Cuti - Tahunan'"));
               
-              $total_izin_cuti = 0;
-              for($z=1;$z<=12;$z++){
-                $izin_bulan[$z] = 0;
-                $izin_bulan[$z] = mysqli_num_rows(mysqli_query($conn,"SELECT * FROM absen_masuk WHERE nik = '$nik' AND YEAR(tanggal)='$thisYear' AND MONTH(tanggal)='$z' AND (status = 'Izin Tidak Masuk' OR status = 'Sakit - Tanpa SKD' OR status = 'Tanpa Keterangan')"));
-                if($izin_bulan[$z] > 0){
-                  $izin_bulan[$z] = $izin_bulan[$z] - 1;
-                }
+              $total_izin = 0;
+              $sum_izin = mysqli_num_rows(mysqli_query($conn,"SELECT * FROM absen_masuk WHERE nik = '$nik' AND tanggal < '$tanggal' AND tanggal >= '$awal_bulan' AND (status = 'Izin Tidak Masuk' OR status = 'Sakit - Tanpa SKD' OR status = 'Tanpa Keterangan')"));
+              $total_izin = $total_izin + $sum_izin;
 
-                $total_izin_cuti = $total_izin_cuti + $izin_bulan[$z];
-              }
-
-              $cuti_tahunan = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM setting"));
-              $sisa_cuti = $cuti_tahunan["cuti_tahunan"] - $cuti_tahunan_terpakai - $total_izin_cuti;
-
-              if($sisa_cuti < 0 AND ($status = 'Izin Tidak Masuk' OR $status = 'Sakit - Tanpa SKD' OR $status = 'Tanpa Keterangan')){
+              if($total_izin > 0 AND ($status = 'Izin Tidak Masuk' OR $status = 'Sakit - Tanpa SKD' OR $status = 'Tanpa Keterangan')){
                 $dataKaryawan = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM karyawan WHERE nik = '$nik'"));
                 $potongan_terlambat = ($dataKaryawan['gaji']/20)*($param['potongan_terlambat']/100);
                 $potongan_program = ($dataKaryawan['gaji']/20)*($param['potongan_program']/100);

@@ -1540,6 +1540,10 @@
       require_once "form_inspeksi_bordc.php";
     }elseif($_GET["pages"]=="reportinspeksibordc"){
       require_once "report_inspeksi_bordc.php";
+    }elseif($_GET["pages"]=="forminspeksicuttingwheel"){
+      require_once "form_inspeksi_cuttingwheel.php";
+    }elseif($_GET["pages"]=="reportinspeksicuttingwheel"){
+      require_once "report_inspeksi_cuttingwheel.php";
     }
 
   ?>

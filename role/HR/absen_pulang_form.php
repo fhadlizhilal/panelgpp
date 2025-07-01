@@ -10,7 +10,7 @@
   //Set tanggal dan Jam Absen Pulang
   if(isset($_GET['set_absen_pulang'])){
     if($_GET['set_absen_pulang'] == "SET"){
-      $q_getKaryawan = mysqli_query($conn, "SELECT * FROM karyawan WHERE nik != '12150101190187' AND nik != '12150102020784' AND nik != '12150104100159' ORDER BY jabatan_id ASC");
+      $q_getKaryawan = mysqli_query($conn, "SELECT * FROM karyawan WHERE status = 'aktif' AND nik != '12150101190187' AND nik != '12150102020784' AND nik != '12150104100159' AND nik != '12150211080696' ORDER BY jabatan_id ASC");
       mysqli_query($conn, "TRUNCATE TABLE absen_pulang_tmp");
       while($getKaryawan = mysqli_fetch_array($q_getKaryawan)){
         $tanggal_pulang = date("Y-m-d", strtotime($_SESSION['tanggal_pulang_set']));
@@ -181,7 +181,7 @@
                           <td>Jml Karyawan</td>
                           <td>:</td>
                           <td>
-                            <b><?php echo $count_karyawan = mysqli_num_rows(mysqli_query($conn,"SELECT * FROM karyawan WHERE nik != '12150101190187' AND nik != '12150102020784' AND nik != '12150104100159'")); ?></b>
+                            <b><?php echo $count_karyawan = mysqli_num_rows(mysqli_query($conn,"SELECT * FROM karyawan WHERE status = 'aktif' AND nik != '12150101190187' AND nik != '12150102020784' AND nik != '12150104100159' AND nik != '12150211080696'")); ?></b>
                           </td>
                         </tr>
                         <tr>
@@ -266,7 +266,7 @@
                   <tbody>
                     <?php
                     if($cek_AbsenMasuk > 0){
-                      $q_getKaryawan = mysqli_query($conn, "SELECT * FROM karyawan WHERE nik != '12150101190187' AND nik != '12150102020784' AND nik != '12150104100159' ORDER BY jabatan_id ASC");
+                      $q_getKaryawan = mysqli_query($conn, "SELECT * FROM karyawan WHERE status = 'aktif' AND nik != '12150101190187' AND nik != '12150102020784' AND nik != '12150104100159' AND nik != '12150211080696' ORDER BY nama ASC");
                       while($get_karyawan = mysqli_fetch_array($q_getKaryawan)){
                         $get_absenMasuk = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM absen_masuk WHERE nik = '$get_karyawan[nik]' AND tanggal = '$tgl_pulang'"));
                         $get_absenPulangTmp = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM absen_pulang_tmp WHERE nik = '$get_karyawan[nik]'"));

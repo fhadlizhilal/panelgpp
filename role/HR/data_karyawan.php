@@ -42,13 +42,14 @@
                       <th width="">Gaji</th>
                       <th width="">Tgl Masuk</th>
                       <th width="5%">Foto</th>
-                      <th width="8%">#</th>
+                      <th width="5%">Status</th>
+                      <th width="5%">#</th>
                     </tr>
                   </thead>
                   <tbody>
                     <?php
                       $i = 0;
-                      $q_getKaryawan = mysqli_query($conn, "SELECT * FROM karyawan");
+                      $q_getKaryawan = mysqli_query($conn, "SELECT * FROM karyawan WHERE nik != '12150211080696'");
                       while($get_karyawan = mysqli_fetch_array($q_getKaryawan)){
                         $getJabatan = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM jabatan where id = '$get_karyawan[jabatan_id]'"));
                         $i = $i+1;
@@ -73,6 +74,15 @@
                             }
                           ?>
                           
+                        </td>
+                        <td>
+                            <?php
+                                if($get_karyawan['status'] == "aktif"){
+                                    echo "<span class='badge badge-success'>aktif</span>";
+                                }elseif($get_karyawan['status'] == "non-aktif"){
+                                    echo "<span class='badge badge-danger'>non-aktif</span>";
+                                }
+                            ?>
                         </td>
                         <td style="font-size: 14px;">
                           <a href="#modal" data-toggle='modal' data-target='#show_edit_data_karyawan' data-id='<?php echo $get_karyawan['nik']; ?>' data-toggle="tooltip" data-placement="bottom" title="Edit"><span class="fa fa-edit"></span></a> | 

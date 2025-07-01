@@ -57,7 +57,7 @@
 
   if(isset($_POST['pengembalian_completed'])){
     if($_POST['pengembalian_completed'] == "completed"){
-      $cek_peminjaman_onprogress = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM asset_peminjaman WHERE kd_project = '$_POST[kd_project]' AND status <> 'completed'"));
+      $cek_peminjaman_onprogress = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM asset_peminjaman WHERE kd_project = '$_POST[kd_project]' AND (status = 'waiting for MA' OR status = 'onprogress by MA')"));
 
       if($cek_peminjaman_onprogress>0){
         $_SESSION['alert_warning'] = 'Kode Project ini masih ada peminjaman yang berstatus on progress!<br>selesaikan terlebih dahulu progress peminjaman!';
